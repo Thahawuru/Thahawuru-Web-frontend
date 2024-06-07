@@ -41,6 +41,14 @@ const config = {
           DEFAULT: "#e63946",
           foreground: "#e63946",
         },
+        white: {
+          DEFAULT: "#f5f5f5",
+          foreground: "#f5f5f5",
+        },
+        whiteTwo: {
+          DEFAULT: "#edf2f4",
+          foreground: "#edf2f4",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
