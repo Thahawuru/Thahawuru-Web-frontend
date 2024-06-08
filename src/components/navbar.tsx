@@ -6,16 +6,16 @@ import Link from "next/link";
 
 export default function Navbar() {
   const items = [
-    { title: "Home", link: "/" },
-    { title: "About", link: "/about" },
-    { title: "Contact", link: "/contact" },
+    { title: "home", link: "/" },
+    { title: "about", link: "/about" },
+    { title: "contact", link: "/contact" },
     { title: "API", link: "/api" },
-    { title: "Login", link: "/login" },
+    { title: "login", link: "/login" },
   ];
 
   return (
     <>
-      <div className="fixed bg-whiteTwo border border-black-900 w-full h-[60px]">
+      <div className="fixed bg-secondaryThree border border-black-900 w-full h-[60px]">
         <div className="container mx-auto flex justify-between items-center h-full">
           <div className="text-secondary font-bold">
             <Link href="/" passHref>
@@ -33,7 +33,7 @@ export default function Navbar() {
               <Link
                 key={item.title}
                 href={item.link}
-                className="text-secondary"
+                className="text-secondary hover:text-secondaryTwo transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
               >
                 {item.title}
               </Link>
