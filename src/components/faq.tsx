@@ -32,13 +32,13 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="bg-primary text-white py-16 sm:py-24 lg:py-10">
+    <div className="text-white py-16 sm:py-24 lg:py-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="mt-8 space-y-4">
           {faqData.map((item, index) => (
             <div
               key={index}
-              className="bg-primary rounded-lg p-4 rounded-lg shadow-md"
+              className="rounded-lg p-4 rounded-lg border border-white border-opacity-10 hover:border-opacity-50 transition duration-300 ease-in-out cursor-pointer"
             >
               <motion.div
                 initial={{ y: -20, opacity: 0 }}
@@ -48,10 +48,10 @@ export default function FAQ() {
                 className="cursor-pointer"
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-semibold text-secondary">
+                  <h3 className="text-sm font-semibold text-white">
                     {item.question}
                   </h3>
-                  <span className="text-2xl text-secondary">
+                  <span className="text-2xl text-white">
                     {selectedQuestion === index ? "-" : "+"}
                   </span>
                 </div>
@@ -60,7 +60,7 @@ export default function FAQ() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="mt-4 text-secondary"
+                    className="mt-4 text-white text-sm"
                   >
                     {item.answer}
                   </motion.div>
