@@ -6,11 +6,9 @@ import Link from "next/link";
 
 export default function Navbar() {
   const items = [
-    { title: "home", link: "/" },
-    { title: "about", link: "/about" },
-    { title: "contact", link: "/contact" },
+    { title: "Home", link: "/" },
     { title: "API", link: "/api" },
-    { title: "login", link: "/login" },
+    { title: "Login", link: "/login" },
   ];
 
   return (
@@ -33,9 +31,9 @@ export default function Navbar() {
               <Link
                 key={item.title}
                 href={item.link}
-                className="text-secondary hover:text-secondaryTwo transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                className="text-secondary hover:text-secondaryTwo transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer text-sm"
               >
-                {item.title}
+                <b>{item.title}</b>
               </Link>
             ))}
           </div>
