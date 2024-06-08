@@ -13,7 +13,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="fixed bg-secondaryThree border border-black-900 w-full h-[60px]">
+      <div className="fixed bg-secondaryThree border border-black-900 w-full h-[60px] z-20">
         <div className="container mx-auto flex justify-between items-center h-full">
           <div className="text-secondary font-bold">
             <Link href="/" passHref>
@@ -31,7 +31,7 @@ export default function Navbar() {
               <Link
                 key={item.title}
                 href={item.link}
-                className="text-secondary hover:text-secondaryTwo transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer text-sm"
+                className="text-secondaryTwo hover:text-secondaryTwo transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer text-sm"
               >
                 <b>{item.title}</b>
               </Link>
