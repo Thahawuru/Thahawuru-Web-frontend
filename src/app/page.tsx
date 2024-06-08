@@ -2,7 +2,9 @@
 import Image from "next/image";
 import logo from "../../public/Thahawuru.png";
 import testQR from "../../public/testQR.png";
+import NewsLetter from "@/components/newsletter";
 import { motion } from "framer-motion";
+import FAQ from "@/components/faq";
 
 const zoomInVariants = {
   hidden: { scale: 0.5, opacity: 0 },
@@ -92,7 +94,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-full h-auto flex flex-col"
               >
-                <p className="text-lg mt-4 text-black text-sm">
+                <p className="text-lg mt-4 text-secondary text-sm">
                   <b>
                     This will bring a new era of digital verification system to
                     Sri Lanka.
@@ -118,7 +120,7 @@ export default function Home() {
               animate="visible"
               exit="exit"
               variants={zoomInVariants}
-              className="w-[70%] h-3/4 border rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer"
+              className="w-[70%] h-3/4 border rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer"
             >
               <div className="w-[80%]">
                 <Image src={logo} alt="Profile Picture"></Image>
@@ -165,7 +167,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center w-full h-screen">
+        <div className="flex flex-col justify-center items-center w-full h-auto pt-20">
           <h1 className="text-4xl text-secondary text-center">
             <b>Have a Question?</b>
           </h1>
@@ -173,7 +175,12 @@ export default function Home() {
             Find your questions and solve it from here
           </h2>
           <div className="w-3/4 h-auto">
-              
+            <FAQ />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center w-full h-auto">
+          <div className="w-full h-auto">
+            <NewsLetter />
           </div>
         </div>
       </div>
