@@ -24,11 +24,6 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-
-        black: {
-          DEFAULT: "#050505",
-          foreground: "#050505",
-        },
         primary: {
           DEFAULT: "#F5F5F5",
           foreground: "#F5F5F5",
@@ -37,13 +32,21 @@ const config = {
           DEFAULT: "#0D096D",
           foreground: "#0D096D",
         },
+        secondaryTwo: {
+          DEFAULT: "#023e8a",
+          foreground: "#023e8a",
+        },
+        secondaryThree:{
+          DEFAULT: "#f8f9fa",
+          foreground: "#f8f9fa",
+        },
         destructive: {
           DEFAULT: "#e63946",
           foreground: "#e63946",
         },
         white: {
-          DEFAULT: "#f5f5f5",
-          foreground: "#f5f5f5",
+          DEFAULT: "#edf2f4",
+          foreground: "#edf2f4",
         },
         whiteTwo: {
           DEFAULT: "#edf2f4",
