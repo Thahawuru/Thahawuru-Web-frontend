@@ -127,7 +127,9 @@ export default function Home() {
                 <h2 className="text-2xl text-secondary">
                   <b>Scan Me</b>
                 </h2>
-                <h1 className="text-1xl text-secondary">Download your Mobile App</h1>
+                <h1 className="text-1xl text-secondary">
+                  Download your Mobile App
+                </h1>
               </div>
               <div className="w-[50%] mt-10">
                 <Image src={testQR} alt="Test QR"></Image>
@@ -136,8 +138,13 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-between items-center w-4/5 h-screen">
-          <h1 className="text-4xl text-secondary text-center"><b>Features we offer</b></h1>
-          <h2 className="text-2xl text-secondary text-center">Simplify your Identitiy verification process with Digital Wallet තහවුරු</h2>
+          <h1 className="text-4xl text-secondary text-center">
+            <b>Features we offer</b>
+          </h1>
+          <h2 className="text-2xl text-secondary text-center">
+            Simplify your Identitiy verification process with Digital Wallet{" "}
+            <b>තහවුරු</b>
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-auto bg-gradient-to-br from-white to-primary p-4">
             {tiles.map((tile) => (
               <div
@@ -158,8 +165,16 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col justify-between items-center w-full h-screen">
-
+        <div className="flex flex-col justify-center items-center w-full h-screen">
+          <h1 className="text-4xl text-secondary text-center">
+            <b>Have a Question?</b>
+          </h1>
+          <h2 className="text-2xl text-secondary text-center">
+            Find your questions and solve it from here
+          </h2>
+          <div className="w-3/4 h-auto">
+              
+          </div>
         </div>
       </div>
     </>
