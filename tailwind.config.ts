@@ -52,6 +52,10 @@ const config = {
           DEFAULT: "#edf2f4",
           foreground: "#edf2f4",
         },
+        gray:{
+          DEFAULT: "#adb5bd",
+          foreground: "#adb5bd",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -5,6 +5,7 @@ import testQR from "../../public/testQR.png";
 import NewsLetter from "@/components/newsletter";
 import { motion } from "framer-motion";
 import FAQ from "@/components/faq";
+import ContactUs from "@/components/contactus";
 
 const zoomInVariants = {
   hidden: { scale: 0.5, opacity: 0 },
@@ -78,7 +79,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-full h-auto flex flex-col"
               >
-                <p className="text-lg mt-4 text-white text-sm">
+                <p className="text-lg mt-4 text-gray text-sm">
                   Thahawuru is a digital identity verification system that
                   allows you to verify your identity with a single QR scan. It
                   is a secure and reliable digital wallet which keep your
@@ -141,7 +142,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between items-center w-4/5 h-screen mb-28">
+        <div className="flex flex-col justify-between items-center w-4/5 h-screen mb-40">
           <h1 className="text-4xl text-secondary text-center mt-20">
             <b>Features we offer</b>
           </h1>
@@ -183,9 +184,10 @@ export default function Home() {
           <h2 className="text-2xl text-white text-center mt-2">
             Find your questions and solve it from here
           </h2>
-          <p className="text-lg text-white text-sm text-center w-full mt-4">
+          <p className="text-lg text-gray text-sm text-center w-full mt-4">
             If you have any questions, you can find the answers from the below
-            FAQ section. If you can`t find the answer, please contact us. We are happy to help you. 
+            FAQ section. If you can`t find the answer, please contact us. We are
+            happy to help you.
           </p>
           <div className="w-3/4 h-auto">
             <FAQ />
@@ -194,6 +196,23 @@ export default function Home() {
         <div className="flex flex-col justify-center items-center w-full h-auto">
           <div className="w-full h-auto">
             <NewsLetter />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center w-full h-auto pt-20 mt-10 pb-10 bg-gradient-to-br from-secondary to-secondaryTwo">
+          <h1 className="text-4xl text-white text-center">
+            <b>Get in Touch With Us</b>
+          </h1>
+          <h2 className="text-2xl text-white text-center mt-2">
+            Contact us if you have any questions, partnerships. We are happy to
+            help and work with you.
+          </h2>
+          <p className="text-lg text-gray text-sm text-center w-full mt-4">
+            Contact us if you have any questions, partnerships. We are happy to
+            help and work with you. You can contact us via email, phone or
+            contact form. We are happy to help you.
+          </p>
+          <div className="w-3/4 h-auto">
+            <ContactUs />
           </div>
         </div>
       </div>

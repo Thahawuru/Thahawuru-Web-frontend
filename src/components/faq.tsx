@@ -60,7 +60,7 @@ export default function FAQ() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="mt-4 text-white text-sm"
+                    className="mt-4 text-gray text-sm"
                   >
                     {item.answer}
                   </motion.div>
