@@ -99,7 +99,7 @@ export default function Page() {
                   onChange={(e) => setUserMessage(e.target.value)}
                 />
               </div>
-              <div className="w-1/2 md:w-1/6 flex flex-col items-center justify-center mt-4 mb-4">
+              <div className="w-full md:w-1/6 flex flex-col items-center justify-center mt-4 mb-4">
                 <button
                   type="submit"
                   value="Send"

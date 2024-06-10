@@ -53,7 +53,7 @@ export default function Home() {
       <div className="flex flex-col h-auto w-full justify-center items-center bg-gradient-to-br from-white to-primary">
         <div className="flex flex-col sm:flex-col md:flex-row justify-between items-center w-full h-auto md:h-screen bg-gradient-to-br from-secondary to-secondaryTwo pb-10">
           <div className="flex flex-col w-full md:w-[70%] h-full text-white justify-center items-center p-0 md:p-20 mt-40 md:mt-0">
-            <div className="w-[90%]">
+            <div className="w-[90%] mt-16">
               <motion.main
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -148,7 +148,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between items-center w-4/5 h-auto md:h-screen mb-0 md:mb-80">
+        <div className="flex flex-col justify-between items-center w-4/5 h-auto md:h-screen mb-0 md:mb-60">
           <h1 className="text-4xl text-secondary text-center mt-20">
             <b>Features we offer</b>
           </h1>
