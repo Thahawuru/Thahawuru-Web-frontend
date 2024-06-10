@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import logo from "../../public/Thahawuru.png";
+import logo from "../../public//grayLogo.png";
 import testQR from "../../public/testQR.png";
 import NewsLetter from "@/components/newsletter";
 import { motion } from "framer-motion";
@@ -110,29 +110,29 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-[140px] h-auto flex flex-col"
               >
-                <button className="bg-white text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                <button className="bg-gray text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
                   <b>Get Started</b>
                 </button>
               </motion.main>
             </div>
           </div>
           <div className="flex flex-col w-[30%] h-full justify-center items-left">
-            <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16">
+            <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16  border border-white">
               <motion.div
                 initial="hidden"
                 animate="visible"
                 exit="exit"
                 variants={zoomInVariants}
-                className="h-full w-full rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer bg-white"
+                className="h-full w-full rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer opacity-70"
               >
                 <div className="w-[80%]">
                   <Image src={logo} alt="Profile Picture"></Image>
                 </div>
                 <div className="w-[70%] flex flex-col justify-center items-center">
-                  <h2 className="text-2xl text-secondary">
+                  <h2 className="text-2xl text-white">
                     <b>Scan Me</b>
                   </h2>
-                  <h1 className="text-1xl text-secondary">
+                  <h1 className="text-1xl text-white">
                     Download your Mobile App
                   </h1>
                 </div>
@@ -143,7 +143,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between items-center w-4/5 h-screen mb-40">
+        <div className="flex flex-col justify-between items-center w-4/5 h-screen mb-80">
           <h1 className="text-4xl text-secondary text-center mt-20">
             <b>Features we offer</b>
           </h1>
@@ -162,7 +162,7 @@ export default function Home() {
             {tiles.map((tile) => (
               <div
                 key={tile.title}
-                className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-4 p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-10 p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
               >
                 <div className="w-full flex flex-col justify-center items-center">
                   <h2 className="text-2xl text-secondary text-center">
