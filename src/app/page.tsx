@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import logo from "../../public/Thahawuru.png";
+import logo from "../../public//grayLogo.png";
 import testQR from "../../public/testQR.png";
 import NewsLetter from "@/components/newsletter";
 import { motion } from "framer-motion";
@@ -110,29 +110,29 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-[140px] h-auto flex flex-col"
               >
-                <button className="bg-white text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                <button className="bg-gray text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
                   <b>Get Started</b>
                 </button>
               </motion.main>
             </div>
           </div>
           <div className="flex flex-col w-[30%] h-full justify-center items-left">
-            <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16">
+            <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16  border border-white">
               <motion.div
                 initial="hidden"
                 animate="visible"
                 exit="exit"
                 variants={zoomInVariants}
-                className="h-full w-full rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer bg-white"
+                className="h-full w-full rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer opacity-70"
               >
                 <div className="w-[80%]">
                   <Image src={logo} alt="Profile Picture"></Image>
                 </div>
                 <div className="w-[70%] flex flex-col justify-center items-center">
-                  <h2 className="text-2xl text-secondary">
+                  <h2 className="text-2xl text-white">
                     <b>Scan Me</b>
                   </h2>
-                  <h1 className="text-1xl text-secondary">
+                  <h1 className="text-1xl text-white">
                     Download your Mobile App
                   </h1>
                 </div>

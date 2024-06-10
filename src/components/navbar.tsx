@@ -34,7 +34,7 @@ export default function Navbar() {
               <Link
                 key={item.title}
                 href={item.link}
-                className="text-secondaryTwo hover:text-secondaryTwo transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer text-sm"
+                className="text-secondaryTwo hover:text-gray transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer text-1xl"
               >
                 &nbsp;<b>{item.title}</b>&nbsp;
               </Link>

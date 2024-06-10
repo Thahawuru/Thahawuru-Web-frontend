@@ -103,7 +103,7 @@ export default function Page() {
                 <button
                   type="submit"
                   value="Send"
-                  className="bg-white text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+                  className="bg-gray text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   <b>Send Message</b>
                 </button>
