@@ -167,7 +167,7 @@ export default function Home() {
             {tiles.map((tile) => (
               <div
                 key={tile.title}
-                className="flex flex-col w-full justify-center items-center bg-white rounded-lg shadow-lg m-0 md:m-10 p-4 md:p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                className="flex flex-col w-full justify-center items-center bg-white rounded-lg md:shadow-md m-0 md:m-10 p-4 md:p-10 transition duration-300 ease-in-out transform cursor-pointer"
               >
                 <div className="w-full flex flex-col justify-center items-center">
                   <h2 className="text-2xl text-secondary text-center">
