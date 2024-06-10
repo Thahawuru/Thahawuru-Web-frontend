@@ -108,8 +108,8 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-[140px] h-auto flex flex-col"
               >
-                <button className="bg-white text-secondary mt-4 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
-                  Get Started
+                <button className="bg-white text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                  <b>Get Started</b>
                 </button>
               </motion.main>
             </div>
@@ -145,15 +145,22 @@ export default function Home() {
           <h1 className="text-4xl text-secondary text-center mt-20">
             <b>Features we offer</b>
           </h1>
-          <h2 className="text-2xl text-secondary text-center">
+          <h2 className="text-2xl text-secondary text-center mt-2">
             Simplify your Identitiy verification process with Digital Wallet{" "}
             <b>තහවුරු</b>
           </h2>
+          <p className="text-lg text-secondary text-sm text-center w-full mt-4">
+            Thahawuru is a digital identity verification system that allows you
+            to verify your identity with a single QR scan. It is a secure and
+            reliable digital wallet which keep your licenses , identities ,
+            passports and other verification documents in one place. This will
+            allow ease of access for your verification identities.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-auto bg-gradient-to-br from-white to-primary p-4">
             {tiles.map((tile) => (
               <div
                 key={tile.title}
-                className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-4 p-10"
+                className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-4 p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
               >
                 <div className="w-full flex flex-col justify-center items-center">
                   <h2 className="text-2xl text-secondary text-center">
@@ -173,9 +180,13 @@ export default function Home() {
           <h1 className="text-4xl text-white text-center">
             <b>Have a Question?</b>
           </h1>
-          <h2 className="text-2xl text-white text-center">
+          <h2 className="text-2xl text-white text-center mt-2">
             Find your questions and solve it from here
           </h2>
+          <p className="text-lg text-white text-sm text-center w-full mt-4">
+            If you have any questions, you can find the answers from the below
+            FAQ section. If you can`t find the answer, please contact us. We are happy to help you. 
+          </p>
           <div className="w-3/4 h-auto">
             <FAQ />
           </div>

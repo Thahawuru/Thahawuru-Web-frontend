@@ -38,7 +38,7 @@ export default function FAQ() {
           {faqData.map((item, index) => (
             <div
               key={index}
-              className="rounded-lg p-4 rounded-lg border border-white border-opacity-10 hover:border-opacity-50 transition duration-300 ease-in-out cursor-pointer"
+              className="rounded-lg p-4 rounded-lg border border-white border-opacity-50 hover:border-opacity-50 transition duration-300 ease-in-out cursor-pointer"
             >
               <motion.div
                 initial={{ y: -20, opacity: 0 }}
