@@ -128,7 +128,7 @@ export default function Home() {
                 animate="visible"
                 exit="exit"
                 variants={zoomInVariants}
-                className="h-full w-full rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer opacity-70"
+                className="h-full w-full rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer opacity-70 mb-4"
               >
                 <div className="w-[80%]">
                   <Image src={logo} alt="Profile Picture"></Image>
@@ -184,13 +184,13 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center w-full h-auto pt-20 mt-10 pb-10 bg-gradient-to-br from-secondary to-secondaryTwo">
-          <h1 className="text-4xl text-white text-center">
+          <h1 className="text-4xl text-white text-center w-3/4 md:w-full">
             <b>Have a Question?</b>
           </h1>
-          <h2 className="text-2xl text-white text-center mt-2">
+          <h2 className="text-2xl text-white text-center mt-2 w-3/4 md:w-full">
             Find your questions and solve it from here
           </h2>
-          <p className="text-lg text-gray text-sm text-center w-full mt-4">
+          <p className="text-lg text-gray text-sm text-center mt-4  w-3/4 md:w-full">
             If you have any questions, you can find the answers from the below
             FAQ section. If you can`t find the answer, please contact us. We are
             happy to help you.
@@ -205,14 +205,14 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center w-full h-auto pt-20 mt-10 pb-10 bg-gradient-to-br from-secondary to-secondaryTwo">
-          <h1 className="text-4xl text-white text-center">
+          <h1 className="text-4xl text-white text-center w-3/4">
             <b>Get in Touch With Us</b>
           </h1>
-          <h2 className="text-2xl text-white text-center mt-2">
+          <h2 className="text-2xl text-white text-center mt-2 w-3/4">
             Contact us if you have any questions, partnerships. We are happy to
             help and work with you.
           </h2>
-          <p className="text-lg text-gray text-sm text-center w-full mt-4">
+          <p className="text-lg text-gray text-sm text-center w-3/4 md:w-full mt-4">
             Contact us if you have any questions, partnerships. We are happy to
             help and work with you. You can contact us via email, phone or
             contact form. We are happy to help you.
