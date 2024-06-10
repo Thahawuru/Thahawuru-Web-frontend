@@ -13,11 +13,11 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="fixed top-0 opacity-90 w-full h-[60px] z-20 shadow-lg bg-gray">
+      <div className="fixed top-0 opacity-90 w-full h-[60px] z-20 shadow-lg bg-white">
         <div className="container mx-auto flex justify-between items-center h-full px-4">
           <div className="text-white font-bold">
             <Link href="/" passHref>
-              <div className="bg-gray p-2">
+              <div className="bg-white p-2">
                 <h1 className="text-2xl text-secondary">
                   <b>තහවුරු</b>
                 </h1>
@@ -38,7 +38,7 @@ export default function Navbar() {
             ))}
           </div>
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-secondary focus:outline-none">
               {isOpen ? (
                 <svg
                   className="w-6 h-6"
@@ -74,7 +74,7 @@ export default function Navbar() {
           </div>
         </div>
         {isOpen && (
-          <div className="md:hidden bg-gray">
+          <div className="md:hidden bg-white">
             <div className="flex flex-col items-center space-y-4 py-4">
               {items.map((item) => (
                 <Link
