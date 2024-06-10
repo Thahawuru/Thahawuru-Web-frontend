@@ -6,6 +6,7 @@ import NewsLetter from "@/components/newsletter";
 import { motion } from "framer-motion";
 import FAQ from "@/components/faq";
 import ContactUs from "@/components/contactus";
+import APIHome from "@/components/apiHome";
 
 const zoomInVariants = {
   hidden: { scale: 0.5, opacity: 0 },
@@ -213,6 +214,11 @@ export default function Home() {
           </p>
           <div className="w-3/4 h-auto">
             <ContactUs />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center w-full h-auto">
+          <div className="w-3/4 h-auto">
+            <APIHome />
           </div>
         </div>
       </div>
