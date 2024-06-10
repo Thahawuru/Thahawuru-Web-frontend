@@ -143,7 +143,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between items-center w-4/5 h-screen mb-40">
+        <div className="flex flex-col justify-between items-center w-4/5 h-screen mb-80">
           <h1 className="text-4xl text-secondary text-center mt-20">
             <b>Features we offer</b>
           </h1>
@@ -162,7 +162,7 @@ export default function Home() {
             {tiles.map((tile) => (
               <div
                 key={tile.title}
-                className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-4 p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-10 p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
               >
                 <div className="w-full flex flex-col justify-center items-center">
                   <h2 className="text-2xl text-secondary text-center">
