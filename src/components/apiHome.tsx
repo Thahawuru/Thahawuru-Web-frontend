@@ -35,7 +35,7 @@ const tiles = [
 export default function Page() {
   return (
     <>
-      <div className="flex flex-col justify-between items-center w-full h-auto mb-20 border border-blue">
+      <div className="flex flex-col justify-between items-center w-full h-auto mb-20">
         <h1 className="text-4xl text-secondary text-center mt-20">
           <b>Our API and TestAPIs</b>
         </h1>
