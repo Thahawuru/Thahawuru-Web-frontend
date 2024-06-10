@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import FAQ from "@/components/faq";
 import ContactUs from "@/components/contactus";
 import APIHome from "@/components/apiHome";
+import Navbar from "@/components/navbar";
 
 const zoomInVariants = {
   hidden: { scale: 0.5, opacity: 0 },
@@ -51,6 +52,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col h-auto w-full justify-center items-center bg-gradient-to-br from-white to-primary">
+      <Navbar />
         <div className="flex flex-col sm:flex-col md:flex-row justify-between items-center w-full h-auto md:h-screen bg-gradient-to-br from-secondary to-secondaryTwo pb-10">
           <div className="flex flex-col w-full md:w-[70%] h-full text-white justify-center items-center p-0 md:p-20 mt-40 md:mt-0">
             <div className="w-[90%] mt-0 md:mt-16">
