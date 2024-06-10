@@ -50,11 +50,11 @@ export default function Page() {
           and the testAPIs to test the integration. After a proper agreement
           process and yearly subscription, you can go live with the APIs.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-auto bg-gradient-to-br from-white to-primary p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-auto bg-gradient-to-br from-white to-primary p-0 md:p-4">
           {tiles.map((tile) => (
             <div
               key={tile.title}
-              className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-4 p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+              className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-0 md:m-4 p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
             >
               <div className="w-full flex flex-col justify-center items-center">
                 <h2 className="text-2xl text-secondary text-center">

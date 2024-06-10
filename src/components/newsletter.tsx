@@ -4,10 +4,10 @@ export default function NewsLetter() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-secondary sm:text-4xl text-center md:text-left">
               Subscribe to our newsletter.
             </h2>
-            <p className="mt-4 text-lg leading-8 text-secondary-300">
+            <p className="mt-4 text-2xl leading-8 text-secondary-300 text-center md:text-left">
               Get the latest news and articles delivered straight to your inbox.
             </p>
             <div className="mt-6 flex max-w-md gap-x-4">
@@ -32,7 +32,7 @@ export default function NewsLetter() {
             </div>
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-center md:items-start ">
               <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
                 <svg
                   className="h-6 w-6 text-secondary"
@@ -52,12 +52,12 @@ export default function NewsLetter() {
               <dt className="mt-4 font-semibold text-secondary">
                 Weekly articles
               </dt>
-              <dd className="mt-2 leading-7 text-secondary-400">
+              <dd className="mt-2 leading-7 text-secondary-400 text-center md:text-left">
                 Non laboris consequat cupidatat laborum magna. Eiusmod non irure
                 cupidatat duis commodo amet.
               </dd>
             </div>
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-center md:items-start">
               <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
                 <svg
                   className="h-6 w-6 text-secondary"
@@ -75,7 +75,7 @@ export default function NewsLetter() {
                 </svg>
               </div>
               <dt className="mt-4 font-semibold text-secondary">No spam</dt>
-              <dd className="mt-2 leading-7 text-secondary-400">
+              <dd className="mt-2 leading-7 text-secondary-400 text-center md:text-left">
                 Officia excepteur ullamco ut sint duis proident non adipisicing.
                 Voluptate incididunt anim.
               </dd>
