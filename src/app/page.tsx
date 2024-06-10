@@ -40,14 +40,19 @@ const tiles = [
     description:
       "If you are a developers, you can access our API to integrate Thahawuru to your applications. You can use our Test API to test your applications and get the feel of Thahawuru API. Then you can apply for a production API access. For more information, please visit our API documentation.",
   },
+  {
+    title: "Our Partnerships",
+    description:
+      "If you are a company or an organization, you can partner with us to use Thahawuru for your identity verification process. We offer a range of partnership options for you. Please contact us for more information.",
+  },
 ];
 
 export default function Home() {
   return (
     <>
       <div className="flex flex-col h-auto w-full justify-center items-center bg-gradient-to-br from-white to-primary">
-        <div className="flex flex-row justify-between items-center w-full h-screen bg-gradient-to-br from-secondary to-secondaryTwo">
-          <div className="flex flex-col w-[70%] h-full text-white justify-center items-center p-20">
+        <div className="flex flex-col sm:flex-col md:flex-row justify-between items-center w-full h-auto md:h-screen bg-gradient-to-br from-secondary to-secondaryTwo pb-10">
+          <div className="flex flex-col w-full md:w-[70%] h-full text-white justify-center items-center p-0 md:p-20 mt-40 md:mt-0">
             <div className="w-[90%]">
               <motion.main
                 initial={{ opacity: 0, y: 50 }}
@@ -56,7 +61,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-full h-auto flex flex-col"
               >
-                <h1 className="text-6xl text-white">
+                <h1 className="text-6xl text-white text-center md:text-left">
                   <b>තහවුරු</b>
                 </h1>
               </motion.main>
@@ -67,7 +72,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-full h-auto flex flex-col"
               >
-                <h2 className="text-2xl mt-4 text-white">
+                <h2 className="text-2xl mt-4 text-white text-center md:text-left">
                   <b>
                     Sri Lanka`s Integrated Digital Identity Verification System
                   </b>
@@ -80,7 +85,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-full h-auto flex flex-col"
               >
-                <p className="text-lg mt-4 text-gray text-sm">
+                <p className="text-lg mt-4 text-gray text-sm text-center md:text-left">
                   Thahawuru is a digital identity verification system that
                   allows you to verify your identity with a single QR scan. It
                   is a secure and reliable digital wallet which keep your
@@ -96,7 +101,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-full h-auto flex flex-col"
               >
-                <p className="text-lg mt-4 text-white text-sm">
+                <p className="text-lg mt-4 text-white text-sm text-center md:text-left">
                   <b>
                     This will bring a new era of digital verification system to
                     Sri Lanka.
@@ -108,15 +113,15 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.5 }}
-                className="w-[140px] h-auto flex flex-col"
+                className="w-full md:w-[150px] h-auto flex flex-col justify-center items-center"
               >
-                <button className="bg-gray text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                <button className="bg-gray text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 w-[150px]">
                   <b>Get Started</b>
                 </button>
               </motion.main>
             </div>
           </div>
-          <div className="flex flex-col w-[30%] h-full justify-center items-left">
+          <div className="flex flex-col w-full md:w-[30%] h-full justify-center items-center md:items-left">
             <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16">
               <motion.div
                 initial="hidden"
@@ -132,7 +137,7 @@ export default function Home() {
                   <h2 className="text-2xl text-white">
                     <b>Scan Me</b>
                   </h2>
-                  <h1 className="text-1xl text-white">
+                  <h1 className="text-1xl text-white text-center">
                     Download your Mobile App
                   </h1>
                 </div>
@@ -143,7 +148,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between items-center w-4/5 h-screen mb-80">
+        <div className="flex flex-col justify-between items-center w-4/5 h-auto md:h-screen mb-0 md:mb-80">
           <h1 className="text-4xl text-secondary text-center mt-20">
             <b>Features we offer</b>
           </h1>
@@ -162,7 +167,7 @@ export default function Home() {
             {tiles.map((tile) => (
               <div
                 key={tile.title}
-                className="flex flex-col w-full h-full justify-center items-center bg-white rounded-lg shadow-lg m-10 p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                className="flex flex-col w-full justify-center items-center bg-white rounded-lg shadow-lg m-0 md:m-10 p-4 md:p-10 hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
               >
                 <div className="w-full flex flex-col justify-center items-center">
                   <h2 className="text-2xl text-secondary text-center">
