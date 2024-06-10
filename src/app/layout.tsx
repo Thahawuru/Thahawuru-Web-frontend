@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/navbar";
+// import Navbar from "../components/navbar";
 import logo from "./favicon.ico";
 import Footer from "@/components/footer";
 
@@ -25,7 +25,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="icon" href={logo.src} />
       </head>
       <body className={inter.className}>
-        <Navbar />
         <main>{children}</main>
         <Footer />
       </body>
