@@ -117,7 +117,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col w-[30%] h-full justify-center items-left">
-            <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16  border border-white">
+            <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16">
               <motion.div
                 initial="hidden"
                 animate="visible"
