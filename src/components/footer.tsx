@@ -10,15 +10,14 @@ const Footer: React.FC = () => {
       style={{ zIndex: 1 }}
     >
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-        <div className="md:flex md:justify-between flex-wrap">
+        <div className="md:flex md:justify-between flex-wrap ml-20 md:ml-0">
           <div className="mb-6 md:mb-0">
             <div className="flex items-center">
-              <Link href="/" style={{ zIndex: 21 }}>
+              <Link href="/">
                 <Image
                   src={logo}
                   className="me-10"
                   alt="NOI Logo"
-                  style={{ zIndex: 21 }}
                   width={100}
                   height={100}
                 />
@@ -27,7 +26,7 @@ const Footer: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-6 w-1/2">
             <div className="mb-6 md:mb-0">
-              <h2 className="mb-6 bg-gradient-to-r from-white to-white to-white bg-clip-text text-transparent font-semibold text-gold-900 uppercase dark:text-gold text-center md:text-left">
+              <h2 className="mb-6 bg-gradient-to-r from-white to-white to-white bg-clip-text text-transparent font-semibold text-gray uppercase text-center md:text-left">
                 <b>About</b>
               </h2>
               <ul className="text-gold-500 dark:text-gold-400 font-medium">
@@ -37,20 +36,8 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     API
-                  </a>
-                </li>
-                <li className="mb-2 text-center md:text-left">
-                  <a
-                    href="https://ucsc.cmb.ac.lk/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
-                  >
-                    FAQ
                   </a>
                 </li>
                 <li className="mb-2 text-center md:text-left">
@@ -59,7 +46,6 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     Support
                   </a>
@@ -70,26 +56,14 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     Contact Us
-                  </a>
-                </li>
-                <li className="mb-2 text-center md:text-left">
-                  <a
-                    href="https://moe.gov.lk/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
-                  >
-                    Affiliate Program
                   </a>
                 </li>
               </ul>
             </div>
             <div className="mb-6 md:mb-0">
-              <h2 className="mb-6 bg-gradient-to-r from-white to-white to-white bg-clip-text text-transparent font-semibold text-gold-900 uppercase dark:text-gold text-center md:text-left">
+              <h2 className="mb-6 bg-gradient-to-r from-white to-white to-white bg-clip-text text-transparent font-semibold text-gray uppercase text-center md:text-left">
                 <b>Pages</b>
               </h2>
               <ul className="text-gold-500 dark:text-gold-400 font-medium text-center md:text-left">
@@ -97,34 +71,14 @@ const Footer: React.FC = () => {
                   <Link
                     href="/howtocompete"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     Features
                   </Link>
                 </li>
                 <li className="mb-2 text-center md:text-left">
                   <Link
-                    href="/resources"
-                    className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
-                  >
-                    Solutions
-                  </Link>
-                </li>
-                <li className="mb-2 text-center md:text-left">
-                  <Link
-                    href="/awards"
-                    className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
-                  >
-                    Resources
-                  </Link>
-                </li>
-                <li className="mb-2 text-center md:text-left">
-                  <Link
                     href="/timeline"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     Enterprise
                   </Link>
@@ -133,7 +87,6 @@ const Footer: React.FC = () => {
                   <Link
                     href="/register"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     Contact
                   </Link>
@@ -141,7 +94,7 @@ const Footer: React.FC = () => {
               </ul>
             </div>
             <div className="mb-6 md:mb-0">
-              <h2 className="mb-6 bg-gradient-to-r from-white to-white to-white bg-clip-text text-transparent font-semibold text-gold-900 uppercase dark:text-gold text-center md:text-left">
+              <h2 className="mb-6 bg-gradient-to-r from-white to-white to-white bg-clip-text text-transparent font-semibold text-gray uppercase text-center md:text-left">
                 <b>Stay Tuned</b>
               </h2>
               <ul className="text-gold-500 dark:text-gold-400 font-medium">
@@ -151,7 +104,6 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     Discord
                   </a>
@@ -162,7 +114,6 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     Facebook
                   </a>
@@ -173,7 +124,6 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gold hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent"
-                    style={{ zIndex: 21 }}
                   >
                     Linkedin
                   </a>
@@ -189,7 +139,6 @@ const Footer: React.FC = () => {
             <Link
               href="/"
               className="text-gold hover-text hover:bg-gradient-to-r from-white to-white to-white hover:bg-clip-text hover:text-transparent "
-              style={{ zIndex: 21 }}
             >
               Thahawuru
             </Link>
@@ -198,7 +147,6 @@ const Footer: React.FC = () => {
           <div className="flex mt-4 justify-center sm:mt-0">
             <a
               href="https://www.facebook.com/noisrilanka"
-              style={{ zIndex: 21 }}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gold-500 hover:text-gold-900 dark:hover:text-gold"
@@ -222,7 +170,6 @@ const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               href="https://x.com/noisl4?s=21&t=ZnM0640QVfqmqqkNyHFL-g"
-              style={{ zIndex: 21 }}
               className="text-gold-500 hover:text-gold-900 dark:hover:text-gold ms-5"
             >
               <svg
@@ -243,7 +190,6 @@ const Footer: React.FC = () => {
               href="https://www.instagram.com/noi.srilanka?igsh=ZWU3OW1kNWp4eXp2"
               rel="noopener noreferrer"
               target="_blank"
-              style={{ zIndex: 21 }}
               className="text-gold-500 hover:text-gold-900 dark:hover:text-gold ms-5"
             >
               <svg
