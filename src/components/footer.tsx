@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               <ul className="text-gold-500 dark:text-gold-400 font-medium">
                 <li className="mb-2 text-center md:text-left">
                   <a href="https://moe.gov.lk/" target="_blank" rel="noopener noreferrer" className="text-gold hover:bg-gradient-to-r from-white to-white bg-clip-text hover:text-transparent">
-                    API
+                    docs
                   </a>
                 </li>
                 <li className="mb-2 text-center md:text-left">

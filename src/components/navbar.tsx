@@ -7,7 +7,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const items = [
     { title: "Home", link: "/" },
-    { title: "API", link: "/api" },
+    { title: "docs", link: "/docs/dashboard" },
     { title: "Login", link: "/login" },
   ];
 
