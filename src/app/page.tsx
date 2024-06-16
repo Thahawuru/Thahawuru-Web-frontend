@@ -8,6 +8,7 @@ import FAQ from "@/components/faq";
 import ContactUs from "@/components/contactus";
 import APIHome from "@/components/apiHome";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const zoomInVariants = {
   hidden: { scale: 0.5, opacity: 0 },
@@ -228,6 +229,7 @@ export default function Home() {
             <APIHome />
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );
