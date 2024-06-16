@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col h-auto w-full justify-center items-center bg-gradient-to-br from-white to-primary">
-      <Navbar />
+        <Navbar />
         <div className="flex flex-col sm:flex-col md:flex-row justify-between items-center w-full h-auto md:h-screen bg-gradient-to-br from-secondary to-secondaryTwo pb-10">
           <div className="flex flex-col w-full md:w-[70%] h-full text-white justify-center items-center p-0 md:p-20 mt-40 md:mt-0">
             <div className="w-[90%] mt-0 md:mt-16">
@@ -117,7 +117,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-full md:w-[150px] h-auto flex flex-col justify-center items-center"
               >
-                <button className="bg-gray text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 w-[150px]">
+                <button className="bg-gray text-secondary mt-10 p-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 w-[150px] !rounded-lg">
                   <b>Get Started</b>
                 </button>
               </motion.main>
@@ -150,7 +150,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between items-center w-4/5 h-auto md:h-screen mb-0 md:mb-60">
+        <div className="flex flex-col justify-between items-center w-4/5 h-auto md:h-screen mb-0 md:mb-40">
           <h1 className="text-4xl text-secondary text-center mt-20">
             <b>Features we offer</b>
           </h1>
@@ -158,7 +158,7 @@ export default function Home() {
             Simplify your Identitiy verification process with Digital Wallet{" "}
             <b>තහවුරු</b>
           </h2>
-          <p className="text-lg text-secondary text-sm text-center w-full mt-4">
+          <p className="text-lg text-secondary text-1xl text-center w-full mt-4">
             Thahawuru is a digital identity verification system that allows you
             to verify your identity with a single QR scan. It is a secure and
             reliable digital wallet which keep your licenses , identities ,
@@ -169,7 +169,7 @@ export default function Home() {
             {tiles.map((tile) => (
               <div
                 key={tile.title}
-                className="flex flex-col w-full justify-center items-center bg-white rounded-lg md:shadow-md m-0 md:m-10 p-4 md:p-10 transition duration-300 ease-in-out transform cursor-pointer"
+                className="flex flex-col w-full justify-center items-center bg-white rounded-lg md:shadow-md m-0 md:m-4 p-4 md:p-10 transition duration-300 ease-in-out transform cursor-pointer"
               >
                 <div className="w-full flex flex-col justify-center items-center">
                   <h2 className="text-2xl text-secondary text-center">
