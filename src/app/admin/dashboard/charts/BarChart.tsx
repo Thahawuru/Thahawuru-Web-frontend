@@ -6,8 +6,6 @@ const BarChart = () => {
   const chartRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !chartRef.current) return;
-
     const chartOptions = {
       series: [
         { data: [44, 55, 41, 64, 22, 43, 21] },

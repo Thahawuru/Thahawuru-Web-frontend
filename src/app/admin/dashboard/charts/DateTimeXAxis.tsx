@@ -6,8 +6,6 @@ const DateTimeXAxis: React.FC = () => {
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !chartRef.current) return;
-
     const options = {
       series: [
         {
