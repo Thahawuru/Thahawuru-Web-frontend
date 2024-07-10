@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
 
@@ -5,7 +6,7 @@ const DateTimeXAxis: React.FC = () => {
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!chartRef.current) return;
+    if (typeof window === "undefined" || !chartRef.current) return;
 
     const options = {
       series: [
