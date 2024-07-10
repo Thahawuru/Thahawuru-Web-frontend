@@ -74,7 +74,7 @@ export default function Page() {
                 <input
                   type="text"
                   name="user_name"
-                  className="w-full h-[50px] p-2 rounded-lg mt-2 text-black"
+                  className="w-full h-[50px] p-2 rounded-custom-3 mt-2 text-black"
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -85,7 +85,7 @@ export default function Page() {
                 <input
                   type="email"
                   name="user_email"
-                  className="w-full h-[50px] p-2 rounded-lg mt-2 text-black"
+                  className="w-full h-[50px] p-2 rounded-custom-3 mt-2 text-black"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -94,7 +94,7 @@ export default function Page() {
                   Your Message{" "}
                 </label>
                 <textarea
-                  className="w-full h-[200px] p-2 rounded-lg mt-2 text-black"
+                  className="w-full h-[200px] p-2 rounded-custom-3 mt-2 text-black"
                   name="user_message"
                   onChange={(e) => setUserMessage(e.target.value)}
                 />
@@ -103,7 +103,7 @@ export default function Page() {
                 <button
                   type="submit"
                   value="Send"
-                  className="bg-gray text-secondary mt-10 p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+                  className="bg-gray text-secondary mt-10 p-2 rounded-custom-3 transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   <b>Send Message</b>
                 </button>
