@@ -118,20 +118,20 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="w-full md:w-[150px] h-auto flex flex-col justify-center items-center"
               >
-                <button className="bg-gray text-secondary mt-10 p-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 w-[150px] !rounded-lg">
+                <button className="bg-gray text-secondary mt-10 p-2 transition duration-300 ease-in-out transform hover:scale-105 w-[150px]  rounded-custom-3">
                   <b>Get Started</b>
                 </button>
               </motion.main>
             </div>
           </div>
           <div className="flex flex-col w-full md:w-[30%] h-full justify-center items-center md:items-left">
-            <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16 bg-white">
+            <div className="transition duration-300 ease-in-out transform hover:scale-105 w-[70%] h-3/4 mt-16">
               <motion.div
                 initial="hidden"
                 animate="visible"
                 exit="exit"
                 variants={zoomInVariants}
-                className="h-full w-full rounded-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer opacity-70 mb-4"
+                className="h-full w-full rounded-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer opacity-70 mb-4 bg-white rounded-custom-1"
               >
                 <div className="w-[80%]">
                   <Image src={logo} alt="Profile Picture"></Image>
@@ -159,18 +159,18 @@ export default function Home() {
             Simplify your Identitiy verification process with Digital Wallet{" "}
             <b>තහවුරු</b>
           </h2>
-          <p className="text-lg text-secondary text-1xl text-center w-full mt-4">
+          {/* <p className="text-lg text-secondary text-1xl text-center w-full mt-4">
             Thahawuru is a digital identity verification system that allows you
             to verify your identity with a single QR scan. It is a secure and
             reliable digital wallet which keep your licenses , identities ,
             passports and other verification documents in one place. This will
             allow ease of access for your verification identities.
-          </p>
+          </p> */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-auto bg-gradient-to-br from-white to-primary p-4">
             {tiles.map((tile) => (
               <div
                 key={tile.title}
-                className="flex flex-col w-full justify-center items-center bg-white rounded-lg md:shadow-md m-0 md:m-4 p-4 md:p-10 transition duration-300 ease-in-out transform cursor-pointer"
+                className="flex flex-col w-full justify-center items-center bg-white rounded-custom-3 md:shadow-md m-0 md:m-4 p-4 md:p-10 transition duration-300 ease-in-out transform cursor-pointer"
               >
                 <div className="w-full flex flex-col justify-center items-center">
                   <h2 className="text-2xl text-secondary text-center">
