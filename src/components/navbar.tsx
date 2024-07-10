@@ -1,20 +1,20 @@
 "use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
 import Auth from "@/components/auth/login/page";
 
+const items = [
+  { title: "Home", link: "/" },
+  {
+    title: "Docs",
+    link: "https://thahawuru-docs.vercel.app/",
+    external: true,
+  },
+  // Add other navigation items as needed
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const items = [
-    { title: "Home", link: "/" },
-    {
-      title: "Docs",
-      link: "https://thahawuru-docs.vercel.app/",
-      external: true,
-    }, // Added external: true for external links
-    // { title: "Login", link: "/auth/login" },
-  ];
 
   return (
     <>
@@ -34,10 +34,10 @@ export default function Navbar() {
               <Link
                 key={item.title}
                 href={item.link}
-                passHref={!item.external} // Use passHref only if it's not an external link
+                passHref={!item.external}
                 className="text-secondary hover:text-secondaryTwo transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer text-1xl"
-                target={item.external ? "_blank" : undefined} // Set target="_blank" for external links
-                rel={item.external ? "noopener noreferrer" : undefined} // Add rel="noopener noreferrer" for security reasons on external links
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
               >
                 <div className="text-secondaryTwo p-1">
                   &nbsp;<b>{item.title}</b>&nbsp;
@@ -94,10 +94,10 @@ export default function Navbar() {
                 <Link
                   key={item.title}
                   href={item.link}
-                  passHref={!item.external} // Use passHref only if it's not an external link
+                  passHref={!item.external}
                   className="text-secondary hover:text-secondaryTwo transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer text-1xl"
-                  target={item.external ? "_blank" : undefined} // Set target="_blank" for external links
-                  rel={item.external ? "noopener noreferrer" : undefined} // Add rel="noopener noreferrer" for security reasons on external links
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
                 >
                   <div className="bg-secondary text-white p-1">
                     &nbsp;<b>{item.title}</b>&nbsp;

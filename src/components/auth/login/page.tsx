@@ -1,9 +1,10 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,12 +21,12 @@ const style = {
   borderRadius: "8px",
 };
 
-export default function NestedModal() {
-  const [open, setOpen] = React.useState(false);
-  const [isLogin, setIsLogin] = React.useState(true);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+const LoginPage = () => {
+  const [open, setOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -81,13 +82,14 @@ export default function NestedModal() {
             {isLogin ? "Login" : "Sign Up"}
           </Typography>
           <form onSubmit={isLogin ? handleLogin : handleSignUp}>
-            <Typography
-              variant="h5"
-              align="center"
-              sx={{ color: "secondaryTwo.main", fontWeight: "bold" }}
-            >
-              {isLogin ? "Sign In" : "Sign Up"}
-            </Typography>
+            <div className="w-full flex flex-row">
+              <h1 className="text-2xl text-left font-bold text-black mb-4">
+                තහවුරු &nbsp;
+              </h1>
+              <h1 className="text-2xl text-left font-bold text-secondaryTwo mb-4">
+                - &nbsp; {isLogin ? "Sign In" : "Sign Up"}
+              </h1>
+            </div>
             <TextField
               label="Email"
               type="email"
@@ -117,29 +119,39 @@ export default function NestedModal() {
                 required
               />
             )}
+            <Link
+              href={isLogin ? "/admin/dashboard" : "/admin/dashboard"}
+              passHref
+            >
+              <Button
+                type="submit"
+                className="mt-4"
+                variant="contained"
+                sx={{
+                  backgroundColor: "secondaryTwo.main",
+                  textTransform: "none",
+                }}
+                fullWidth
+              >
+                {isLogin ? "Login" : "Sign Up"}
+              </Button>
+            </Link>
+          </form>
+          <div className="w-full h-[40px] flex flex-row mt-4 justify-between items-center">
             <Button
-              type="submit"
-              className="mt-4"
-              variant="contained"
+              onClick={() => setIsLogin(!isLogin)}
               sx={{
-                backgroundColor: "secondaryTwo.main",
+                color: "secondaryTwo.main",
                 textTransform: "none",
               }}
-              fullWidth
             >
-              {isLogin ? "Login" : "Sign Up"}
+              <b>{isLogin ? "Sign Up" : "Login"}</b>
             </Button>
-            <div className="w-full h-[40px] flex flex-row mt-4 justify-between items-center">
-              <span
-                className="text-secondaryTwo text-xs cursor-pointer"
-                onClick={() => setIsLogin(!isLogin)}
-              >
-                <b>{isLogin ? "Sign Up" : "Login"}</b>
-              </span>
-            </div>
-          </form>
+          </div>
         </Box>
       </Modal>
     </div>
   );
-}
+};
+
+export default LoginPage;
