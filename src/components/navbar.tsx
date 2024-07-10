@@ -1,14 +1,19 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Link from "next/link";
+import Auth from "@/components/auth/login/page";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const items = [
     { title: "Home", link: "/" },
-    { title: "Docs", link: "https://thahawuru-docs.vercel.app/", external: true }, // Added external: true for external links
-    { title: "Login", link: "/auth/login" },
+    {
+      title: "Docs",
+      link: "https://thahawuru-docs.vercel.app/",
+      external: true,
+    }, // Added external: true for external links
+    // { title: "Login", link: "/auth/login" },
   ];
 
   return (
@@ -39,9 +44,15 @@ export default function Navbar() {
                 </div>
               </Link>
             ))}
+            <div className="hidden md:flex items-center">
+              <Auth />
+            </div>
           </div>
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-secondary focus:outline-none">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-secondary focus:outline-none"
+            >
               {isOpen ? (
                 <svg
                   className="w-6 h-6"
