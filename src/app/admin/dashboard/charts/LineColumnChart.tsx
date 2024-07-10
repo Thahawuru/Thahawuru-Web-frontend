@@ -31,7 +31,7 @@ const LineColumnChart = () => {
       stroke: {
         width: [0, 2, 5],
         curve: "smooth",
-        colors: ["#023e8a", "#adb5bd"], // Added stroke colors
+        colors: ["#023e8a", "#adb5bd"],
       },
       fill: {
         opacity: [0.85, 0.25, 1],
@@ -43,7 +43,7 @@ const LineColumnChart = () => {
           opacityTo: 0.55,
           stops: [0, 100, 100, 100],
         },
-        colors: ["#023e8a", "#adb5bd"], // Added fill colors
+        colors: ["#023e8a", "#adb5bd"],
       },
       labels: [
         "01/01/2003",
@@ -63,40 +63,34 @@ const LineColumnChart = () => {
       },
       xaxis: {
         type: "datetime",
+        labels: {
+          format: "dd MMM",
+        },
       },
       yaxis: {
         title: {
           text: "Points",
         },
-        min: 0,
       },
       tooltip: {
         shared: true,
         intersect: false,
-        y: {
-          formatter: function (y: any) {
-            if (typeof y !== "undefined") {
-              return y.toFixed(0) + " points";
-            }
-            return y;
-          },
-        },
         style: {
           fontSize: "12px",
-          colors: ["#023e8a"],
+          color: "#023e8a",
         },
       },
-      colors: ["#023e8a", "#adb5bd"],
+      colors: ["#023e8a", "#adb5bd", "#023e8a"],
     };
 
-    if (chartRef.current) {
-      const chart = new ApexCharts(chartRef.current, chartOptions);
-      chart.render();
+    const chart = new ApexCharts(chartRef.current, chartOptions);
+    chart.render();
 
-      return () => {
+    return () => {
+      if (chart) {
         chart.destroy();
-      };
-    }
+      }
+    };
   }, []);
 
   return <div ref={chartRef} id="chart" />;
