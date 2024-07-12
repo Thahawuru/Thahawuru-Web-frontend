@@ -1,27 +1,26 @@
 import React from "react";
 import Image from "next/image";
 import { BiSearch } from "react-icons/bi";
-import ProfileImage from "../../public/assests/images/profile.jpg";
+import ProfileImage from "../../public/profilePicDefault.png";
 
 const Welcome = () => {
   return (
-    <div className="bg-primary h-[75px] flex items-center justify-between px-4 border border-white m-2">
+    <div className="bg-primary h-[75px] flex items-center justify-end px-4 fixed top-0 left-[250px] w-5/6 z-50 border border-white">
       <div className="flex items-center w-full">
-        <div className=" w-full">
+        <div className="w-full">
           <div className="relative w-full flex flex-row justify-center items-center">
-            <BiSearch className="transform -translate-y-1/2 text-gray mt-4 relative top-0 left-8" />
             <input
               type="text"
               placeholder="Search..."
-              className="px-3 py-3 pl-10 rounded-custom-1 rounded-lg w-1/2 text-secondaryTwo focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+              className="px-10 py-2 rounded-custom-1 w-1/2 text-secondaryTwo focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
             />
           </div>
         </div>
       </div>
       <div className="flex items-center w-1/6 justify-center">
-        <div className="w-full flex flex-col justify-center items-center">
-          <p className="text-black text-sm font-bold mr-1">Welcome</p>
-          <p className="text-gray text-xs font-bold mr-1">Kasun Udara</p>
+        <div className="flex flex-col justify-center items-center mr-2">
+          <p className="text-black text-sm font-bold">Welcome</p>
+          <p className="text-gray-500 text-xs font-bold">Kasun Udara</p>
         </div>
         <Image
           src={ProfileImage}
