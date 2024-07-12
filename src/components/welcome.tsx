@@ -5,7 +5,7 @@ import ProfileImage from "../../public/profilePicDefault.png";
 
 const Welcome = () => {
   return (
-    <div className="bg-primary h-[75px] flex items-center justify-end px-4 fixed top-0 left-[250px] w-5/6 z-50 border border-white">
+    <div className="bg-white h-[75px] flex items-center justify-end px-4 fixed top-0 left-[250px] w-5/6 z-50 border border-white">
       <div className="flex items-center w-full">
         <div className="w-full">
           <div className="relative w-full flex flex-row justify-center items-center">

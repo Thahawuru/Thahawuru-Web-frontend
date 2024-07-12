@@ -72,6 +72,17 @@ const menuItems = [
     ],
   },
   {
+    category: "Emails",
+    items: [
+      {
+        title: "Emails",
+        href: "/admin/emails",
+        icon: <BiAlarmExclamation />,
+        badge: null,
+      },
+    ],
+  },
+  {
     category: "Notifications & Logout",
     items: [
       {
