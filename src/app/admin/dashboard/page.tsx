@@ -86,7 +86,7 @@ export default function Dashboard() {
               <DateTimeXAxis />
             </div>
           </div>
-          <div className="flex flex-row w-3/4 h-auto p-4 justify-center items-center">
+          <div className="flex flex-row w-4/5 h-auto p-4 justify-center items-center">
             <div className="flex flex-col justify-center w-1/2 ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 API Buyings
