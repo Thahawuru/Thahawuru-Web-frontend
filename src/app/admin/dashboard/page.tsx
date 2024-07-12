@@ -12,6 +12,7 @@ import {
 import BarChart from "./charts/BarChart";
 import DateTimeXAxis from "./charts/DateTimeXAxis";
 import LineColumnChart from "./charts/LineColumnChart";
+import PieChart from "./charts/PieChart";
 
 export default function Dashboard() {
   return (
@@ -67,20 +68,20 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row w-full h-auto p-4 justify-center items-center">
-          <div className="flex flex-col justify-center w-1/2 h-[400px] p-4 ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
-            <BarChart />
+        <div className="w-full h-auto p-4 flex flex-col justify-center items-center">
+          <div className="flex flex-row w-3/4 h-auto p-4 justify-center items-center">
+            <div className="flex flex-col justify-center w-full h-[400px] p-4 ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
+              <h1 className="text-1xl text-secondaryTwo font-bold">Daily Wallet Usage</h1>
+              <DateTimeXAxis />
+            </div>
           </div>
-          <div className="flex flex-col justify-center w-1/2 h-[400px] p-4 ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
-            <DateTimeXAxis />
-          </div>
-        </div>
-        <div className="flex flex-row w-full h-auto p-4 justify-center items-center">
-          <div className="flex flex-col justify-center w-1/2 h-[400px] ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer p-10">
-            <LineColumnChart />
-          </div>
-          <div className="flex flex-col justify-center w-1/2 h-[400px] ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer p-10">
-            
+          <div className="flex flex-row w-3/4 h-auto p-4 justify-center items-center">
+            <div className="flex flex-col justify-center w-1/2 h-[400px] ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
+              <PieChart />
+            </div>
+            <div className="flex flex-col justify-center w-1/2 h-[400px] ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
+              <LineColumnChart />
+            </div>
           </div>
         </div>
       </div>

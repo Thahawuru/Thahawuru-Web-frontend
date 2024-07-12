@@ -73,7 +73,7 @@ const LoginPage = () => {
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={{ ...style, width: 600 }}>
+        <Box sx={{ ...style, width: 600 }} className="flex flex-col justify-center items-center m-10">
           <Typography
             variant="h6"
             id="parent-modal-title"
@@ -81,7 +81,7 @@ const LoginPage = () => {
           >
             {isLogin ? "Login" : "Sign Up"}
           </Typography>
-          <form onSubmit={isLogin ? handleLogin : handleSignUp}>
+          <form className="w-3/4" onSubmit={isLogin ? handleLogin : handleSignUp}>
             <div className="w-full flex flex-row">
               <h1 className="text-2xl text-left font-bold text-black mb-4">
                 තහවුරු &nbsp;

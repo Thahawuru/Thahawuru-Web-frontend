@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
 
-const LineColumnChart = () => {
+const ColumnChart = () => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -12,38 +12,22 @@ const LineColumnChart = () => {
           type: "column",
           data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
         },
-        {
-          type: "area",
-          data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
-        },
-        {
-          type: "line",
-          data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
-        },
       ],
       chart: {
         height: 350,
-        type: "line",
-        stacked: false,
+        type: "bar", // Changed to bar for column chart
         toolbar: {
           show: false,
         },
       },
-      stroke: {
-        width: [0, 2, 5],
-        curve: "smooth",
-        colors: ["#023e8a", "#adb5bd"],
+      plotOptions: {
+        bar: {
+          columnWidth: '50%',
+          endingShape: 'rounded',
+        },
       },
       fill: {
-        opacity: [0.85, 0.25, 1],
-        gradient: {
-          inverseColors: false,
-          shade: "light",
-          type: "vertical",
-          opacityFrom: 0.85,
-          opacityTo: 0.55,
-          stops: [0, 100, 100, 100],
-        },
+        opacity: 1,
         colors: ["#023e8a", "#adb5bd"],
       },
       labels: [
@@ -59,9 +43,6 @@ const LineColumnChart = () => {
         "10/01/2003",
         "11/01/2003",
       ],
-      markers: {
-        size: 0,
-      },
       xaxis: {
         type: "datetime",
         labels: {
@@ -81,7 +62,7 @@ const LineColumnChart = () => {
           color: "#023e8a",
         },
       },
-      colors: ["#023e8a", "#adb5bd", "#023e8a"],
+      colors: ["#023e8a", "#adb5bd"],
     };
 
     const chart = new ApexCharts(chartRef.current, chartOptions);
@@ -97,4 +78,4 @@ const LineColumnChart = () => {
   return <div ref={chartRef} id="chart" />;
 };
 
-export default LineColumnChart;
+export default ColumnChart;
