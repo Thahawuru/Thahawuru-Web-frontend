@@ -301,7 +301,13 @@ export default function Page() {
   const filteredMaintainers = maintainers.filter(
     (maintainer) =>
       maintainer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      maintainer.email.toLowerCase().includes(searchQuery.toLowerCase())
+      maintainer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      maintainer.phoneNumber
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
+      maintainer.whatsappNumber
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -315,15 +321,10 @@ export default function Page() {
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
         <div className="flex flex-row w-full h-auto p-4 mt-20">
-          <div className="flex flex-row justify-start items-center w-1/2 ">
-            <Link href="/admin/accounts/addAccount">
-              <button
-                type="submit"
-                className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:scale-105 m-4"
-              >
-                Add Maintainer
-              </button>
-            </Link>
+          <div className="flex flex-row justify-start items-center w-2/3">
+            <h1 className="text-2xl font-bold text-secondaryTwo w-full text-left pl-10">
+              <b>Existing Accounts</b>
+            </h1>
           </div>
 
           <div className="flex flex-row justify-end items-center w-1/2">
@@ -335,10 +336,23 @@ export default function Page() {
                 margin="normal"
                 value={searchQuery}
                 onChange={handleSearch}
+                InputProps={{
+                  style: {
+                    height: "40px",
+                  },
+                }}
               />
             </div>
           </div>
         </div>
+        <Link href="/admin/accounts/addAccount" className="w-3/4">
+              <button
+                type="submit"
+                className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:scale-105 ml-10 mb-2"
+              >
+                Add Maintainer
+              </button>
+            </Link>
         <div className="w-full flex flex-row justify-center items-center">
           <div className="w-full min-h-[550px] h-auto mb-10 ml-10 mr-10">
             <Paper sx={{ backgroundColor: "transparent", boxShadow: "none" }}>
