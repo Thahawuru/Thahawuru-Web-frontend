@@ -10,7 +10,7 @@ const PieChart = () => {
       series: [44, 55, 100],
       chart: {
         type: "pie",
-        height: 430,
+        height: 300,
       },
       labels: ["Identity", "License", "Both"],
       colors: ["#023e8a", "#adb5bd", "#023e8a"],

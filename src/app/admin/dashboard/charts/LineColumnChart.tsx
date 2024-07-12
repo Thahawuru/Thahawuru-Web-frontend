@@ -14,7 +14,7 @@ const ColumnChart = () => {
         },
       ],
       chart: {
-        height: 350,
+        height: 300,
         type: "bar", // Changed to bar for column chart
         toolbar: {
           show: false,

@@ -1,4 +1,5 @@
 "use client";
+import React, { useState, ChangeEvent, MouseEvent } from "react";
 import Image from "next/image";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
@@ -15,14 +16,22 @@ import LineColumnChart from "./charts/LineColumnChart";
 import PieChart from "./charts/PieChart";
 
 export default function Dashboard() {
+  const [activeItem, setActiveItem] = useState("Dashboard");
+
+  const handleSetActiveItem = (itemTitle: any) => {
+    setActiveItem(itemTitle);
+  };
   return (
     <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
       <div className="h-screen flex flex-col justify-between items-center">
-        <Sidebar />
+        <Sidebar
+          activeItem={activeItem}
+          onSetActiveItem={handleSetActiveItem}
+        />
       </div>
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
-        <div className="flex flex-row w-full h-auto p-4 justify-center items-center">
+        <div className="flex flex-row w-full h-auto p-4 justify-center items-center  mt-20">
           <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
             <div className="flex mb-2 flex flex-col justify-center w-full h-full">
               <h1 className="text-1xl text-secondaryTwo font-bold">
@@ -78,7 +87,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex flex-row w-3/4 h-auto p-4 justify-center items-center">
-            <div className="flex flex-col justify-center w-1/2 h-[400px] ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
+            <div className="flex flex-col justify-center w-1/2 ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 API Buyings
               </h1>

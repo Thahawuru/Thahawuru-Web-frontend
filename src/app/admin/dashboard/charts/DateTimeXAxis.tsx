@@ -111,7 +111,7 @@ const DateTimeXAxis: React.FC = () => {
       },
       xaxis: {
         type: "datetime",
-        min: new Date("01 Mar 2012").getTime(),
+        min: new Date("12 Oct 2012").getTime(),
         tickAmount: 6,
         labels: {
           style: {
