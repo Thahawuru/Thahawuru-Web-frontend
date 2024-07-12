@@ -7,13 +7,13 @@ const PieChart = () => {
 
   useEffect(() => {
     const chartOptions = {
-      series: [44, 55, 13, 43, 22],
+      series: [44, 55, 100],
       chart: {
         type: "pie",
         height: 430,
       },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E", "Team F"],
-      colors: ["#023e8a", "#adb5bd", "#023e8a", "#adb5bd", "#023e8a", "#adb5bd"],
+      labels: ["Identity", "License", "Both"],
+      colors: ["#023e8a", "#adb5bd", "#023e8a"],
       dataLabels: {
         enabled: true,
         style: { fontSize: "14px", colors: ["#fff"] },
