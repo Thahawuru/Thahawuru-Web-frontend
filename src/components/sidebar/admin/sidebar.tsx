@@ -49,7 +49,7 @@ const menuItems = [
     ],
   },
   {
-    category: "Settings",
+    category: "API",
     items: [
       {
         title: "API Management",
@@ -63,6 +63,11 @@ const menuItems = [
         icon: <BiShield />,
         badge: null,
       },
+    ],
+  },
+  {
+    category: "Settings",
+    items: [
       {
         title: "Settings",
         href: "/admin/settings",
