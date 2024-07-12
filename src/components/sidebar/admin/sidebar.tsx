@@ -7,6 +7,9 @@ import {
   BiCog,
   BiGroup,
   BiLogOut,
+  BiShield,
+  BiAlarmExclamation,
+  BiAlarm,
 } from "react-icons/bi";
 
 import Link from "next/link";
@@ -19,15 +22,39 @@ const menuItems = [
     badge: null,
   },
   {
-    title: "Accounts",
+    title: "User Accounts",
     href: "/admin/accounts",
     icon: <BiGroup />,
     badge: null,
   },
   {
-    title: "Profile",
-    href: "/admin/profile",
-    icon: <BiUser />,
+    title: "Logs & Analytics",
+    href: "/admin/logs",
+    icon: <BiTask />,
+    badge: null,
+  },
+  {
+    title: "API Management",
+    href: "/admin/apiManagement",
+    icon: <BiCog />,
+    badge: null,
+  },
+  {
+    title: "Payments",
+    href: "/admin/payments",
+    icon: <BiShield />,
+    badge: null,
+  },
+  {
+    title: "Settings",
+    href: "/admin/settings",
+    icon: <BiCog />,
+    badge: null,
+  },
+  {
+    title: "Notifications",
+    href: "/admin/notifications",
+    icon: <BiAlarm />,
     badge: null,
   },
   {
