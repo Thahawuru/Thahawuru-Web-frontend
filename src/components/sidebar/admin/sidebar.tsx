@@ -53,7 +53,7 @@ const menuItems = [
     items: [
       {
         title: "API Management",
-        href: "/admin/apiManagement",
+        href: "/admin/api/management",
         icon: <BiCog />,
         badge: null,
       },
