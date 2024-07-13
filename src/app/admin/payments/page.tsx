@@ -440,7 +440,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row w-1/3 pr-12">
+        <div className="flex flex-row w-[180px] pr-12">
           <Link href="/admin/payments/revenue" className="w-3/4">
             <button
               type="submit"

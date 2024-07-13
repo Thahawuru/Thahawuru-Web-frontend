@@ -374,7 +374,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row w-1/3 pr-12">
+        <div className="flex flex-row  w-[400px]">
           <Link href="/admin/api/overallAnalytics" className="w-3/4">
             <button
               type="submit"
@@ -386,7 +386,7 @@ export default function Page() {
           <Link href="/admin/api/createAPI" className="w-3/4">
             <button
               type="submit"
-              className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform ml-10 mb-2"
+              className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform mb-2"
             >
               Create API key
             </button>
