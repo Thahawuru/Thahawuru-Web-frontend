@@ -66,23 +66,23 @@ const menuItems = [
     ],
   },
   {
-    category: "Settings",
-    items: [
-      {
-        title: "Settings",
-        href: "/admin/settings",
-        icon: <BiCog />,
-        badge: null,
-      },
-    ],
-  },
-  {
     category: "Emails",
     items: [
       {
         title: "Emails",
         href: "/admin/emails",
         icon: <BiAlarmExclamation />,
+        badge: null,
+      },
+    ],
+  },
+  {
+    category: "Settings",
+    items: [
+      {
+        title: "Settings",
+        href: "/admin/settings",
+        icon: <BiCog />,
         badge: null,
       },
     ],
