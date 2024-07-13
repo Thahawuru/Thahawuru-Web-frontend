@@ -193,7 +193,7 @@ const LogAnalytics = () => {
               </div>
               <div className="w-1/2 m-4">
                 <h2 className="text-1xl font-semibold  text-secondaryTwo">
-                  Verifications in Month
+                  Status Code Distibution
                 </h2>
                 <div id="errorRatesChart"></div>
               </div>
