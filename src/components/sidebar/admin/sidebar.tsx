@@ -88,14 +88,8 @@ const menuItems = [
     ],
   },
   {
-    category: "Notifications & Logout",
+    category: "Logout",
     items: [
-      {
-        title: "Notifications",
-        href: "/admin/notifications",
-        icon: <BiAlarm />,
-        badge: null,
-      },
       {
         title: "Logout",
         href: "/admin/logout",
@@ -137,7 +131,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, onSetActiveItem }) => {
                     className={`flex items-center px-4 py-3 text-sm font-medium rounded-custom-1 transition ease-in-out duration-150 border border-transparent ${
                       activeItem === item.title
                         ? "bg-secondaryTwo text-white border-secondaryTwo"
-                        : "bg-white text-gray-500  hover:bg-white hover:text-secondaryTwo"
+                        : "bg-white text-gray-500  hover:bg-white hover:text-secondaryTwo mb-1"
                     }`}
                     onClick={() => onSetActiveItem(item.title)}
                   >
