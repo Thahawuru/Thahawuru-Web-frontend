@@ -168,14 +168,12 @@ const Page = () => {
               Export the list of subscribers in CSV format
             </p>
             <div className="flex flex-row justify-center items-center w-full px-10 mb-4">
-              <Button
-                variant="contained"
-                color="primary"
+              <button
                 onClick={handleDownloadCSV}
                 className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform ml-10 mb-2"
               >
                 Download CSV
-              </Button>
+              </button>
             </div>
           </div>
         </div>
