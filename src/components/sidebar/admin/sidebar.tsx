@@ -70,7 +70,7 @@ const menuItems = [
     items: [
       {
         title: "Emails",
-        href: "/admin/emails",
+        href: "/admin/mails",
         icon: <BiAlarmExclamation />,
         badge: null,
       },
