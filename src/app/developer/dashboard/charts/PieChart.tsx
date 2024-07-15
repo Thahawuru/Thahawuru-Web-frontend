@@ -7,13 +7,13 @@ const PieChart = () => {
 
   useEffect(() => {
     const chartOptions = {
-      series: [44, 55, 100],
+      series: [99.9, 0.1],
       chart: {
         type: "pie",
         height: 300,
       },
-      labels: ["Identity", "License", "Both"],
-      colors: ["#023e8a", "#adb5bd", "#023e8a"],
+      labels: ["Success", "Error"],
+      colors: ["#023e8a", "#adb5bd"],
       dataLabels: {
         enabled: true,
         style: { fontSize: "14px", colors: ["#fff"] },
