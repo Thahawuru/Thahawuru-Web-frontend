@@ -9,10 +9,12 @@ import {
   BiLogOut,
   BiShield,
   BiAlarmExclamation,
-  BiDollarCircle,
   BiAlarm,
+  BiKey,
+  BiDollarCircle,
+  BiEnvelope,
+  BiUserCircle,
 } from "react-icons/bi";
-
 import Link from "next/link";
 
 const menuItems = [
@@ -21,30 +23,8 @@ const menuItems = [
     items: [
       {
         title: "Dashboard",
-        href: "/admin/dashboard",
+        href: "/developer/dashboard",
         icon: <BiHome />,
-        badge: null,
-      },
-    ],
-  },
-  {
-    category: "User Management",
-    items: [
-      {
-        title: "User Accounts",
-        href: "/admin/accounts",
-        icon: <BiGroup />,
-        badge: null,
-      },
-    ],
-  },
-  {
-    category: "Logs & Analytics",
-    items: [
-      {
-        title: "Logs & Analytics",
-        href: "/admin/logs",
-        icon: <BiTask />,
         badge: null,
       },
     ],
@@ -53,26 +33,54 @@ const menuItems = [
     category: "API",
     items: [
       {
-        title: "API Management",
-        href: "/admin/api/management",
+        title: "Request for API",
+        href: "/developer/api/management",
         icon: <BiTask />,
         badge: null,
       },
       {
         title: "Payments",
-        href: "/admin/payments",
+        href: "/developer/payments",
         icon: <BiDollarCircle />,
+        badge: null,
+      },
+      {
+        title: "API keys",
+        href: "/developer/api/keys",
+        icon: <BiKey />,
         badge: null,
       },
     ],
   },
   {
-    category: "Emails",
+    category: "Test API",
     items: [
       {
-        title: "Emails",
-        href: "/admin/mails",
-        icon: <BiAlarmExclamation />,
+        title: "Test API",
+        href: "/developer/testAPI",
+        icon: <BiTask />,
+        badge: null,
+      },
+    ],
+  },
+  {
+    category: "Profile",
+    items: [
+      {
+        title: "Profile",
+        href: "/developer/profile",
+        icon: <BiUserCircle />,
+        badge: null,
+      },
+    ],
+  },
+  {
+    category: "Contact",
+    items: [
+      {
+        title: "Contact",
+        href: "/developer/contact",
+        icon: <BiEnvelope />,
         badge: null,
       },
     ],
@@ -82,7 +90,7 @@ const menuItems = [
     items: [
       {
         title: "Settings",
-        href: "/admin/settings",
+        href: "/developer/settings",
         icon: <BiCog />,
         badge: null,
       },
@@ -93,7 +101,7 @@ const menuItems = [
     items: [
       {
         title: "Logout",
-        href: "/admin/logout",
+        href: "/developer/logout",
         icon: <BiLogOut />,
         badge: null,
       },
