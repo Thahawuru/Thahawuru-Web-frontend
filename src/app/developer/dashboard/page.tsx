@@ -31,13 +31,16 @@ export default function Dashboard() {
       </div>
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
-        <div className="flex flex-row w-full h-auto p-4 justify-center items-center  mt-20">
+        <h1 className="text-2xl text-secondaryTwo font-bold ml-5 mt-20">
+          Welcome Kasun Udara !
+        </h1>
+        <div className="flex flex-row w-full h-auto p-4 justify-center items-center">
           <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
             <div className="flex mb-2 flex flex-col justify-center w-full h-full">
               <h1 className="text-1xl text-secondaryTwo font-bold">
-                New Wallets
+                Total Requests
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">1000</p>
+              <p className="text-secondaryTwo font-bold text-2xl">200</p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiUser className="text-secondaryTwo mr-2" size={24} />
               </div>
@@ -46,9 +49,9 @@ export default function Dashboard() {
           <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
             <div className="flex mb-2 flex flex-col w-full h-full">
               <h1 className="text-1xl text-secondaryTwo font-bold">
-                Today`s Updates
+                Request Today
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">790</p>
+              <p className="text-secondaryTwo font-bold text-2xl">50</p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiIdCard className="text-secondaryTwo mr-2" size={24} />
               </div>
@@ -57,7 +60,7 @@ export default function Dashboard() {
           <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
             <div className="flex mb-2 flex flex-col w-full h-full">
               <h1 className="text-1xl text-secondaryTwo font-bold">
-                API Calls
+                Rate Limit
               </h1>
               <p className="text-secondaryTwo font-bold text-2xl">1000</p>
               <div className="flex flex-row justify-end w-full mt-10">
@@ -68,9 +71,9 @@ export default function Dashboard() {
           <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
             <div className="flex mb-2 flex flex-col w-full h-full">
               <h1 className="text-1xl text-secondaryTwo font-bold">
-                Transactions
+                Average Res. Time
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">50,768</p>
+              <p className="text-secondaryTwo font-bold text-2xl">0.5 s</p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiShield className="text-secondaryTwo mr-2" size={24} />
               </div>
@@ -81,7 +84,7 @@ export default function Dashboard() {
           <div className="flex flex-row w-3/4 h-auto p-4 justify-center items-center">
             <div className="flex flex-col justify-center w-full h-[400px] p-4 ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
               <h1 className="text-1xl text-secondaryTwo font-bold">
-                Daily Wallet Usage
+                Yearly Usage of Requests
               </h1>
               <DateTimeXAxis />
             </div>
@@ -89,13 +92,13 @@ export default function Dashboard() {
           <div className="flex flex-row w-4/5 h-auto p-4 justify-center items-center">
             <div className="flex flex-col justify-center w-1/2 ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
               <h1 className="text-1xl text-secondaryTwo font-bold">
-                API Buyings
+                Sucess and Error Rate
               </h1>
               <PieChart />
             </div>
             <div className="flex flex-col justify-center w-1/2 h-[400px] ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
               <h1 className="text-1xl text-secondaryTwo font-bold">
-                Revenue Made
+                Response Time
               </h1>
               <LineColumnChart />
             </div>
