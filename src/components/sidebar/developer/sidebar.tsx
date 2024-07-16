@@ -34,13 +34,13 @@ const menuItems = [
     items: [
       {
         title: "Request for API",
-        href: "/developer/api/management",
+        href: "/developer/api/request",
         icon: <BiTask />,
         badge: null,
       },
       {
         title: "Payments",
-        href: "/developer/payments",
+        href: "/developer/payment",
         icon: <BiDollarCircle />,
         badge: null,
       },
@@ -70,17 +70,6 @@ const menuItems = [
         title: "Profile",
         href: "/developer/profile",
         icon: <BiUserCircle />,
-        badge: null,
-      },
-    ],
-  },
-  {
-    category: "Contact",
-    items: [
-      {
-        title: "Contact",
-        href: "/developer/contact",
-        icon: <BiEnvelope />,
         badge: null,
       },
     ],
