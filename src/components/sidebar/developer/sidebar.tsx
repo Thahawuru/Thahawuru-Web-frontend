@@ -75,17 +75,6 @@ const menuItems = [
     ],
   },
   {
-    category: "Contact",
-    items: [
-      {
-        title: "Contact",
-        href: "/developer/contact",
-        icon: <BiEnvelope />,
-        badge: null,
-      },
-    ],
-  },
-  {
     category: "Logout",
     items: [
       {
