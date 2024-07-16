@@ -106,7 +106,7 @@ export default function Page() {
             <div key={index} className="mb-16">
               <h2 className="text-2xl font-semibold mb-2">{block.title}</h2>
               <p className="">{block.paragraph}</p>
-              <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-md flex flex-row">
+              <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-md flex flex-row mt-4">
                 <IconButton
                   color="primary"
                   onClick={() => handleCopy(block.content)}

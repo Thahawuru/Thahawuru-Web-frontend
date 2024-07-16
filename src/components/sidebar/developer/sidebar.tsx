@@ -67,7 +67,7 @@ const menuItems = [
     category: "Profile & Settings",
     items: [
       {
-        title: "Profile & Settings",
+        title: "Profile",
         href: "/developer/profile",
         icon: <BiUserCircle />,
         badge: null,
