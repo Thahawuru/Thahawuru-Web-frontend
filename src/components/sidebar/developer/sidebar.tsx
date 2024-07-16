@@ -64,10 +64,10 @@ const menuItems = [
     ],
   },
   {
-    category: "Profile",
+    category: "Profile & Settings",
     items: [
       {
-        title: "Profile",
+        title: "Profile & Settings",
         href: "/developer/profile",
         icon: <BiUserCircle />,
         badge: null,
@@ -81,17 +81,6 @@ const menuItems = [
         title: "Contact",
         href: "/developer/contact",
         icon: <BiEnvelope />,
-        badge: null,
-      },
-    ],
-  },
-  {
-    category: "Settings",
-    items: [
-      {
-        title: "Settings",
-        href: "/developer/settings",
-        icon: <BiCog />,
         badge: null,
       },
     ],

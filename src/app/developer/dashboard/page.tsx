@@ -31,7 +31,7 @@ export default function Dashboard() {
       </div>
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
-        <h1 className="text-2xl text-secondaryTwo font-bold ml-5 mt-20">
+        <h1 className="text-2xl text-secondaryTwo font-bold ml-10 mt-20">
           Welcome Kasun Udara !
         </h1>
         <div className="flex flex-row w-full h-auto p-4 justify-center items-center">
