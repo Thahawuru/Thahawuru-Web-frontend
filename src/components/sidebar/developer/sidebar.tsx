@@ -34,13 +34,13 @@ const menuItems = [
     items: [
       {
         title: "Request for API",
-        href: "/developer/api/management",
+        href: "/developer/api/request",
         icon: <BiTask />,
         badge: null,
       },
       {
         title: "Payments",
-        href: "/developer/payments",
+        href: "/developer/payment",
         icon: <BiDollarCircle />,
         badge: null,
       },

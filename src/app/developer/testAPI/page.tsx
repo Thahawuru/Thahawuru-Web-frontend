@@ -92,7 +92,7 @@ export default function Page() {
           </p>
 
           <h2 className="text-2xl font-semibold mb-2">Test API Key</h2>
-          <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row">
+          <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row mb-16">
             <IconButton
               color="primary"
               onClick={() => handleCopy("hudjsjallaahgsggsuuytr176")}
