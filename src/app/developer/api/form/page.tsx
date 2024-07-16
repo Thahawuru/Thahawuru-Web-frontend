@@ -192,6 +192,9 @@ export default function AgreementFormPage() {
                   label="I agree to the confidentiality agreement"
                 />
               </div>
+              <p className="mb-4 text-black text-sm"> 
+                By submitting this form, you agree to the terms and conditions, privacy policy, and confidentiality agreement. Note that any missuse of the API will result in action taking from government laws.
+              </p>
               <div className="mb-4">
                 <Button
                   type="submit"
