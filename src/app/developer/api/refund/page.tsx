@@ -99,7 +99,7 @@ export default function AgreementFormPage() {
           <div className="flex flex-row w-full h-auto p-4 mt-20">
             <div className="flex flex-row justify-start items-center w-2/3">
               <h1 className="text-2xl font-bold text-secondaryTwo w-full text-left pl-10">
-                <b>Developer Agreement Form</b>
+                <b>Developer Refund Form</b>
               </h1>
             </div>
           </div>
