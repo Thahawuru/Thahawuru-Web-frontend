@@ -92,7 +92,7 @@ export default function Page() {
           </p>
 
           <h2 className="text-2xl font-semibold mb-2">Test API Key</h2>
-          <div className="relative bg-gray-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row">
+          <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row">
             <IconButton
               color="primary"
               onClick={() => handleCopy("hudjsjallaahgsggsuuytr176")}
@@ -105,8 +105,8 @@ export default function Page() {
           {contentBlocks.map((block, index) => (
             <div key={index} className="mb-16">
               <h2 className="text-2xl font-semibold mb-2">{block.title}</h2>
-              <p className="mb-4">{block.paragraph}</p>
-              <div className="relative bg-gray-300 p-2 mb-4 rounded text-black shadow-lg">
+              <p className="">{block.paragraph}</p>
+              <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row">
                 <IconButton
                   color="primary"
                   onClick={() => handleCopy(block.content)}
