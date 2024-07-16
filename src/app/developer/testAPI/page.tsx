@@ -99,14 +99,14 @@ export default function Page() {
             >
               <ContentCopyIcon />
             </IconButton>
-            <pre className="overflow-auto mt-2 ml-4">hudjsjallaahgsggsuuytr176</pre>
+            <pre className="overflow-auto mt-2 ml-16 p-2">hudjsjallaahgsggsuuytr176</pre>
           </div>
 
           {contentBlocks.map((block, index) => (
             <div key={index} className="mb-16">
               <h2 className="text-2xl font-semibold mb-2">{block.title}</h2>
               <p className="">{block.paragraph}</p>
-              <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row">
+              <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-md flex flex-row">
                 <IconButton
                   color="primary"
                   onClick={() => handleCopy(block.content)}
