@@ -39,7 +39,9 @@ export default function AgreementFormPage() {
     setActiveItem(itemTitle);
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value, type } = e.target;
     if (type === "checkbox") {
       const { checked } = e.target as HTMLInputElement;
@@ -57,7 +59,11 @@ export default function AgreementFormPage() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formData.agreeToTerms && formData.agreeToPrivacy && formData.agreeToConfidentiality) {
+    if (
+      formData.agreeToTerms &&
+      formData.agreeToPrivacy &&
+      formData.agreeToConfidentiality
+    ) {
       console.log("Form submitted:", formData);
       // Handle form submission (e.g., send data to server)
     } else {
@@ -84,7 +90,10 @@ export default function AgreementFormPage() {
             </div>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <form onSubmit={handleSubmit} className="w-4/5 p-4 bg-gray-100 rounded mb-10">
+            <form
+              onSubmit={handleSubmit}
+              className="w-4/5 p-4 bg-gray-100 rounded mb-10"
+            >
               <div className="mb-4">
                 <TextField
                   fullWidth
@@ -166,7 +175,7 @@ export default function AgreementFormPage() {
                   label="I agree to the terms and conditions"
                 />
               </div>
-              <div  className="mb-4 text-black">
+              <div className="mb-4 text-black">
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -179,7 +188,7 @@ export default function AgreementFormPage() {
                   label="I agree to the privacy policy"
                 />
               </div>
-              <div  className="mb-4 text-black">
+              <div className="mb-4 text-black">
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -192,15 +201,22 @@ export default function AgreementFormPage() {
                   label="I agree to the confidentiality agreement"
                 />
               </div>
-              <p className="mb-4 text-black text-sm"> 
-                By submitting this form, you agree to the terms and conditions, privacy policy, and confidentiality agreement. Note that any missuse of the API will result in action taking from government laws.
+              <p className="mb-4 text-black text-sm">
+                By submitting this form, you agree to the terms and conditions,
+                privacy policy, and confidentiality agreement. Note that any
+                missuse of the API will result in action taking from government
+                laws.
               </p>
               <div className="mb-4">
                 <Button
                   type="submit"
                   variant="contained"
-                  color="primary"
-                  disabled={!formData.agreeToTerms || !formData.agreeToPrivacy || !formData.agreeToConfidentiality}
+                  className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform mb-2"
+                  disabled={
+                    !formData.agreeToTerms ||
+                    !formData.agreeToPrivacy ||
+                    !formData.agreeToConfidentiality
+                  }
                 >
                   Submit
                 </Button>
