@@ -4,6 +4,7 @@ import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import IconButton from "@mui/material/IconButton";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
+import Link from "next/link";
 
 const pricingPlans = [
   {
@@ -86,7 +87,7 @@ export default function PricingPage() {
                 {pricingPlans.map((plan, index) => (
                   <div
                     key={index}
-                    className="mb-16 rounded-custom-1 p-4 bg-primary shadow-md"
+                    className="mb-10 rounded-custom-1 p-4 bg-primary shadow-md"
                   >
                     <h3 className="text-lg font-semibold mb-4">{plan.title}</h3>
                     <p className="text-black">
@@ -112,7 +113,7 @@ export default function PricingPage() {
                         aria-label="request"
                         className="mt-4"
                       >
-                        <h1 className="text-sm text-secondaryTwo">Request</h1> 
+                        <Link href="form"><h1 className="text-sm text-secondaryTwo">Request</h1> </Link>
                         <RequestQuoteIcon />
                       </IconButton>
                     </div>
