@@ -245,13 +245,14 @@ export default function AgreementFormPage() {
                 longer have access for the API key you currently have.
               </p>
               <div className="mb-4">
-                <button
+                <Button
                   type="submit"
+                  variant="contained"
                   className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform mb-2"
                   disabled={!formData.agreeToTerms}
                 >
                   Submit
-                </button>
+                </Button>
               </div>
             </form>
           </div>
