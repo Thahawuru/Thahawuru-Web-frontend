@@ -5,6 +5,9 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
+import { useAuthentication } from "@/api/useAuthentication";
+import Toast from "@/components/utils/toaster";
+import { useRouter } from "next/navigation";
 
 const style = {
   position: "absolute" as "absolute",
@@ -28,6 +31,10 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const router = useRouter();
+
+  const { signin } = useAuthentication();
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -36,12 +43,21 @@ const LoginPage = () => {
     setIsLogin(true);
   };
 
-  const handleLogin = (event: any) => {
+  const handleLogin = async (event: any) => {
     event.preventDefault();
-    // Handle login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
-    handleClose();
+    try {
+      const response = await signin({ email, password });
+      if (response.status === 200) {
+        Toast({ type: "success", message: "Login Success" });
+        console.log(response.data.data);
+        localStorage.setItem("user", JSON.stringify(response.data.data.apiuser));
+        localStorage.setItem("token", JSON.stringify(response.data.data.token));
+        router.push("/developer/dashboard");
+        handleClose();
+      }
+    } catch (error: any) {
+      Toast({ type: "fail", message: "Login failed" });
+    }
   };
 
   const handleSignUp = (event: any) => {
@@ -73,7 +89,10 @@ const LoginPage = () => {
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={{ ...style, width: 600 }} className="flex flex-col justify-center items-center m-10">
+        <Box
+          sx={{ ...style, width: 600 }}
+          className="flex flex-col justify-center items-center m-10"
+        >
           <Typography
             variant="h6"
             id="parent-modal-title"
@@ -81,7 +100,10 @@ const LoginPage = () => {
           >
             {isLogin ? "Login" : "Sign Up"}
           </Typography>
-          <form className="w-3/4" onSubmit={isLogin ? handleLogin : handleSignUp}>
+          <form
+            className="w-3/4"
+            onSubmit={isLogin ? handleLogin : handleSignUp}
+          >
             <div className="w-full flex flex-row">
               <h1 className="text-2xl text-left font-bold text-black mb-4">
                 තහවුරු &nbsp;
@@ -119,23 +141,23 @@ const LoginPage = () => {
                 required
               />
             )}
-            <Link
+            {/* <Link
               href={isLogin ? "/admin/dashboard" : "/admin/dashboard"}
               passHref
+            > */}
+            <Button
+              type="submit"
+              className="mt-4"
+              variant="contained"
+              sx={{
+                backgroundColor: "secondaryTwo.main",
+                textTransform: "none",
+              }}
+              fullWidth
             >
-              <Button
-                type="submit"
-                className="mt-4"
-                variant="contained"
-                sx={{
-                  backgroundColor: "secondaryTwo.main",
-                  textTransform: "none",
-                }}
-                fullWidth
-              >
-                {isLogin ? "Login" : "Sign Up"}
-              </Button>
-            </Link>
+              {isLogin ? "Login" : "Sign Up"}
+            </Button>
+            {/* </Link> */}
           </form>
           <div className="w-full h-[40px] flex flex-row mt-4 justify-between items-center">
             <Button

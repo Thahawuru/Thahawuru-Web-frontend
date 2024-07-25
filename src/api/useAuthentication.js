@@ -7,12 +7,13 @@ export const useAuthentication = () => {
     try {
       const response = await axios({
         method: "post",
-        url: `${API_URL}/auth/register`,
+        url: `${API_URL}/auth/apiuser/register`,
         data: {
           email: data.email,
           password: data.password,
-          otp: data.otp,
-          nic: data.nic,
+          APIType: data.apiType,
+          name: data.name,
+          organizationName: data.organizationName,
         },
         withCredentials: true,
       });
@@ -37,20 +38,20 @@ export const useAuthentication = () => {
     };
   };
   const signin = async (data) => {
+    console.log(data);  
     try {
       const response = await axios({
         method: "post",
-        url: `${API_URL}/auth/login`,
+        url: `${API_URL}/auth/apiuser/login`,
         data: {
           email: data.email,
           password: data.password,
         },
         withCredentials: true,
       });
-      console.log(response);
       return response;
     } catch (error) {
-      throw new Error(error.response.data.error.message);
+      throw new Error(error?.response.data.error);
     }
   };
 

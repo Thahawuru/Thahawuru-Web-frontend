@@ -7,6 +7,9 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import { FormControl } from "@mui/material";
+import {useApiKeys} from "@/api/useApiKeys"
+import Toast from "@/components/utils/toaster";
+
 interface FormData {
   fullName: string;
   organizationName: string;
@@ -21,6 +24,10 @@ interface FormData {
 }
 
 export default function AgreementFormPage() {
+
+
+  const {createApiKey} = useApiKeys();
+
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
@@ -57,17 +64,28 @@ export default function AgreementFormPage() {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       formData.agreeToTerms &&
       formData.agreeToPrivacy &&
       formData.agreeToConfidentiality
     ) {
-      console.log("Form submitted:", formData);
+
+      try{
+        const response = await createApiKey(formData);
+        console.log(response);
+        if(response.status===201){
+          Toast({type:"success",message:"api key requested successfully"})
+        }
+      }catch(error){
+        console.log(error);
+        Toast({type:"fail",message:"fail to create api key request!"})
+      }
+   
       // Handle form submission (e.g., send data to server)
     } else {
-      alert("You must agree to all terms to proceed.");
+      Toast({type:"fail",message:"You must agree to all terms to proceed."});
     }
   };
 
@@ -97,7 +115,7 @@ export default function AgreementFormPage() {
               <div className="mb-4">
                 <TextField
                   fullWidth
-                  label="Full Name"
+                  label="Api Name"
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
@@ -7,11 +7,41 @@ import { IconButton } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useApiKeys } from "@/api/useApiKeys";
+import Toast from "@/components/utils/toaster";
+
+
+interface ApiKey {
+  id: string;
+  name: string;
+  key: string;
+  // add other properties if needed
+}
 
 export default function Page() {
+  const { getApiKeys } = useApiKeys();
   const [activeItem, setActiveItem] = useState("API keys");
-  const [showApiKey, setShowApiKey] = useState(false);
-  const apiKey = "hudjsjallaahgsggsuuytr176";
+  const [showApiKeys, setShowApiKeys] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+  const [apiKey, setApiKey] = useState<ApiKey[]>([]);
+
+  const getUserApiKeys = async () => {
+    try {
+      const response = await getApiKeys();
+      if (response.status === 200) {
+        setApiKey(response.data.data)
+        console.log(response.data.data);
+      }
+    } catch (error) {
+   
+      Toast({ type: "fail", message: "failed to get api keys" });
+    }
+  };
+
+  useEffect(() => {
+    getUserApiKeys();
+  }, []);
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
@@ -68,8 +98,12 @@ export default function Page() {
     });
   };
 
-  const toggleShowApiKey = () => {
-    setShowApiKey(!showApiKey);
+  const toggleShowApiKey = (item: string) => {
+    setShowApiKeys((prevState) => ({
+      ...prevState,
+      [item]: !prevState[item],
+    }));
+    // setShowApiKey(!showApiKey);
   };
 
   return (
@@ -99,22 +133,40 @@ export default function Page() {
             the API keys annually.
           </p>
 
-          <h2 className="text-2xl font-semibold mb-2">API Key</h2>
-          <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row mb-16 items-center">
-            <IconButton
-              color="primary"
-              onClick={() => handleCopy(apiKey)}
-              className="ml-2"
-            >
-              <ContentCopyIcon />
-            </IconButton>
-            <pre className="overflow-auto mt-2 ml-4 p-2">
-              {showApiKey ? apiKey : "********************"}
-            </pre>
-            <IconButton color="primary" onClick={toggleShowApiKey}>
-              {showApiKey ? <VisibilityOffIcon /> : <VisibilityIcon />}
-            </IconButton>
-          </div>
+          <h2 className="text-2xl font-semibold mb-2">API Keys</h2>
+
+          {apiKey &&
+            apiKey.length > 0 &&
+            apiKey.map((item, index) => (
+              <div
+                key={index}
+                className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row mb-16 items-center "
+              >
+                <p className="mb-4  mt-2 ml-4 p-2">{item?.name}</p>
+                <IconButton
+                  color="primary"
+                  onClick={() => handleCopy(item?.key)}
+                  className="ml-2"
+                >
+                  <ContentCopyIcon />
+                </IconButton>
+
+                <pre className="overflow-auto mt-2 ml-4 p-2">
+                  {showApiKeys[item?.key] ? item?.key : "********************"}
+                </pre>
+
+                <IconButton
+                  color="primary"
+                  onClick={() => toggleShowApiKey(item?.key)}
+                >
+                  {showApiKeys[item.key] ? (
+                    <VisibilityOffIcon />
+                  ) : (
+                    <VisibilityIcon />
+                  )}
+                </IconButton>
+              </div>
+            ))}
 
           <p className="mb-8 text-secondaryTwo">
             Do you need to refund the payment for API keys? If so you will be no

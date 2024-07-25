@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 // import Navbar from "../components/navbar";
 import logo from "./favicon.ico";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +20,16 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href={logo.src} />
-      </head>
-      <body className={inter.className}>
-        <main>{children}</main>
-      </body>
-    </html>
+    <>
+      <html lang="en">
+        <head>
+          <link rel="icon" href={logo.src} />
+        </head>
+        <body className={inter.className}>
+          <main>{children}</main>
+          <Toaster />
+        </body>
+      </html>
+    </>
   );
 }
