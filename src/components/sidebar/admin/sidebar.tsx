@@ -53,7 +53,19 @@ const menuItems = [
     category: "API",
     items: [
       {
-        title: "API Management",
+        title: "Requests",
+        href: "/admin/payments/requests",
+        icon: <BiDollarCircle />,
+        badge: null,
+      },
+      {
+        title: "Pending",
+        href: "/admin/payments/pending",
+        icon: <BiDollarCircle />,
+        badge: null,
+      },
+      {
+        title: "Active",
         href: "/admin/api/management",
         icon: <BiTask />,
         badge: null,
@@ -61,6 +73,12 @@ const menuItems = [
       {
         title: "Payments",
         href: "/admin/payments",
+        icon: <BiDollarCircle />,
+        badge: null,
+      },
+      {
+        title: "Create API Key",
+        href: "/admin/api/createAPI",
         icon: <BiDollarCircle />,
         badge: null,
       },

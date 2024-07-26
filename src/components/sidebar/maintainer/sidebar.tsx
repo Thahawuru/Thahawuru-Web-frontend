@@ -48,6 +48,24 @@ const menuItems = [
         icon: <BiCog />,
         badge: null,
       },
+      {
+        title: "Requests",
+        href: "/admin/payments/requests",
+        icon: <BiDollarCircle />,
+        badge: null,
+      },
+      {
+        title: "Pending",
+        href: "/admin/payments/pending",
+        icon: <BiDollarCircle />,
+        badge: null,
+      },
+      {
+        title: "Active",
+        href: "/admin/api/management",
+        icon: <BiTask />,
+        badge: null,
+      },
     ],
   },
   {

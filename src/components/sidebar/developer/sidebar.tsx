@@ -50,6 +50,18 @@ const menuItems = [
         icon: <BiKey />,
         badge: null,
       },
+      {
+        title: "Requested API",
+        href: "/developer/api/keys",
+        icon: <BiKey />,
+        badge: null,
+      },
+      {
+        title: "Active API",
+        href: "/developer/api/keys",
+        icon: <BiKey />,
+        badge: null,
+      },
     ],
   },
   {
