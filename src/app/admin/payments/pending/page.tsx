@@ -21,9 +21,9 @@ import { BiCheckCircle, BiXCircle, BiDetail } from "react-icons/bi";
 interface API {
   requestId: number;
   name: string;
-  email: string,
+  oderId: number;
   requestDate: string;
-  APIType: string;
+  amount: string;
   status: string;
 }
 
@@ -31,23 +31,63 @@ const initialAPI: API[] = [
   {
     requestId: 6,
     name: "David Wilson",
-    email: "din@gmail.com",
-    requestDate:"",
-    APIType: "basic",
-    status: "request",
+    oderId: 6547,
+    requestDate: "2021-10-10",
+    amount: "20,000 LKR",
+    status: "Active",
   },
   {
-    requestId: 2,
+    requestId: 18,
+    name: "Jane Smith",
+    oderId: 4765,
+    requestDate: "2021-10-10",
+    amount: "10,000 LKR",
+    status: "Active",
+  },
+  {
+    requestId: 20,
+    name: "Bob Brown",
+    oderId: 4748,
+    requestDate: "2021-10-10",
+    amount: "5,000 LKR",
+    status: "Inactive",
+  },
+  {
+    requestId: 25,
+    name: "John Doe",
+    oderId: 5974,
+    requestDate: "2021-10-10",
+    amount: "12,000 LKR",
+    status: "Pending",
+  },
+  {
+    requestId: 30,
     name: "David Wilson",
-    email: "din@gmail.com",
-    requestDate:"",
-    APIType: "basic",
-    status: "request",
+    oderId: 6547,
+    requestDate: "2021-10-10",
+    amount: "4,000 LKR",
+    status: "Pending",
+  },
+  {
+    requestId: 31,
+    name: "Eve Miller",
+    oderId: 5945,
+    requestDate: "2021-10-10",
+    amount: "10,000 LKR",
+    status: "Active",
+  },
+  {
+    requestId: 32,
+    name: "Frank White",
+    oderId: 4698,
+    requestDate: "2021-10-10",
+    amount: "10,000 LKR",
+    status: "Active",
   },
 ];
 
 export default function Page() {
-  const [activeItem, setActiveItem] = useState("Requests");
+  const [activeItem, setActiveItem] = useState("Pending");
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
@@ -94,8 +134,8 @@ export default function Page() {
   const filteredAPIs = apis.filter((api) => {
     const matchQuery =
       api.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      api.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      api.APIType.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      api.oderId.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
+      api.amount.toLowerCase().includes(searchQuery.toLowerCase()) ||
       api.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
       api.requestDate.toLowerCase().includes(searchQuery.toLowerCase());
 
@@ -118,7 +158,7 @@ export default function Page() {
         <div className="flex flex-row w-full h-auto p-4 mt-20">
           <div className="flex flex-row justify-start items-center w-2/3">
             <h1 className="text-2xl font-bold text-secondaryTwo w-full text-left pl-10">
-              <b>API Requests</b>
+              <b>Refund Requests</b>
             </h1>
           </div>
         </div>
@@ -144,7 +184,7 @@ export default function Page() {
             }}
             style={{ marginRight: "16px" }}
           />
-          {/* <TextField
+          <TextField
             label="Status"
             select
             value={status}
@@ -155,7 +195,7 @@ export default function Page() {
             <MenuItem value="Pending">Pending</MenuItem>
             <MenuItem value="Approved">Approved</MenuItem>
             <MenuItem value="Declined">Declined</MenuItem>
-          </TextField> */}
+          </TextField>
           <TextField
             label="Search"
             variant="outlined"
@@ -180,9 +220,9 @@ export default function Page() {
                     <TableRow>
                       <TableCell>Request ID</TableCell>
                       <TableCell>Name</TableCell>
-                      <TableCell>Email</TableCell>
+                      <TableCell>Oder ID</TableCell>
                       <TableCell>Request Date</TableCell>
-                      <TableCell>API Type</TableCell>
+                      <TableCell>Amount</TableCell>
                       <TableCell>Status</TableCell>
                       <TableCell align="right">Actions</TableCell>
                     </TableRow>
@@ -197,12 +237,12 @@ export default function Page() {
                         <TableRow key={api.requestId}>
                           <TableCell>{api.requestId}</TableCell>
                           <TableCell>{api.name}</TableCell>
-                          <TableCell>{api.email}</TableCell>
+                          <TableCell>{api.oderId}</TableCell>
                           <TableCell>{api.requestDate}</TableCell>
-                          <TableCell>{api.APIType}</TableCell>
+                          <TableCell>{api.amount}</TableCell>
                           <TableCell>{api.status}</TableCell>
                           <TableCell align="right">
-                            {api.status === "request" ? (
+                            {api.status === "Pending" ? (
                               <>
                                 <IconButton color="primary">
                                   <BiCheckCircle />
