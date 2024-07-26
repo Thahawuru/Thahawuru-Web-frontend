@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent , useEffect } from "react";
+import router, { useRouter } from "next/router";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import TextField from "@mui/material/TextField";
@@ -8,6 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import { FormControl } from "@mui/material";
 interface FormData {
+  // category: string;
   fullName: string;
   organizationName: string;
   email: string;
@@ -23,6 +25,7 @@ interface FormData {
 export default function AgreementFormPage() {
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
+    // category: "",
     fullName: "",
     organizationName: "",
     email: "",
@@ -34,6 +37,15 @@ export default function AgreementFormPage() {
     agreeToPrivacy: false,
     agreeToConfidentiality: false,
   });
+
+  // useEffect(() => {
+  //   if (router.query.category) {
+  //     setFormData((prevFormData) => ({
+  //       ...prevFormData,
+  //       category: router.query.category as string,
+  //     }));
+  //   }
+  // }, [router.query.category]);
 
   const handleSetActiveItem = (itemTitle: string) => {
     setActiveItem(itemTitle);
@@ -94,6 +106,17 @@ export default function AgreementFormPage() {
               onSubmit={handleSubmit}
               className="w-4/5 p-4 bg-gray-100 rounded mb-10"
             >
+              {/* <div className="mb-4">
+                <TextField
+                  fullWidth
+                  label="Category"
+                  name={`category-${formData.category}`}
+                  value={formData.category}
+                  onChange={handleChange}
+                  variant="outlined"
+                  required
+                />
+              </div> */}
               <div className="mb-4">
                 <TextField
                   fullWidth

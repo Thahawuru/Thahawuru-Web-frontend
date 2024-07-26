@@ -290,7 +290,7 @@ const initialAPI: API[] = [
 ];
 
 export default function Page() {
-  const [activeItem, setActiveItem] = useState("API Management");
+  const [activeItem, setActiveItem] = useState("Active");
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
@@ -383,14 +383,7 @@ export default function Page() {
               Overall Analytics
             </button>
           </Link>
-          <Link href="/admin/api/createAPI" className="w-3/4">
-            <button
-              type="submit"
-              className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform mb-2"
-            >
-              Create API key
-            </button>
-          </Link>
+          
         </div>
 
         <div className="w-full flex flex-row justify-center items-center">
