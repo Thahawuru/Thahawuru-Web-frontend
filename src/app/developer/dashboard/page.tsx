@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent , useEffect } from "react";
 import Image from "next/image";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
@@ -17,9 +17,17 @@ import PieChart from "./charts/PieChart";
 import {useAuthContext} from "@/hooks/useAuthContext"
 
 export default function Dashboard() {
-  const [activeItem, setActiveItem] = useState("Dashboard");
 
-  const {user}= useAuthContext();
+  const { user } = useAuthContext();
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if(user) {
+      setEmail(user.email.split("@")[0]); 
+    }
+  }, [user]);
+
+  const [activeItem, setActiveItem] = useState("Dashboard");
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
@@ -35,7 +43,7 @@ export default function Dashboard() {
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
         <h1 className="text-2xl text-secondaryTwo font-bold ml-10 mt-20">
-          Welcome {user?.email} !
+          Welcome {email} !
         </h1>
         <div className="flex flex-row w-full h-auto p-4 justify-center items-center">
           <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
