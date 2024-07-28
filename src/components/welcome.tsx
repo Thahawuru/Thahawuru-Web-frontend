@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { BiSearch, BiBell } from "react-icons/bi"; // Import the notification icon
 import ProfileImage from "../../public/profilePicDefault.png";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 const Welcome = () => {
   const [isBellClicked, setIsBellClicked] = useState(false);
+  const { user } = useAuthContext();
 
   const handleBellClick = () => {
     setIsBellClicked(!isBellClicked);
@@ -28,7 +30,7 @@ const Welcome = () => {
       </div>
       <div className="flex items-center w-1/6 justify-center">
         <div className="flex flex-col justify-center items-center mr-2">
-          <p className="text-gray-500 text-xs font-bold">Kasun Udara</p>
+          <p className="text-gray-500 text-xs font-bold">{user?.email}</p>
         </div>
         <Image
           src={ProfileImage}

@@ -50,7 +50,7 @@ const LoginPage = () => {
       if (response.status === 200) {
         Toast({ type: "success", message: "Login Success" });
         console.log(response.data.data);
-        localStorage.setItem("user", JSON.stringify(response.data.data.apiuser));
+        localStorage.setItem("user", JSON.stringify(response.data.data.user));
         localStorage.setItem("token", JSON.stringify(response.data.data.token));
         router.push("/developer/dashboard");
         handleClose();

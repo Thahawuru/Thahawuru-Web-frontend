@@ -14,9 +14,12 @@ import BarChart from "./charts/BarChart";
 import DateTimeXAxis from "./charts/DateTimeXAxis";
 import LineColumnChart from "./charts/LineColumnChart";
 import PieChart from "./charts/PieChart";
+import {useAuthContext} from "@/hooks/useAuthContext"
 
 export default function Dashboard() {
   const [activeItem, setActiveItem] = useState("Dashboard");
+
+  const {user}= useAuthContext();
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
@@ -32,7 +35,7 @@ export default function Dashboard() {
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
         <h1 className="text-2xl text-secondaryTwo font-bold ml-10 mt-20">
-          Welcome Kasun Udara !
+          Welcome {user?.email} !
         </h1>
         <div className="flex flex-row w-full h-auto p-4 justify-center items-center">
           <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
