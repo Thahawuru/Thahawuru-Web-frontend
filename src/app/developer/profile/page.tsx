@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Image from "next/image";
 import profileImage from "../../../../public/profilePicDefault.png";
 import { Modal } from "@mui/material";
+import { useAuthentication } from "@/api/useAuthentication";
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,8 @@ export default function Page() {
     project: "",
     profileLink: "",
   });
+
+  const { savedetails } = useAuthentication();
 
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
@@ -32,9 +35,18 @@ export default function Page() {
     setActiveItem(itemTitle);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log("formdata",formData);
+    try {
+      const response = await savedetails(formData);
+      if (response.status === 201) {
+        console.log(response.data);
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+    
   };
 
   const handleSubmitPassword = (e: React.FormEvent) => {

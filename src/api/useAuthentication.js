@@ -1,4 +1,5 @@
 import axios from "axios";
+import apiClient from "./apiClient";
 
 const API_URL = "http://localhost:9000/api/v1";
 
@@ -11,9 +12,6 @@ export const useAuthentication = () => {
         data: {
           email: data.email,
           password: data.password,
-          APIType: data.apiType,
-          name: data.name,
-          organizationName: data.organizationName,
         },
         withCredentials: true,
       });
@@ -55,9 +53,30 @@ export const useAuthentication = () => {
     }
   };
 
+  const savedetails = async (data) => {
+    console.log(data);  
+    try {
+      const response = await apiClient.post("/apiuser/savedetails",{   
+          name: data.name,
+          organizationName: data.name,
+          email: data.email,
+          number: data.phoneNumber,
+          purpose: data.phoneNumber,
+          description: data.phoneNumber,
+          whatsappNumber: data.whatsappNumber,
+          project: data.project,
+      
+      });
+      return response;
+    } catch (error) {
+      throw new Error(error?.response.data.error);
+    }
+  };
+
   return {
     signin,
     signup,
+    savedetails,
     authorize,
   };
 };

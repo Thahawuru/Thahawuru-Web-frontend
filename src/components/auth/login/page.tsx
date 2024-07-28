@@ -33,7 +33,7 @@ const LoginPage = () => {
 
   const router = useRouter();
 
-  const { signin } = useAuthentication();
+  const { signin ,signup} = useAuthentication();
 
   const handleOpen = () => {
     setOpen(true);
@@ -60,12 +60,18 @@ const LoginPage = () => {
     }
   };
 
-  const handleSignUp = (event: any) => {
+  const handleSignUp = async(event: any) => {
     event.preventDefault();
-    // Handle sign-up logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
+    try {
+      const response = await signup({ email, password });
+      if (response.status === 201) {
+        Toast({ type: "success", message: "Signup Success" });
+        router.push("/");
+        handleClose();
+      }
+    } catch (error: any) {
+      Toast({ type: "fail", message: "Signup failed" });
+    }
     handleClose();
   };
 
