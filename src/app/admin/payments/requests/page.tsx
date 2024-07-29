@@ -47,6 +47,15 @@ const initialAPI: API[] = [
 ];
 
 export default function Page() {
+  const getDeveloperApiRequests = async () =>{
+    try{
+      // const response = await getApiRequests();
+
+
+    }catch{
+
+    }
+  }
   const [activeItem, setActiveItem] = useState("Requests");
 
   const handleSetActiveItem = (itemTitle: any) => {

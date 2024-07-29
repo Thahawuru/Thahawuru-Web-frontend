@@ -6,7 +6,9 @@ export const useApiKeys = () => {
     try {
       const response = await apiClient.post(`/apikey/generate`, {
         name: data.fullName,
-        type: "basic",
+        type: data.category,
+        purpose:data.purpose,
+        applicationDescription:data.applicationDescription,
       });
       return response;
     } catch (error) {

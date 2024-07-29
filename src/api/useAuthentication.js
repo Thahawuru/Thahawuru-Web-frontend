@@ -58,14 +58,9 @@ export const useAuthentication = () => {
     try {
       const response = await apiClient.post("/apiuser/savedetails",{   
           name: data.name,
-          organizationName: data.name,
-          email: data.email,
+          organizationName: data.organization,
           number: data.phoneNumber,
-          purpose: data.phoneNumber,
-          description: data.phoneNumber,
-          whatsappNumber: data.whatsappNumber,
-          project: data.project,
-      
+          description: data.description,      
       });
       return response;
     } catch (error) {
