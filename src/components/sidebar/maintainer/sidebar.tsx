@@ -53,19 +53,19 @@ const menuItems = [
       },
       {
         title: "Requests",
-        href: "/admin/payments/requests",
+        href: "/maintainer/requests",
         icon: <BiDollarCircle />,
         badge: null,
       },
       {
         title: "Pending",
-        href: "/admin/payments/pending",
+        href: "/maintainer/payments/pending",
         icon: <BiDollarCircle />,
         badge: null,
       },
       {
         title: "Active",
-        href: "/admin/api/management",
+        href: "/maintainer/payments/active",
         icon: <BiTask />,
         badge: null,
       },
