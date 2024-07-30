@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import {
@@ -12,6 +12,8 @@ import {
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 interface FormData {
   purpose: string;
   fullName: string;
@@ -26,6 +28,13 @@ interface FormData {
 }
 
 export default function AgreementFormPage() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("APIUSER");
+    }
+  }, [authorize, user]);
   const [activeItem, setActiveItem] = useState<string>("API keys");
   const [formData, setFormData] = useState<FormData>({
     purpose: "",

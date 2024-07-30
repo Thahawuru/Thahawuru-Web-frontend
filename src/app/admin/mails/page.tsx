@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
@@ -17,6 +17,8 @@ import {
 } from "@mui/material";
 import { saveAs } from "file-saver";
 import { CSVLink } from "react-csv";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface API {
   id: number;
@@ -39,6 +41,14 @@ const initialAPI: API[] = [
 ];
 
 const Page = () => {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
+
   const [activeItem, setActiveItem] = useState("Emails");
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);

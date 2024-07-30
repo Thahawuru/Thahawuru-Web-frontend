@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
@@ -15,6 +15,8 @@ import {
   TablePagination,
   TextField,
 } from "@mui/material";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface Maintainer {
   email: string;
@@ -149,6 +151,13 @@ const initialMaintainers: Maintainer[] = [
 ];
 
 export default function Page() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("Logs & Analytics");
 
   const handleSetActiveItem = (itemTitle: any) => {

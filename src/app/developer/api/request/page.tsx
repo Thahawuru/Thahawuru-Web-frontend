@@ -1,10 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import IconButton from "@mui/material/IconButton";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import Link from "next/link";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 const pricingPlans = [
   {
@@ -47,6 +49,13 @@ const pricingPlans = [
 ];
 
 export default function PricingPage() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("APIUSER");
+    }
+  }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("Request for API");
 
   const handleSetActiveItem = (itemTitle: any) => {
@@ -113,7 +122,9 @@ export default function PricingPage() {
                         aria-label="request"
                         className="mt-4"
                       >
-                        <Link href="form"><h1 className="text-sm text-secondaryTwo">Request</h1> </Link>
+                        <Link href="form">
+                          <h1 className="text-sm text-secondaryTwo">Request</h1>{" "}
+                        </Link>
                         <RequestQuoteIcon />
                       </IconButton>
                     </div>

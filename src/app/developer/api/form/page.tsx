@@ -10,6 +10,8 @@ import Button from "@mui/material/Button";
 import { FormControl } from "@mui/material";
 import {useApiKeys} from "@/api/useApiKeys"
 import Toast from "@/components/utils/toaster";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface FormData {
   // category: string;
@@ -26,6 +28,13 @@ interface FormData {
 }
 
 export default function AgreementFormPage() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("APIUSER");
+    }
+  }, [authorize, user]);
 
 
   const {createApiKey} = useApiKeys();

@@ -1,11 +1,21 @@
 // components/SettingsPage.tsx
 "use client";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { TextField, MenuItem, Button, Box, Grid } from "@mui/material";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 const SettingsPage = () => {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
+
   const [dailyUpdateTime, setDailyUpdateTime] = useState<string>("00:00");
 
   const [apiUsageLimits, setApiUsageLimits] = useState({
