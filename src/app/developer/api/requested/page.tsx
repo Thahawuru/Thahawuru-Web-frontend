@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
-import Sidebar from "@/components/sidebar/admin/sidebar";
+import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
 import { useApiKeys } from "@/api/useApiKeys";
+import { FaAmazonPay } from "react-icons/fa";
 
 import {
   Table,
@@ -20,8 +21,6 @@ import {
 } from "@mui/material";
 import { BiCheckCircle, BiXCircle, BiDetail } from "react-icons/bi";
 import Toast from "@/components/utils/toaster";
-import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
 
 interface APIarray {
   requestId: number;
@@ -56,7 +55,7 @@ interface ApiUser {
 }
 
 export default function Page() {
-  const { payForApi, rejectApiRequests, getAdminPendingApiRequests } =
+  const { rejectApiRequests, getAllPendingApiRequests, payForApi } =
     useApiKeys();
   const [apis, setAPIs] = useState<APIarray[]>([]);
 
@@ -93,11 +92,11 @@ export default function Page() {
   const paying = async (apiId: any) => {
     try {
       const response = await payForApi(apiId);
-      console.log("accpet request", response);
-      Toast({ type: "success", message: "accept the paying." });
+      console.log("after payment", response);
+      Toast({ type: "success", message: "paid successfully." });
       showdata(response);
     } catch (error) {
-      Toast({ type: "fail", message: "failed to accept Reqested API..." });
+      Toast({ type: "fail", message: "failed to paid Reqested API..." });
     }
   };
 
@@ -112,9 +111,9 @@ export default function Page() {
     }
   };
 
-  const getPendingApiRequests = async () => {
+  const getDeveloperPendingApiRequests = async () => {
     try {
-      const response = await getAdminPendingApiRequests();
+      const response = await getAllPendingApiRequests();
       console.log("reponse", response);
       showdata(response);
     } catch (error) {
@@ -123,18 +122,10 @@ export default function Page() {
   };
 
   useEffect(() => {
-    getPendingApiRequests();
+    getDeveloperPendingApiRequests();
   }, []);
 
-  const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    if (user) {
-      authorize("ADMIN");
-    }
-  }, [authorize, user]);
-
-  const [activeItem, setActiveItem] = useState("Pending");
+  const [activeItem, setActiveItem] = useState("Requested API");
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
@@ -298,33 +289,26 @@ export default function Page() {
                             {api.status === "PENDING" ? (
                               <>
                                 <IconButton color="primary">
-                                  <p
-                                    className="text-sm"
+                                  <FaAmazonPay
                                     onClick={() => paying(api.requestId)}
-                                  >
-                                    paid
-                                  </p>
-                                  {/* <BiCheckCircle onClick={()=>acceptApiRequest(api.requestId)}/> */}
+                                  />
+                                  {/* <BiCheckCircle onClick={()=>paying(api.requestId)}/> */}
                                 </IconButton>
                                 <IconButton color="secondary">
-                                  <p
-                                    className="text-sm"
+                                  <BiXCircle
                                     onClick={() =>
                                       rejectApiRequest(api.requestId)
                                     }
-                                  >
-                                    Reject
-                                  </p>
-                                  {/* <BiXCircle onClick={()=>rejectApiRequest(api.requestId)} /> */}
+                                  />
                                 </IconButton>
                                 {/* <IconButton color="primary">
                                   <BiDetail />
                                 </IconButton> */}
                               </>
+                            ) : api.status === "DECLINED" ? (
+                              <p className="text-red-600">declined</p>
                             ) : (
-                              <IconButton color="primary">
-                                <BiDetail />
-                              </IconButton>
+                              <p className="text-blue-600">reviewing...</p>
                             )}
                           </TableCell>
                         </TableRow>
