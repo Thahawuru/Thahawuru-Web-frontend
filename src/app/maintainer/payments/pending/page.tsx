@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, MouseEvent , useEffect } from "react";
-import Sidebar from "@/components/sidebar/admin/sidebar";
+import Sidebar from "@/components/sidebar/maintainer/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
 import {

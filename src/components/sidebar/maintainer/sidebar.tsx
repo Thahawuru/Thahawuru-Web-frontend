@@ -34,12 +34,6 @@ const menuItems = [
     category: "API",
     items: [
       {
-        title: "API Management",
-        href: "/maintainer/api/management",
-        icon: <BiTask />,
-        badge: null,
-      },
-      {
         title: "Payments",
         href: "/maintainer/payments",
         icon: <BiDollarCircle />,
@@ -53,7 +47,7 @@ const menuItems = [
       },
       {
         title: "Requests",
-        href: "/maintainer/requests",
+        href: "/maintainer/payments/requests",
         icon: <BiDollarCircle />,
         badge: null,
       },
@@ -65,7 +59,7 @@ const menuItems = [
       },
       {
         title: "Active",
-        href: "/maintainer/payments/active",
+        href: "/maintainer/api/management",
         icon: <BiTask />,
         badge: null,
       },
