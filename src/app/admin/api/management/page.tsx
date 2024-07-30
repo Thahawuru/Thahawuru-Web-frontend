@@ -19,10 +19,6 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material";
-<<<<<<< HEAD
-
-=======
->>>>>>> be1e03e170e36a1d36051bb087d0ecdc85eb1a2e
 import { BiCheckCircle, BiXCircle, BiDetail } from "react-icons/bi";
 import Toast from "@/components/utils/toaster";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -30,10 +26,6 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import useAuthorize from "@/api/useAuthorize";
-<<<<<<< HEAD
-
-=======
->>>>>>> be1e03e170e36a1d36051bb087d0ecdc85eb1a2e
 
 interface APIarray {
   requestId: number;
@@ -131,10 +123,6 @@ export default function Page() {
       authorize("ADMIN");
     }
   }, [authorize, user]);
-<<<<<<< HEAD
-
-=======
->>>>>>> be1e03e170e36a1d36051bb087d0ecdc85eb1a2e
   const [activeItem, setActiveItem] = useState("Active");
 
   const handleSetActiveItem = (itemTitle: any) => {
