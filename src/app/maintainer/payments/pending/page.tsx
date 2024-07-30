@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent , useEffect } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
@@ -17,6 +17,8 @@ import {
   MenuItem,
 } from "@mui/material";
 import { BiCheckCircle, BiXCircle, BiDetail } from "react-icons/bi";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface API {
   requestId: number;
@@ -87,6 +89,14 @@ const initialAPI: API[] = [
 ];
 
 export default function Page() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("MAINTAINER");
+    }
+  }, [authorize, user]);
+
   const [activeItem, setActiveItem] = useState("Pending");
 
   const handleSetActiveItem = (itemTitle: any) => {

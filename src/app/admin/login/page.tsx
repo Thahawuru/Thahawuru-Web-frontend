@@ -21,8 +21,7 @@ export default function AdminLogin() {
         console.log(response.data.data);
         localStorage.setItem("user", JSON.stringify(response.data.data.user));
         localStorage.setItem("token", JSON.stringify(response.data.data.token));
-
-        console.log(response.data.data.user.role);
+        localStorage.setItem("role", JSON.stringify(response.data.data.user.role));
         if (response.data.data.user.role === "ADMIN") {
           router.push("/admin/dashboard");
         } else if (response.data.data.user.role === "MAINTAINER") {
