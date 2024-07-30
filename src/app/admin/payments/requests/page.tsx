@@ -3,6 +3,8 @@ import React, { useState, ChangeEvent, MouseEvent ,  useEffect } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
+import { useApiKeys } from "@/api/useApiKeys";
+
 import {
   Table,
   TableBody,
@@ -17,38 +19,99 @@ import {
   MenuItem,
 } from "@mui/material";
 import { BiCheckCircle, BiXCircle, BiDetail } from "react-icons/bi";
+import Toast from "@/components/utils/toaster";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import useAuthorize from "@/api/useAuthorize";
 
-interface API {
+interface APIarray {
   requestId: number;
   name: string;
   email: string,
   requestDate: string;
   APIType: string;
   status: string;
+  purpose: string;
+  description: string;
 }
 
-const initialAPI: API[] = [
-  {
-    requestId: 6,
-    name: "David Wilson",
-    email: "din@gmail.com",
-    requestDate:"",
-    APIType: "basic",
-    status: "request",
-  },
-  {
-    requestId: 2,
-    name: "David Wilson",
-    email: "din@gmail.com",
-    requestDate:"",
-    APIType: "basic",
-    status: "request",
-  },
-];
+interface User{
+  username: string;
+  role: string;
+  email: string;
+  accountNonExpired:boolean;
+  accountNonLocked:boolean;
+  credentialsNonExpired:boolean;
+  enabled: boolean;
+  id: string;
+}
+
+interface ApiUser {
+  user: User;
+  description: string;
+  id: string;
+  name: string;
+  number: number;
+  organization: string;
+  verified: boolean;
+}
+
 
 export default function Page() {
+  const {getAllApiRequests,acceptApiRequests,rejectApiRequests} = useApiKeys();
+  const [apis, setAPIs] = useState<APIarray[]>([]);
+
+  const showdata = (response:any)=>{
+    const dataset = response.data.data ;
+      const mappedAPI: APIarray[] = dataset.map((data: { apiid: any;name: any; apiUser:ApiUser ; createdAt: any; type: any; apistatus: string; purpose: any; description: any; }, index: number) => ({
+        requestId: data.apiid , 
+        name: data.name || "",
+        email: "data.apiUser.user.email", 
+        requestDate: data.createdAt || "",
+        APIType: data.type || "UnknownType",
+        status: "request",
+        purpose: data.purpose || "blank",
+        description: data.description || "blank"
+      }));
+
+      setAPIs(mappedAPI);
+  }
+
+  const acceptApiRequest = async (apiId: any) => {
+    try{
+      const response = await acceptApiRequests(apiId);
+      console.log('accpet request',response);
+      Toast({type:"success", message:"accept the Request."});
+      showdata(response);
+    }catch(error){
+      Toast({type:"fail", message:"failed to accept Reqested API..."});
+    }
+  }
+
+  const rejectApiRequest = async (apiId: any) =>{
+    try{
+      const response = await rejectApiRequests(apiId);
+      console.log('reject request',response);
+      Toast({type:"success", message:"Reject the Request."});
+      showdata(response);
+    }catch(error){
+      Toast({type:"fail", message:"failed to reject Reqested API..."});
+    }
+  }
+
+  const getDeveloperApiRequests = async () =>{
+    try{
+      const response = await getAllApiRequests();
+      console.log('reponse',response);
+      showdata(response);
+    }catch(error){
+      Toast({type:"fail", message:"failed to fetch Reqested APIs..."});
+    }
+  }
+
+  useEffect(()=>{
+    getDeveloperApiRequests();
+  },[]);
+
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
@@ -63,7 +126,7 @@ export default function Page() {
     setActiveItem(itemTitle);
   };
 
-  const [apis, setAPIs] = useState<API[]>(initialAPI);
+
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -193,7 +256,8 @@ export default function Page() {
                       <TableCell>Email</TableCell>
                       <TableCell>Request Date</TableCell>
                       <TableCell>API Type</TableCell>
-                      <TableCell>Status</TableCell>
+                      <TableCell>Purpose</TableCell>
+                      <TableCell>Description</TableCell>
                       <TableCell align="right">Actions</TableCell>
                     </TableRow>
                   </TableHead>
@@ -210,19 +274,20 @@ export default function Page() {
                           <TableCell>{api.email}</TableCell>
                           <TableCell>{api.requestDate}</TableCell>
                           <TableCell>{api.APIType}</TableCell>
-                          <TableCell>{api.status}</TableCell>
+                          <TableCell>{api.purpose}</TableCell>
+                          <TableCell>{api.description}</TableCell>
                           <TableCell align="right">
                             {api.status === "request" ? (
                               <>
                                 <IconButton color="primary">
-                                  <BiCheckCircle />
+                                  <BiCheckCircle onClick={()=>acceptApiRequest(api.requestId)}/>
                                 </IconButton>
                                 <IconButton color="secondary">
-                                  <BiXCircle />
+                                  <BiXCircle onClick={()=>rejectApiRequest(api.requestId)} />
                                 </IconButton>
-                                <IconButton color="primary">
+                                {/* <IconButton color="primary">
                                   <BiDetail />
-                                </IconButton>
+                                </IconButton> */}
                               </>
                             ) : (
                               <IconButton color="primary">

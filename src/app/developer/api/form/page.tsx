@@ -1,20 +1,20 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent , useEffect } from "react";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
-import { FormControl } from "@mui/material";
-import {useApiKeys} from "@/api/useApiKeys"
+import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
+import { useApiKeys } from "@/api/useApiKeys";
 import Toast from "@/components/utils/toaster";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import useAuthorize from "@/api/useAuthorize";
 
 interface FormData {
-  // category: string;
+  category: string;
   fullName: string;
   organizationName: string;
   email: string;
@@ -28,6 +28,7 @@ interface FormData {
 }
 
 export default function AgreementFormPage() {
+  const { createApiKey } = useApiKeys();
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
@@ -36,12 +37,9 @@ export default function AgreementFormPage() {
     }
   }, [authorize, user]);
 
-
-  const {createApiKey} = useApiKeys();
-
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
-    // category: "",
+    category: "",
     fullName: "",
     organizationName: "",
     email: "",
@@ -54,23 +52,14 @@ export default function AgreementFormPage() {
     agreeToConfidentiality: false,
   });
 
-  // useEffect(() => {
-  //   if (router.query.category) {
-  //     setFormData((prevFormData) => ({
-  //       ...prevFormData,
-  //       category: router.query.category as string,
-  //     }));
-  //   }
-  // }, [router.query.category]);
-
   const handleSetActiveItem = (itemTitle: string) => {
     setActiveItem(itemTitle);
   };
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown }>
   ) => {
-    const { name, value, type } = e.target;
+    const { name, value, type } = e.target as HTMLInputElement;
     if (type === "checkbox") {
       const { checked } = e.target as HTMLInputElement;
       setFormData((prevFormData) => ({
@@ -80,33 +69,30 @@ export default function AgreementFormPage() {
     } else {
       setFormData((prevFormData) => ({
         ...prevFormData,
-        [name]: value,
+        [name!]: value,
       }));
     }
   };
 
-  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       formData.agreeToTerms &&
       formData.agreeToPrivacy &&
       formData.agreeToConfidentiality
     ) {
-
-      try{
+      try {
         const response = await createApiKey(formData);
         console.log(response);
-        if(response.status===201){
-          Toast({type:"success",message:"api key requested successfully"})
+        if (response.status === 201) {
+          Toast({ type: "success", message: "API key requested successfully" });
         }
-      }catch(error){
+      } catch (error) {
         console.log(error);
-        Toast({type:"fail",message:"fail to create api key request!"})
+        Toast({ type: "fail", message: "Failed to create API key request!" });
       }
-   
-      // Handle form submission (e.g., send data to server)
     } else {
-      Toast({type:"fail",message:"You must agree to all terms to proceed."});
+      Toast({ type: "fail", message: "You must agree to all terms to proceed." });
     }
   };
 
@@ -114,10 +100,7 @@ export default function AgreementFormPage() {
     <>
       <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
         <div className="h-screen flex flex-col justify-between items-center">
-          <Sidebar
-            activeItem={activeItem}
-            onSetActiveItem={handleSetActiveItem}
-          />
+          <Sidebar activeItem={activeItem} onSetActiveItem={handleSetActiveItem} />
         </div>
         <div className="flex flex-col w-5/6 ml-[250px]">
           <Welcome />
@@ -133,17 +116,6 @@ export default function AgreementFormPage() {
               onSubmit={handleSubmit}
               className="w-4/5 p-4 bg-gray-100 rounded mb-10"
             >
-              {/* <div className="mb-4">
-                <TextField
-                  fullWidth
-                  label="Category"
-                  name={`category-${formData.category}`}
-                  value={formData.category}
-                  onChange={handleChange}
-                  variant="outlined"
-                  required
-                />
-              </div> */}
               <div className="mb-4">
                 <TextField
                   fullWidth
@@ -155,39 +127,21 @@ export default function AgreementFormPage() {
                   required
                 />
               </div>
-              <div className="mb-4">
-                <TextField
-                  fullWidth
-                  label="Organization Name"
-                  name="organizationName"
-                  value={formData.organizationName}
+              <FormControl fullWidth variant="outlined" className="mb-4">
+                <InputLabel>Category</InputLabel>
+                <Select
+                  label="Category"
+                  name="category"
+                  value={formData.category}
                   onChange={handleChange}
-                  variant="outlined"
                   required
-                />
-              </div>
-              <div className="mb-4">
-                <TextField
-                  fullWidth
-                  label="Email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  variant="outlined"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <TextField
-                  fullWidth
-                  label="Contact Number"
-                  name="contactNumber"
-                  value={formData.contactNumber}
-                  onChange={handleChange}
-                  variant="outlined"
-                  required
-                />
-              </div>
+                >
+                  <MenuItem value="TestPlan">Test Plan</MenuItem>
+                  <MenuItem value="BasicPlan">Basic Plan</MenuItem>
+                  <MenuItem value="OrdinaryPlan">Ordinary Plan</MenuItem>
+                  <MenuItem value="PremiumPlan">Premium Plan</MenuItem>
+                </Select>
+              </FormControl>
               <div className="mb-4">
                 <TextField
                   fullWidth
@@ -254,7 +208,7 @@ export default function AgreementFormPage() {
               <p className="mb-4 text-black text-sm">
                 By submitting this form, you agree to the terms and conditions,
                 privacy policy, and confidentiality agreement. Note that any
-                missuse of the API will result in action taking from government
+                misuse of the API will result in action taken from government
                 laws.
               </p>
               <div className="mb-4">

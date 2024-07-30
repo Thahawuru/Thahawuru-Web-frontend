@@ -8,6 +8,7 @@ import Image from "next/image";
 import profileImage from "../../../../public/profilePicDefault.png";
 import { Modal } from "@mui/material";
 import { useAuthentication } from "@/api/useAuthentication";
+import Toast from "@/components/utils/toaster";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import useAuthorize from "@/api/useAuthorize";
 
@@ -21,11 +22,9 @@ export default function Page() {
   }, [authorize, user]);
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phoneNumber: "",
-    whatsappNumber: "",
-    orgarnization: "",
-    project: "",
+    organization: "",
+    description:"",
     profileLink: "",
   });
 
@@ -51,8 +50,10 @@ export default function Page() {
       const response = await savedetails(formData);
       if (response.status === 201) {
         console.log(response.data);
+        Toast({type:"success",message:"Sucesssfully!"});
       }
     } catch (error: any) {
+      Toast({type:"fail",message:"error!"});
       console.log(error);
     }
     
@@ -142,21 +143,11 @@ export default function Page() {
                       }
                     />
                   </div>
-                  <div className="m-4 w-1/3">
-                    <TextField
-                      label="Email"
-                      fullWidth
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                    />
-                  </div>
                 </div>
                 <div className="w-full flex flex-row justify-center items-center">
                   <div className="m-4 w-1/3">
                     <TextField
-                      label="Phone Number"
+                      label="phone Number"
                       fullWidth
                       value={formData.phoneNumber}
                       onChange={(e) =>
@@ -167,55 +158,32 @@ export default function Page() {
                       }
                     />
                   </div>
-                  <div className="m-4 w-1/3">
-                    <TextField
-                      label="Whatsapp Number"
-                      fullWidth
-                      value={formData.whatsappNumber}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          whatsappNumber: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
                 </div>
                 <div className="w-full flex flex-row justify-center items-center">
                   <div className="m-4 w-1/3">
                     <TextField
                       label="Orgarnization"
                       fullWidth
-                      value={formData.orgarnization}
+                      value={formData.organization}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          orgarnization: e.target.value,
+                          organization: e.target.value,
                         })
-                      }
-                    />
-                  </div>
-                  <div className="m-4 w-1/3">
-                    <TextField
-                      label="Project"
-                      fullWidth
-                      value={formData.project}
-                      onChange={(e) =>
-                        setFormData({ ...formData, project: e.target.value })
                       }
                     />
                   </div>
                 </div>
                 <div className="w-full flex flex-row justify-center items-center">
-                  <div className="m-4 w-1/3">
+                <div className="m-4 w-1/3">
                     <TextField
-                      label="Profile Image"
+                      label="Description"
                       fullWidth
-                      value={formData.profileLink}
+                      value={formData.description}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          profileLink: e.target.value,
+                          description: e.target.value,
                         })
                       }
                     />
