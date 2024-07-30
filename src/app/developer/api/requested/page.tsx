@@ -4,6 +4,7 @@ import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
 import { useApiKeys } from "@/api/useApiKeys";
+import { FaAmazonPay } from "react-icons/fa";
 
 import {
   Table,
@@ -60,13 +61,13 @@ export default function Page() {
 
   const showdata = (response:any)=>{
     const dataset = response.data.data ;
-      const mappedAPI: APIarray[] = dataset.map((data: { apiid: any;name: any; apiUser:ApiUser ; createdAt: any; type: any; apistatus: string; purpose: any; description: any; }, index: number) => ({
+      const mappedAPI: APIarray[] = dataset.map((data: { apiid: any;name: any; apiUser:ApiUser ; createdAt: any; type: any; status: string; purpose: any; description: any; }, index: number) => ({
         requestId: data.apiid , 
         name: data.name || "",
         email: "data.apiUser.user.email", 
         requestDate: data.createdAt || "",
         APIType: data.type || "UnknownType",
-        status: "request",
+        status: data.status,
         purpose: data.purpose || "blank",
         description: data.description || "blank"
       }));
@@ -267,10 +268,11 @@ export default function Page() {
                           <TableCell>{api.purpose}</TableCell>
                           <TableCell>{api.description}</TableCell>
                           <TableCell align="right">
-                            {api.status === "request" ? (
+                            {api.status === "PENDING" ? (
                               <>
                                 <IconButton color="primary">
-                                  <BiCheckCircle onClick={()=>paying(api.requestId)}/>
+                                  <FaAmazonPay onClick={()=>paying(api.requestId)}/>
+                                  {/* <BiCheckCircle onClick={()=>paying(api.requestId)}/> */}
                                 </IconButton>
                                 <IconButton color="secondary">
                                   <BiXCircle onClick={()=>rejectApiRequest(api.requestId)} />
@@ -280,9 +282,7 @@ export default function Page() {
                                 </IconButton> */}
                               </>
                             ) : (
-                              <IconButton color="primary">
-                                <BiDetail />
-                              </IconButton>
+                              <p className="text-blue-600">reviewing...</p>
                             )}
                           </TableCell>
                         </TableRow>
