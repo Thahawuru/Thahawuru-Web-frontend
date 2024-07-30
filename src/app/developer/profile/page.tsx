@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import TextField from "@mui/material/TextField";
@@ -9,8 +9,17 @@ import profileImage from "../../../../public/profilePicDefault.png";
 import { Modal } from "@mui/material";
 import { useAuthentication } from "@/api/useAuthentication";
 import Toast from "@/components/utils/toaster";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 export default function Page() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("APIUSER");
+    }
+  }, [authorize, user]);
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",

@@ -21,6 +21,11 @@ import {
 } from "@mui/material";
 import { BiCheckCircle, BiXCircle, BiDetail } from "react-icons/bi";
 import Toast from "@/components/utils/toaster";
+import DeleteIcon from "@mui/icons-material/Delete";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface APIarray {
   requestId: number;
@@ -111,6 +116,13 @@ export default function Page() {
     getActiveApiForAdmin();
   },[]);
 
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("Active");
 
   const handleSetActiveItem = (itemTitle: any) => {

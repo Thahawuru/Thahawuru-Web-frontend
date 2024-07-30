@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
 import Sidebar from "@/components/sidebar/maintainer/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
@@ -17,6 +17,8 @@ import {
   Button,
 } from "@mui/material";
 import { BiCheckCircle, BiXCircle, BiDetail } from "react-icons/bi";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface APIRequest {
   id: number;
@@ -51,13 +53,22 @@ const initialAPIRequests: APIRequest[] = [
 ];
 
 export default function Page() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("MAINTAINER");
+    }
+  }, [authorize, user]);
+
   const [activeItem, setActiveItem] = useState("API Management");
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
   };
 
-  const [apiRequests, setAPIRequests] = useState<APIRequest[]>(initialAPIRequests);
+  const [apiRequests, setAPIRequests] =
+    useState<APIRequest[]>(initialAPIRequests);
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [searchQuery, setSearchQuery] = useState<string>("");
