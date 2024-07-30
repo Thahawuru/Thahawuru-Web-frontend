@@ -61,7 +61,7 @@ export default function Page() {
     }
   }, [authorize, user]);
 
-  const [activeItem, setActiveItem] = useState("API Management");
+  const [activeItem, setActiveItem] = useState("Active");
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
