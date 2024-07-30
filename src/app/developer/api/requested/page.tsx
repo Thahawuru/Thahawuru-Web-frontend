@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
-import Sidebar from "@/components/sidebar/admin/sidebar";
+import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
 import { useApiKeys } from "@/api/useApiKeys";
@@ -55,7 +55,7 @@ interface ApiUser {
 
 
 export default function Page() {
-  const {acceptApiRequests,rejectApiRequests,getAdminPendingApiRequests} = useApiKeys();
+  const {rejectApiRequests,getAllPendingApiRequests,payForApi} = useApiKeys();
   const [apis, setAPIs] = useState<APIarray[]>([]);
 
   const showdata = (response:any)=>{
@@ -74,14 +74,14 @@ export default function Page() {
       setAPIs(mappedAPI);
   }
 
-  const acceptApiRequest = async (apiId: any) => {
+  const paying = async (apiId: any) => {
     try{
-      const response = await acceptApiRequests(apiId);
-      console.log('accpet request',response);
-      Toast({type:"success", message:"accept the Request."});
+      const response = await payForApi(apiId);
+      console.log('after payment',response);
+      Toast({type:"success", message:"paid successfully."});
       showdata(response);
     }catch(error){
-      Toast({type:"fail", message:"failed to accept Reqested API..."});
+      Toast({type:"fail", message:"failed to paid Reqested API..."});
     }
   }
 
@@ -96,9 +96,9 @@ export default function Page() {
     }
   }
 
-  const getPendingApiRequests = async () =>{
+  const getDeveloperPendingApiRequests = async () =>{
     try{
-      const response = await getAdminPendingApiRequests();
+      const response = await getAllPendingApiRequests();
       console.log('reponse',response);
       showdata(response);
     }catch(error){
@@ -107,10 +107,10 @@ export default function Page() {
   }
 
   useEffect(()=>{
-    getPendingApiRequests();
+    getDeveloperPendingApiRequests();
   },[]);
 
-  const [activeItem, setActiveItem] = useState("Pending");
+  const [activeItem, setActiveItem] = useState("Requested API");
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
@@ -270,14 +270,14 @@ export default function Page() {
                             {api.status === "request" ? (
                               <>
                                 <IconButton color="primary">
-                                  <BiCheckCircle onClick={()=>acceptApiRequest(api.requestId)}/>
+                                  <BiCheckCircle onClick={()=>paying(api.requestId)}/>
                                 </IconButton>
                                 <IconButton color="secondary">
                                   <BiXCircle onClick={()=>rejectApiRequest(api.requestId)} />
                                 </IconButton>
-                                <IconButton color="primary">
+                                {/* <IconButton color="primary">
                                   <BiDetail />
-                                </IconButton>
+                                </IconButton> */}
                               </>
                             ) : (
                               <IconButton color="primary">

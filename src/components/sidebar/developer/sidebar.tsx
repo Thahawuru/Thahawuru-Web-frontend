@@ -52,13 +52,7 @@ const menuItems = [
       },
       {
         title: "Requested API",
-        href: "/developer/api/keys",
-        icon: <BiKey />,
-        badge: null,
-      },
-      {
-        title: "Active API",
-        href: "/developer/api/keys",
+        href: "/developer/api/requested",
         icon: <BiKey />,
         badge: null,
       },

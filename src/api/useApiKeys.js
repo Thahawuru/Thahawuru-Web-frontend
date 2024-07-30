@@ -25,6 +25,7 @@ export const useApiKeys = () => {
     }
   };
 
+  //admin, maintainer
   const getAllApiRequests = async () => {
     try{
       const response = await apiClient.get(`/admin/Api/all`);
@@ -34,6 +35,7 @@ export const useApiKeys = () => {
     }
   };
 
+  //admin, maintainer
   const acceptApiRequests = async (apiId) => {
     try{
       const response = await apiClient.get(`/admin/Api/accept/${apiId}`);
@@ -44,6 +46,7 @@ export const useApiKeys = () => {
     }
   };
 
+  //admin , maintainer
   const rejectApiRequests = async (apiId) => {
     try{
       const response = await apiClient.get(`/admin/Api/declined/${apiId}`);
@@ -52,7 +55,39 @@ export const useApiKeys = () => {
     }catch (error){
       throw new Error(error.response.data.error.message);
     }
-  }
+  };
+
+  //developer
+  const getAllPendingApiRequests = async () => {
+    try{
+      const response = await apiClient.get(`/developer/Api/pending`);
+      return response;
+
+    }catch (error){
+      throw new Error(error.response.data.error.message);
+    }
+  };
+
+  //admin
+  const getAdminPendingApiRequests = async () => {
+    try{
+      const response = await apiClient.get(`/admin/Api/pending`);
+      return response;
+
+    }catch (error){
+      throw new Error(error.response.data.error.message);
+    }
+  };
+
+  const payForApi = async (apiId) => {
+    try{
+      const response = await apiClient.get(`/developer/Api/active/${apiId}`);
+      return response;
+
+    }catch (error){
+      throw new Error(error.response.data.error.message);
+    }
+  };
 
 
   return {
@@ -60,6 +95,9 @@ export const useApiKeys = () => {
     getApiKeys,
     getAllApiRequests,
     acceptApiRequests,
-    rejectApiRequests
+    rejectApiRequests,
+    getAllPendingApiRequests,
+    getAdminPendingApiRequests,
+    payForApi
   };
 };
