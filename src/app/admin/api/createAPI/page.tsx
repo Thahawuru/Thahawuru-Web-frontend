@@ -15,7 +15,7 @@ interface API {
 }
 
 export default function Page() {
-  const [activeItem, setActiveItem] = useState("API Management");
+  const [activeItem, setActiveItem] = useState("Create API Key");
   const [api, setAPI] = useState<API>({
     id: 0,
     name: "",
