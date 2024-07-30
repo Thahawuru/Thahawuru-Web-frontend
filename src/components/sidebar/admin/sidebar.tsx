@@ -126,7 +126,7 @@ type SidebarProps = {
 
 const Sidebar: React.FC<SidebarProps> = ({ activeItem, onSetActiveItem }) => {
   return (
-    <aside className="fixed top-0 left-0 flex-shrink-0 w-64 bg-primary shadow-lg border-r border-gray-200 lg:block h-full z-60">
+    <aside className="fixed top-0 left-0 flex-shrink-0 w-64 bg-primary shadow-lg border-r border-gray-200 lg:block h-full z-60 overflow-y-auto">
       <div className="flex flex-col h-full">
         <div className="flex items-center justify-center flex-shrink-0 px-4 py-5">
           <a
