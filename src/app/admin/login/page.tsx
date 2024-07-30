@@ -35,8 +35,8 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-primary">
-      <Container component="main" maxWidth="sm">
+    <div className="w-full h-screen flex justify-center items-center bg-white">
+      <Container component="main" maxWidth="md">
         <Box
           sx={{
             display: "flex",
@@ -46,7 +46,6 @@ export default function AdminLogin() {
             bgcolor: "#f8f9fa",
             p: 3,
             borderRadius: 1,
-            boxShadow: 1,
           }}
         >
           <Typography component="h1" variant="h5" gutterBottom>
