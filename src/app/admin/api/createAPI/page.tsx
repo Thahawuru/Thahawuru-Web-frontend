@@ -1,9 +1,11 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import { TextField, Button, Box, Typography } from "@mui/material";
 import DateTimePicker from "@/components/dateTimePicker";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface API {
   id: number;
@@ -15,6 +17,13 @@ interface API {
 }
 
 export default function Page() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("Create API Key");
   const [api, setAPI] = useState<API>({
     id: 0,

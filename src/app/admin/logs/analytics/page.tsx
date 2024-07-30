@@ -9,8 +9,17 @@ import {
   BiGroup,
   BiShield,
 } from "react-icons/bi";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 const LogAnalytics = () => {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
   useEffect(() => {
     const dailyActivityOptions = {
       chart: {
