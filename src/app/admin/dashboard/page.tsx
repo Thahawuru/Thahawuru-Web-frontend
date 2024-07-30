@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
 import Image from "next/image";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
@@ -10,14 +10,35 @@ import {
   BiGroup,
   BiShield,
 } from "react-icons/bi";
-import BarChart from "./charts/BarChart";
-import DateTimeXAxis from "./charts/DateTimeXAxis";
-import LineColumnChart from "./charts/LineColumnChart";
-import PieChart from "./charts/PieChart";
+import dynamic from "next/dynamic";
+const DateTimeXAxis = dynamic(() => import("./charts/DateTimeXAxis"), {
+  ssr: false,
+});
+const LineColumnChart = dynamic(() => import("./charts/LineColumnChart"), {
+  ssr: false,
+});
+const PieChart = dynamic(() => import("./charts/PieChart"), {
+  ssr: false,
+  loading: () => (
+    <p style={{ color: "#000000" }} className="text-secondaryTwo">
+      Loading...
+    </p>
+  ),
+});
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 export default function Dashboard() {
-  const [activeItem, setActiveItem] = useState("Dashboard");
+  
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
 
+  const [activeItem, setActiveItem] = useState("Dashboard");
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
   };

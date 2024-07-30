@@ -17,6 +17,11 @@ import {
 } from "react-icons/bi";
 import Link from "next/link";
 
+import { useAuthentication } from "@/api/useAuthentication";
+import Toast from "@/components/utils/toaster";
+import { useRouter } from "next/navigation";
+import { on } from "events";
+
 const menuItems = [
   {
     category: "Dashboard",
@@ -85,9 +90,10 @@ const menuItems = [
     items: [
       {
         title: "Logout",
-        href: "/developer/logout",
+        href: "#",
         icon: <BiLogOut />,
         badge: null,
+        onClick: null,
       },
     ],
   },
@@ -99,6 +105,17 @@ type SidebarProps = {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ activeItem, onSetActiveItem }) => {
+  const { logout } = useAuthentication();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.push("/");
+    } catch (error) {
+      Toast({ type: "fail", message: "Logout failed" });
+    }
+  };
   return (
     <aside className="fixed top-0 left-0 flex-shrink-0 w-64 bg-primary shadow-lg border-r border-gray-200 lg:block h-full z-60 overflow-y-auto">
       <div className="flex flex-col h-full">
@@ -126,7 +143,12 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, onSetActiveItem }) => {
                         ? "bg-secondaryTwo text-white border-secondaryTwo"
                         : "bg-white text-gray-500  hover:bg-white hover:text-secondaryTwo mb-1"
                     }`}
-                    onClick={() => onSetActiveItem(item.title)}
+                    onClick={() => {
+                      onSetActiveItem(item.title);
+                      if (item.title === "Logout") {
+                        handleLogout();
+                      }
+                    }}
                   >
                     {item.icon}
                     <span className="ml-3">

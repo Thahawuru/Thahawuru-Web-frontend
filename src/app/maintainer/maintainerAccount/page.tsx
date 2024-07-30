@@ -1,10 +1,20 @@
 "use client";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { TextField, Button, Box } from "@mui/material";
 import Sidebar from "@/components/sidebar/maintainer/sidebar";
 import Welcome from "@/components/welcome";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 const MaintainerAccountPage = () => {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("MAINTAINER");
+    }
+  }, [authorize, user]);
+
   const [userDetails, setUserDetails] = useState({
     firstName: "John",
     lastName: "Doe",

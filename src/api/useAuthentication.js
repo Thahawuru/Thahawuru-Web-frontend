@@ -22,21 +22,28 @@ export const useAuthentication = () => {
     }
   };
 
-  const authorize = () => {
-    return {
-      name: "Tharindu Ranasinghe",
-      sex: "male",
-      no: "N7754121",
-      nationality: "SRILANKAN",
-      dob: "1995-02-02",
-      proffession: "Softeware Engineer",
-      doi: "2021-02-02",
-      doe: "2031-02-02",
-      type: "PASSPORT",
-    };
+  const adminMaintainerSignin = async (data) => {
+    console.log(data);
+    try {
+      const response = await axios({
+        method: "post",
+        url: `${API_URL}/auth/admin/login`,
+        data: {
+          email: data.email,
+          password: data.password,
+        },
+        withCredentials: true,
+      });
+      console.log("response check");
+      console.log(response);
+      return response;
+    } catch (error) {
+      throw new Error(error?.response.data.error);
+    }
   };
+
   const signin = async (data) => {
-    console.log(data);  
+    console.log(data);
     try {
       const response = await axios({
         method: "post",
@@ -47,6 +54,17 @@ export const useAuthentication = () => {
         },
         withCredentials: true,
       });
+      return response;
+    } catch (error) {
+      throw new Error(error?.response.data.error);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      const response = await axios.post("/auth/logout");
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
       return response;
     } catch (error) {
       throw new Error(error?.response.data.error);
@@ -72,6 +90,7 @@ export const useAuthentication = () => {
     signin,
     signup,
     savedetails,
-    authorize,
+    adminMaintainerSignin,
+    logout
   };
 };

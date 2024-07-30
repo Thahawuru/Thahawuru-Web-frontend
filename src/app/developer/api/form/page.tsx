@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
@@ -10,6 +10,8 @@ import Button from "@mui/material/Button";
 import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 import { useApiKeys } from "@/api/useApiKeys";
 import Toast from "@/components/utils/toaster";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface FormData {
   category: string;
@@ -27,6 +29,16 @@ interface FormData {
 
 export default function AgreementFormPage() {
   const { createApiKey } = useApiKeys();
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("APIUSER");
+    }
+  }, [authorize, user]);
+
+
+
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
     category: "",

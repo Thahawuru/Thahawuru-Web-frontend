@@ -14,6 +14,8 @@ import {
   TablePagination,
 } from "@mui/material";
 import ApexCharts from "apexcharts";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface RevenueData {
   id: number;
@@ -32,6 +34,14 @@ const initialRevenueData: RevenueData[] = [
 ];
 
 export default function RevenuePage() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
+
   const [activeItem, setActiveItem] = useState("Payments");
 
   const handleSetActiveItem = (itemTitle: any) => {
