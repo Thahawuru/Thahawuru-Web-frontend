@@ -29,6 +29,7 @@ import { useAuthContext } from "@/hooks/useAuthContext";
 import useAuthorize from "@/api/useAuthorize";
 
 export default function Dashboard() {
+  
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {

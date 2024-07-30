@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
@@ -20,6 +20,8 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import useAuthorize from "@/api/useAuthorize";
 
 interface API {
   id: number;
@@ -290,6 +292,13 @@ const initialAPI: API[] = [
 ];
 
 export default function Page() {
+  const { user } = useAuthContext();
+  const { authorize } = useAuthorize();
+  useEffect(() => {
+    if (user) {
+      authorize("ADMIN");
+    }
+  }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("Active");
 
   const handleSetActiveItem = (itemTitle: any) => {
