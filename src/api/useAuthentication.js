@@ -71,7 +71,7 @@ export const useAuthentication = () => {
     }
   };
 
-  const savedetails = async (data) => {
+    const savedetails = async (data) => {
     console.log(data);  
     try {
       const response = await apiClient.post("/apiuser/savedetails",{   
