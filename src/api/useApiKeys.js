@@ -89,6 +89,16 @@ export const useApiKeys = () => {
     }
   };
 
+  const activeApi = async () => {
+    try{
+      const response = await apiClient.get(`/admin/Api/active`);
+      return response;
+
+    }catch (error){
+      throw new Error(error.response.data.error.message);
+    }
+  };
+
 
   return {
     createApiKey,
@@ -98,6 +108,7 @@ export const useApiKeys = () => {
     rejectApiRequests,
     getAllPendingApiRequests,
     getAdminPendingApiRequests,
-    payForApi
+    payForApi,
+    activeApi
   };
 };

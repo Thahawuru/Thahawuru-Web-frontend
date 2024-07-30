@@ -275,9 +275,9 @@ export default function Page() {
                                 <IconButton color="secondary">
                                   <BiXCircle onClick={()=>rejectApiRequest(api.requestId)} />
                                 </IconButton>
-                                <IconButton color="primary">
+                                {/* <IconButton color="primary">
                                   <BiDetail />
-                                </IconButton>
+                                </IconButton> */}
                               </>
                             ) : (
                               <IconButton color="primary">
