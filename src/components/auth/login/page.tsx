@@ -52,6 +52,7 @@ const LoginPage = () => {
         console.log(response.data.data);
         localStorage.setItem("user", JSON.stringify(response.data.data.user));
         localStorage.setItem("token", JSON.stringify(response.data.data.token));
+        localStorage.setItem("role", JSON.stringify(response.data.data.user.role));
         router.push("/developer/dashboard");
         handleClose();
       }
