@@ -24,7 +24,7 @@ import Toast from "@/components/utils/toaster";
 interface APIarray {
   requestId: number;
   name: string;
-  email: string,
+  email: string;
   requestDate: string;
   APIType: string;
   status: string;
@@ -32,13 +32,13 @@ interface APIarray {
   description: string;
 }
 
-interface User{
+interface User {
   username: string;
   role: string;
   email: string;
-  accountNonExpired:boolean;
-  accountNonLocked:boolean;
-  credentialsNonExpired:boolean;
+  accountNonExpired: boolean;
+  accountNonLocked: boolean;
+  credentialsNonExpired: boolean;
   enabled: boolean;
   id: string;
 }
@@ -53,69 +53,82 @@ interface ApiUser {
   verified: boolean;
 }
 
-
 export default function Page() {
-  const {acceptApiRequests,rejectApiRequests,getAdminPendingApiRequests} = useApiKeys();
+  const { payForApi, rejectApiRequests, getAdminPendingApiRequests } =
+    useApiKeys();
   const [apis, setAPIs] = useState<APIarray[]>([]);
 
-  const showdata = (response:any)=>{
-    const dataset = response.data.data ;
-      const mappedAPI: APIarray[] = dataset.map((data: { apiid: any;name: any; apiUser:ApiUser ; createdAt: any; type: any; apistatus: string; purpose: any; description: any; }, index: number) => ({
-        requestId: data.apiid , 
+  const showdata = (response: any) => {
+    const dataset = response.data.data;
+    const mappedAPI: APIarray[] = dataset.map(
+      (
+        data: {
+          apiid: any;
+          name: any;
+          apiUser: ApiUser;
+          createdAt: any;
+          type: any;
+          status: string;
+          purpose: any;
+          description: any;
+        },
+        index: number
+      ) => ({
+        requestId: data.apiid,
         name: data.name || "",
-        email: "data.apiUser.user.email", 
+        email: "data.apiUser.user.email",
         requestDate: data.createdAt || "",
         APIType: data.type || "UnknownType",
-        status: "request",
+        status: data.status,
         purpose: data.purpose || "blank",
-        description: data.description || "blank"
-      }));
+        description: data.description || "blank",
+      })
+    );
 
-      setAPIs(mappedAPI);
-  }
+    setAPIs(mappedAPI);
+  };
 
-  const acceptApiRequest = async (apiId: any) => {
-    try{
-      const response = await acceptApiRequests(apiId);
-      console.log('accpet request',response);
-      Toast({type:"success", message:"accept the Request."});
+  const paying = async (apiId: any) => {
+    try {
+      const response = await payForApi(apiId);
+      console.log("accpet request", response);
+      Toast({ type: "success", message: "accept the paying." });
       showdata(response);
-    }catch(error){
-      Toast({type:"fail", message:"failed to accept Reqested API..."});
+    } catch (error) {
+      Toast({ type: "fail", message: "failed to accept Reqested API..." });
     }
-  }
+  };
 
-  const rejectApiRequest = async (apiId: any) =>{
-    try{
+  const rejectApiRequest = async (apiId: any) => {
+    try {
       const response = await rejectApiRequests(apiId);
-      console.log('reject request',response);
-      Toast({type:"success", message:"Reject the Request."});
+      console.log("reject request", response);
+      Toast({ type: "success", message: "Reject the Request." });
       showdata(response);
-    }catch(error){
-      Toast({type:"fail", message:"failed to reject Reqested API..."});
+    } catch (error) {
+      Toast({ type: "fail", message: "failed to reject Reqested API..." });
     }
-  }
+  };
 
-  const getPendingApiRequests = async () =>{
-    try{
+  const getPendingApiRequests = async () => {
+    try {
       const response = await getAdminPendingApiRequests();
-      console.log('reponse',response);
+      console.log("reponse", response);
       showdata(response);
-    }catch(error){
-      Toast({type:"fail", message:"failed to fetch Reqested APIs..."});
+    } catch (error) {
+      Toast({ type: "fail", message: "failed to fetch Reqested APIs..." });
     }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     getPendingApiRequests();
-  },[]);
+  }, []);
 
   const [activeItem, setActiveItem] = useState("Pending");
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
   };
-
 
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
@@ -142,7 +155,9 @@ export default function Page() {
     setSearchQuery(event.target.value);
   };
 
-  const handleStartDateChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleStartDateChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
     setStartDate(event.target.value);
   };
 
@@ -174,7 +189,10 @@ export default function Page() {
   return (
     <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
       <div className="h-screen flex flex-col justify-between items-center">
-        <Sidebar activeItem={activeItem} onSetActiveItem={handleSetActiveItem} />
+        <Sidebar
+          activeItem={activeItem}
+          onSetActiveItem={handleSetActiveItem}
+        />
       </div>
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
@@ -185,7 +203,7 @@ export default function Page() {
             </h1>
           </div>
         </div>
-        
+
         <div className="flex flex-row w-full h-auto p-4">
           <TextField
             label="Start Date"
@@ -267,17 +285,31 @@ export default function Page() {
                           <TableCell>{api.purpose}</TableCell>
                           <TableCell>{api.description}</TableCell>
                           <TableCell align="right">
-                            {api.status === "request" ? (
+                            {api.status === "PENDING" ? (
                               <>
                                 <IconButton color="primary">
-                                  <BiCheckCircle onClick={()=>acceptApiRequest(api.requestId)}/>
+                                  <p
+                                    className="text-sm"
+                                    onClick={() => paying(api.requestId)}
+                                  >
+                                    paid
+                                  </p>
+                                  {/* <BiCheckCircle onClick={()=>acceptApiRequest(api.requestId)}/> */}
                                 </IconButton>
                                 <IconButton color="secondary">
-                                  <BiXCircle onClick={()=>rejectApiRequest(api.requestId)} />
+                                  <p
+                                    className="text-sm"
+                                    onClick={() =>
+                                      rejectApiRequest(api.requestId)
+                                    }
+                                  >
+                                    Reject
+                                  </p>
+                                  {/* <BiXCircle onClick={()=>rejectApiRequest(api.requestId)} /> */}
                                 </IconButton>
-                                <IconButton color="primary">
+                                {/* <IconButton color="primary">
                                   <BiDetail />
-                                </IconButton>
+                                </IconButton> */}
                               </>
                             ) : (
                               <IconButton color="primary">

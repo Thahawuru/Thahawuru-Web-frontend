@@ -10,11 +10,11 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useApiKeys } from "@/api/useApiKeys";
 import Toast from "@/components/utils/toaster";
 
-
 interface ApiKey {
   id: string;
   name: string;
   key: string;
+  status: string;
   // add other properties if needed
 }
 
@@ -30,11 +30,10 @@ export default function Page() {
     try {
       const response = await getApiKeys();
       if (response.status === 200) {
-        setApiKey(response.data.data)
+        setApiKey(response.data.data);
         console.log(response.data.data);
       }
     } catch (error) {
-   
       Toast({ type: "fail", message: "failed to get api keys" });
     }
   };
@@ -135,14 +134,14 @@ export default function Page() {
 
           <h2 className="text-2xl font-semibold mb-2">API Keys</h2>
 
-          {apiKey &&
-            apiKey.length > 0 &&
-            apiKey.map((item, index) => (
+          {apiKey
+            .filter((item) => item.status === "ACTIVE") // Filter the array to include only ACTIVE items
+            .map((item, index) => (
               <div
                 key={index}
                 className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row mb-16 items-center "
               >
-                <p className="mb-4  mt-2 ml-4 p-2">{item?.name}</p>
+                <p className="mb-4 mt-2 ml-4 p-2">{item?.name}</p>
                 <IconButton
                   color="primary"
                   onClick={() => handleCopy(item?.key)}
