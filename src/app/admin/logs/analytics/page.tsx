@@ -16,9 +16,8 @@ const LogAnalytics = () => {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("ADMIN");
-    }
+    console.log("USER", user);
+    authorize("ADMIN");
   }, [authorize, user]);
   useEffect(() => {
     const dailyActivityOptions = {
