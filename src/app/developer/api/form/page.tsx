@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent ,useEffect} from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
@@ -36,8 +36,6 @@ export default function AgreementFormPage() {
       authorize("APIUSER");
     }
   }, [authorize, user]);
-
-
 
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
@@ -129,12 +127,22 @@ export default function AgreementFormPage() {
               onSubmit={handleSubmit}
               className="w-4/5 p-4 bg-gray-100 rounded mb-10"
             >
+              <div className="mb-4">
+                <TextField
+                  fullWidth
+                  label="Api Name"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  variant="outlined"
+                  required
+                />
+              </div>
               <div className="mb-4 w-full p-4 border border-gray rounded-md">
                 <FormControl
                   fullWidth
                   className=" flex flex-row justify-between items-center bg-primary"
                 >
-                  <InputLabel className="w-1/6">Category</InputLabel>
                   <select
                     id="category-select"
                     name="category"
@@ -160,17 +168,6 @@ export default function AgreementFormPage() {
                     </option>
                   </select>
                 </FormControl>
-              </div>
-              <div className="mb-4">
-                <TextField
-                  fullWidth
-                  label="Api Name"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  variant="outlined"
-                  required
-                />
               </div>
 
               <div className="mb-4">
