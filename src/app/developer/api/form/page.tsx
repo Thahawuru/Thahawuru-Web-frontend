@@ -88,6 +88,9 @@ export default function AgreementFormPage() {
         console.log(response);
         if (response.status === 201) {
           Toast({ type: "success", message: "API key requested successfully" });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         }
       } catch (error) {
         console.log(error);
