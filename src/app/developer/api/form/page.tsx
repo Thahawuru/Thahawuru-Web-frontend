@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent , useEffect } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
@@ -57,7 +57,9 @@ export default function AgreementFormPage() {
   };
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown }>
+    e: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown }
+    >
   ) => {
     const { name, value, type } = e.target as HTMLInputElement;
     if (type === "checkbox") {
@@ -92,7 +94,10 @@ export default function AgreementFormPage() {
         Toast({ type: "fail", message: "Failed to create API key request!" });
       }
     } else {
-      Toast({ type: "fail", message: "You must agree to all terms to proceed." });
+      Toast({
+        type: "fail",
+        message: "You must agree to all terms to proceed.",
+      });
     }
   };
 
@@ -100,7 +105,10 @@ export default function AgreementFormPage() {
     <>
       <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
         <div className="h-screen flex flex-col justify-between items-center">
-          <Sidebar activeItem={activeItem} onSetActiveItem={handleSetActiveItem} />
+          <Sidebar
+            activeItem={activeItem}
+            onSetActiveItem={handleSetActiveItem}
+          />
         </div>
         <div className="flex flex-col w-5/6 ml-[250px]">
           <Welcome />
@@ -116,6 +124,38 @@ export default function AgreementFormPage() {
               onSubmit={handleSubmit}
               className="w-4/5 p-4 bg-gray-100 rounded mb-10"
             >
+              <div className="mb-4 w-full p-4 border border-gray rounded-md">
+                <FormControl
+                  fullWidth
+                  className=" flex flex-row justify-between items-center bg-primary"
+                >
+                  <InputLabel className="w-1/6">Category</InputLabel>
+                  <select
+                    id="category-select"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-2 rounded"
+                  >
+                    <option value="" className="text-black">
+                      Select a plan
+                    </option>
+                    <option value="TestPlan" className="text-black">
+                      Test Plan
+                    </option>
+                    <option value="BasicPlan" className="text-black">
+                      Basic Plan
+                    </option>
+                    <option value="OrdinaryPlan" className="text-black">
+                      Ordinary Plan
+                    </option>
+                    <option value="PremiumPlan" className="text-black">
+                      Premium Plan
+                    </option>
+                  </select>
+                </FormControl>
+              </div>
               <div className="mb-4">
                 <TextField
                   fullWidth
@@ -127,21 +167,7 @@ export default function AgreementFormPage() {
                   required
                 />
               </div>
-              <FormControl fullWidth variant="outlined" className="mb-4">
-                <InputLabel>Category</InputLabel>
-                <Select
-                  label="Category"
-                  name="category"
-                  value={formData.category}
-                  onChange={handleChange}
-                  required
-                >
-                  <MenuItem value="TestPlan">Test Plan</MenuItem>
-                  <MenuItem value="BasicPlan">Basic Plan</MenuItem>
-                  <MenuItem value="OrdinaryPlan">Ordinary Plan</MenuItem>
-                  <MenuItem value="PremiumPlan">Premium Plan</MenuItem>
-                </Select>
-              </FormControl>
+
               <div className="mb-4">
                 <TextField
                   fullWidth
