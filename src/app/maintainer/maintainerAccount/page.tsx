@@ -10,9 +10,7 @@ const MaintainerAccountPage = () => {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("MAINTAINER");
-    }
+    authorize("MAINTAINER");
   }, [authorize, user]);
 
   const [userDetails, setUserDetails] = useState({

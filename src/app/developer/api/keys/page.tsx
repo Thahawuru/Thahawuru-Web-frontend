@@ -24,10 +24,8 @@ export default function Page() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("APIUSER");
-    }
-  }, [authorize, user]);
+    authorize("APIUSER");
+}, [authorize, user]);
 
   const { getApiKeys } = useApiKeys();
   const [activeItem, setActiveItem] = useState("API keys");
