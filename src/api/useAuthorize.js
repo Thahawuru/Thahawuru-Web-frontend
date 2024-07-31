@@ -4,9 +4,13 @@ import { useAuthContext } from "@/hooks/useAuthContext";
 
 const useAuthorize = () => {
   const router = useRouter();
-  const { user } = useAuthContext();
+  const { user, loading } = useAuthContext();
 
   const authorize = (requiredRole) => {
+    if (loading) {
+      return null;
+    }
+
     if (!user) {
       router.push("/unauthorized");
       return false;
