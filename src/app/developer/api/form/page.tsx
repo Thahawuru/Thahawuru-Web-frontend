@@ -32,9 +32,7 @@ export default function AgreementFormPage() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("APIUSER");
-    }
+    authorize("APIUSER");
   }, [authorize, user]);
 
   const [activeItem, setActiveItem] = useState<string>("Request for API");

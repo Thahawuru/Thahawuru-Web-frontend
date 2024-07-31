@@ -11,10 +11,8 @@ export default function Page() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("APIUSER");
-    }
-  }, [authorize, user]);
+    authorize("APIUSER");
+}, [authorize, user]);
   const [activeItem, setActiveItem] = useState("Test API");
 
   const handleSetActiveItem = (itemTitle: any) => {

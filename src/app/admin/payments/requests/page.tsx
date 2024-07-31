@@ -115,9 +115,8 @@ export default function Page() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("ADMIN");
-    }
+    console.log("USER", user);
+    authorize("ADMIN");
   }, [authorize, user]);
   
   const [activeItem, setActiveItem] = useState("Requests");

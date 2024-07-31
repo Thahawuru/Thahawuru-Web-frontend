@@ -1,9 +1,11 @@
 import axios from "axios";
 import apiClient from "./apiClient";
+import { useRouter } from "next/navigation";
 
 const API_URL = "http://localhost:9000/api/v1";
 
 export const useAuthentication = () => {
+  const router = useRouter();
   const signup = async (data) => {
     try {
       const response = await axios({
@@ -62,10 +64,12 @@ export const useAuthentication = () => {
 
   const logout = async () => {
     try {
-      const response = await axios.post("/auth/logout");
+      // const response = await axios.post("/auth/logout");
       localStorage.removeItem("user");
       localStorage.removeItem("token");
-      return response;
+      localStorage.removeItem("role");
+      router.push("/");
+      // return response;
     } catch (error) {
       throw new Error(error?.response.data.error);
     }
@@ -95,6 +99,6 @@ export const useAuthentication = () => {
     signup,
     savedetails,
     adminMaintainerSignin,
-    logout
+    logout,
   };
 };
