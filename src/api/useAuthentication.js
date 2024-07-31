@@ -71,18 +71,14 @@ export const useAuthentication = () => {
     }
   };
 
-  const savedetails = async (data) => {
-    console.log(data);
+    const savedetails = async (data) => {
+    console.log(data);  
     try {
-      const response = await apiClient.post("/apiuser/savedetails", {
-        name: data.name,
-        organizationName: data.name,
-        email: data.email,
-        number: data.phoneNumber,
-        purpose: data.phoneNumber,
-        description: data.phoneNumber,
-        whatsappNumber: data.whatsappNumber,
-        project: data.project,
+      const response = await apiClient.post("/apiuser/savedetails",{   
+          name: data.name,
+          organizationName: data.organization,
+          number: data.phoneNumber,
+          description: data.description,      
       });
       return response;
     } catch (error) {
