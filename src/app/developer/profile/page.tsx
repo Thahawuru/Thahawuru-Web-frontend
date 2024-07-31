@@ -8,18 +8,9 @@ import Image from "next/image";
 import profileImage from "../../../../public/profilePicDefault.png";
 import { Modal } from "@mui/material";
 import { useAuthentication } from "@/api/useAuthentication";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import Toast from "@/components/utils/toaster";
-=======
-import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
->>>>>>> master
-=======
 import Toast from "@/components/utils/toaster";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import useAuthorize from "@/api/useAuthorize";
->>>>>>> be1e03e170e36a1d36051bb087d0ecdc85eb1a2e
 
 export default function Page() {
   const { user } = useAuthContext();
