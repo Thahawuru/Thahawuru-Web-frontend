@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, MouseEvent ,  useEffect } from "react";
+import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import Link from "next/link";
@@ -65,7 +65,7 @@ export default function Page() {
       const mappedAPI: APIarray[] = dataset.map((data: { apiid: any;name: any; apiUser:ApiUser ; createdAt: any; type: any; apistatus: string; purpose: any; description: any; }, index: number) => ({
         requestId: data.apiid , 
         name: data.name || "",
-        email: "data.apiUser.user.email", 
+        email: data.apiUser.user.email, 
         requestDate: data.createdAt || "",
         APIType: data.type || "UnknownType",
         status: "request",

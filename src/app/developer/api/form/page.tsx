@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import React, { useState, ChangeEvent, FormEvent ,useEffect} from "react";
 import { useRouter } from "next/router";
 import Sidebar from "@/components/sidebar/developer/sidebar";
 import Welcome from "@/components/welcome";
@@ -36,6 +36,8 @@ export default function AgreementFormPage() {
       authorize("APIUSER");
     }
   }, [authorize, user]);
+
+
 
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
@@ -88,6 +90,9 @@ export default function AgreementFormPage() {
         console.log(response);
         if (response.status === 201) {
           Toast({ type: "success", message: "API key requested successfully" });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         }
       } catch (error) {
         console.log(error);

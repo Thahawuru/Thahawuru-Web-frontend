@@ -77,7 +77,7 @@ export default function Page() {
       ) => ({
         requestId: data.apiid,
         name: data.name || "",
-        email: "data.apiUser.user.email",
+        email: data.apiUser.user.email,
         requestDate: data.createdAt || "",
         APIType: data.type || "UnknownType",
         status: data.status,
