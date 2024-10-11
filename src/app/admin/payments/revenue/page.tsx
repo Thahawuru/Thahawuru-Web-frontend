@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import Sidebar from "@/components/sidebar/admin/sidebar";
-import Welcome from "@/components/welcome";
+import dynamic from "next/dynamic";
+import ApexCharts from "apexcharts";
 import {
   Paper,
   TextField,
@@ -13,9 +13,12 @@ import {
   TableRow,
   TablePagination,
 } from "@mui/material";
-import ApexCharts from "apexcharts";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import useAuthorize from "@/api/useAuthorize";
+
+// Dynamic imports for React components
+const Sidebar = dynamic(() => import("@/components/sidebar/admin/sidebar"), { ssr: false });
+const Welcome = dynamic(() => import("@/components/welcome"), { ssr: false });
 
 interface RevenueData {
   id: number;
@@ -36,18 +39,18 @@ const initialRevenueData: RevenueData[] = [
 export default function RevenuePage() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
+  
   useEffect(() => {
     console.log("USER", user);
     authorize("ADMIN");
   }, [authorize, user]);
 
   const [activeItem, setActiveItem] = useState("Payments");
-
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
   };
-  const [revenueData, setRevenueData] =
-    useState<RevenueData[]>(initialRevenueData);
+
+  const [revenueData, setRevenueData] = useState<RevenueData[]>(initialRevenueData);
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -55,53 +58,56 @@ export default function RevenuePage() {
   const barChartRef = useRef<HTMLDivElement>(null);
   const lineChartRef = useRef<HTMLDivElement>(null);
 
+  // Effect to render ApexCharts
   useEffect(() => {
-    const barChartOptions = {
-      chart: {
-        type: "bar",
-        height: 350,
-        background: "transparent",
-      },
-      series: [
-        {
-          name: "Revenue",
-          data: revenueData.map((data) => data.revenue),
+    if (typeof window !== "undefined" && barChartRef.current && lineChartRef.current) {
+      const barChartOptions = {
+        chart: {
+          type: "bar",
+          height: 350,
+          background: "transparent",
         },
-      ],
-      xaxis: {
-        categories: revenueData.map((data) => data.date),
-      },
-      colors: ["#023e8a"],
-    };
-
-    const lineChartOptions = {
-      chart: {
-        type: "line",
-        height: 350,
-        background: "transparent",
-      },
-      series: [
-        {
-          name: "Revenue",
-          data: revenueData.map((data) => data.revenue),
+        series: [
+          {
+            name: "Revenue",
+            data: revenueData.map((data) => data.revenue),
+          },
+        ],
+        xaxis: {
+          categories: revenueData.map((data) => data.date),
         },
-      ],
-      xaxis: {
-        categories: revenueData.map((data) => data.date),
-      },
-      colors: ["#023e8a"],
-    };
+        colors: ["#023e8a"],
+      };
 
-    const barChart = new ApexCharts(barChartRef.current, barChartOptions);
-    const lineChart = new ApexCharts(lineChartRef.current, lineChartOptions);
+      const lineChartOptions = {
+        chart: {
+          type: "line",
+          height: 350,
+          background: "transparent",
+        },
+        series: [
+          {
+            name: "Revenue",
+            data: revenueData.map((data) => data.revenue),
+          },
+        ],
+        xaxis: {
+          categories: revenueData.map((data) => data.date),
+        },
+        colors: ["#023e8a"],
+      };
 
-    barChart.render();
-    lineChart.render();
+      const barChart = new ApexCharts(barChartRef.current, barChartOptions);
+      const lineChart = new ApexCharts(lineChartRef.current, lineChartOptions);
 
-    return () => {
-      barChart.destroy();
-      lineChart.destroy();
-    };
+      barChart.render();
+      lineChart.render();
+
+      return () => {
+        barChart.destroy();
+        lineChart.destroy();
+      };
+    }
   }, [revenueData]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -117,10 +123,7 @@ export default function RevenuePage() {
   return (
     <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
       <div className="h-screen flex flex-col justify-between items-center">
-        <Sidebar
-          activeItem={activeItem}
-          onSetActiveItem={handleSetActiveItem}
-        />
+        <Sidebar activeItem={activeItem} onSetActiveItem={handleSetActiveItem} />
       </div>
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
@@ -192,10 +195,7 @@ export default function RevenuePage() {
                   </TableHead>
                   <TableBody>
                     {filteredData
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((data) => (
                         <TableRow key={data.id}>
                           <TableCell>{data.id}</TableCell>
