@@ -91,10 +91,8 @@ export default function Page() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("MAINTAINER");
-    }
-  }, [authorize, user]);
+    authorize("MAINTAINER");
+}, [authorize, user]);
 
   const [activeItem, setActiveItem] = useState("Refund Requests");
 

@@ -10,9 +10,8 @@ const APIKeyAnalytics = () => {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("ADMIN");
-    }
+    console.log("USER", user);
+    authorize("ADMIN");
   }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("API Management");
   const handleSetActiveItem = (itemTitle: any) => {

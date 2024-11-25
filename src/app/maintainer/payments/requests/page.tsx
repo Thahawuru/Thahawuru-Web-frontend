@@ -22,7 +22,7 @@ import useAuthorize from "@/api/useAuthorize";
 interface API {
   requestId: number;
   name: string;
-  email: string,
+  email: string;
   requestDate: string;
   APIType: string;
   status: string;
@@ -33,7 +33,7 @@ const initialAPI: API[] = [
     requestId: 6,
     name: "David Wilson",
     email: "din@gmail.com",
-    requestDate:"",
+    requestDate: "",
     APIType: "basic",
     status: "request",
   },
@@ -41,7 +41,7 @@ const initialAPI: API[] = [
     requestId: 2,
     name: "David Wilson",
     email: "din@gmail.com",
-    requestDate:"",
+    requestDate: "",
     APIType: "basic",
     status: "request",
   },
@@ -51,9 +51,7 @@ export default function Page() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("MAINTAINER");
-    }
+    authorize("MAINTAINER");
   }, [authorize, user]);
 
   const [activeItem, setActiveItem] = useState("Requests");
@@ -88,7 +86,9 @@ export default function Page() {
     setSearchQuery(event.target.value);
   };
 
-  const handleStartDateChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleStartDateChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
     setStartDate(event.target.value);
   };
 
@@ -120,7 +120,10 @@ export default function Page() {
   return (
     <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
       <div className="h-screen flex flex-col justify-between items-center">
-        <Sidebar activeItem={activeItem} onSetActiveItem={handleSetActiveItem} />
+        <Sidebar
+          activeItem={activeItem}
+          onSetActiveItem={handleSetActiveItem}
+        />
       </div>
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
@@ -131,7 +134,7 @@ export default function Page() {
             </h1>
           </div>
         </div>
-        
+
         <div className="flex flex-row w-full h-auto p-4">
           <TextField
             label="Start Date"

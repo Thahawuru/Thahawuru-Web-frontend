@@ -1,6 +1,11 @@
 "use client";
+<<<<<<< HEAD
 import React, { useState, ChangeEvent, MouseEvent , useEffect } from "react";
 import Sidebar from "@/components/sidebar/maintainer/sidebar";
+=======
+import React, { useState, ChangeEvent, MouseEvent, useEffect } from "react";
+import Sidebar from "@/components/sidebar/admin/sidebar";
+>>>>>>> e5e6dc96aa090037ca9fbcc0d7ea41c75eeb365e
 import Welcome from "@/components/welcome";
 import Link from "next/link";
 import {
@@ -92,9 +97,7 @@ export default function Page() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("MAINTAINER");
-    }
+    authorize("MAINTAINER");
   }, [authorize, user]);
 
   const [activeItem, setActiveItem] = useState("Pending");
@@ -129,7 +132,9 @@ export default function Page() {
     setSearchQuery(event.target.value);
   };
 
-  const handleStartDateChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleStartDateChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
     setStartDate(event.target.value);
   };
 
@@ -161,7 +166,10 @@ export default function Page() {
   return (
     <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
       <div className="h-screen flex flex-col justify-between items-center">
-        <Sidebar activeItem={activeItem} onSetActiveItem={handleSetActiveItem} />
+        <Sidebar
+          activeItem={activeItem}
+          onSetActiveItem={handleSetActiveItem}
+        />
       </div>
       <div className="flex flex-col w-5/6 ml-[250px]">
         <Welcome />
@@ -172,7 +180,7 @@ export default function Page() {
             </h1>
           </div>
         </div>
-        
+
         <div className="flex flex-row w-full h-auto p-4">
           <TextField
             label="Start Date"

@@ -19,7 +19,7 @@ const pricingPlans = [
   {
     title: "Basic Plan",
     price: "LKR 50,000 per year",
-    requestLimit: "1000 requests per month",
+    requestLimit: "10000 requests per month",
     discounts: "5% discount for annual payment",
     features: [
       "All features of the Basic Plan",
@@ -29,7 +29,7 @@ const pricingPlans = [
   {
     title: "Ordinary Plan",
     price: "LKR 75,000 per year",
-    requestLimit: "2500 requests per month",
+    requestLimit: "25000 requests per month",
     discounts: "8% discount for annual payment",
     features: [
       "All features of the Ordinary Plan",
@@ -39,7 +39,7 @@ const pricingPlans = [
   {
     title: "Premium Plan",
     price: "LKR 175,000 per year",
-    requestLimit: "10000 requests per month",
+    requestLimit: "125000 requests per month",
     discounts: "15% discount for annual payment",
     features: [
       "All features of the Premium Plan",
@@ -52,10 +52,8 @@ export default function PricingPage() {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("APIUSER");
-    }
-  }, [authorize, user]);
+    authorize("APIUSER");
+}, [authorize, user]);
   const [activeItem, setActiveItem] = useState("Request for API");
 
   const handleSetActiveItem = (itemTitle: any) => {

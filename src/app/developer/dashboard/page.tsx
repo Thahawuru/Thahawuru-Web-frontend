@@ -34,9 +34,9 @@ export default function Dashboard() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
+    authorize("APIUSER");
     if (user) {
       setEmail(user.email.split("@")[0]);
-      authorize("APIUSER");
     }
   }, [authorize, user]);
 

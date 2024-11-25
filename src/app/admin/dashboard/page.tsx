@@ -29,13 +29,11 @@ import { useAuthContext } from "@/hooks/useAuthContext";
 import useAuthorize from "@/api/useAuthorize";
 
 export default function Dashboard() {
-  
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("ADMIN");
-    }
+    console.log("USER", user);
+    authorize("ADMIN");
   }, [authorize, user]);
 
   const [activeItem, setActiveItem] = useState("Dashboard");

@@ -43,12 +43,12 @@ const menuItems = [
         icon: <BiTask />,
         badge: null,
       },
-      {
-        title: "Payments",
-        href: "/developer/payment",
-        icon: <BiDollarCircle />,
-        badge: null,
-      },
+      // {
+      //   title: "Payments",
+      //   href: "/developer/payment",
+      //   icon: <BiDollarCircle />,
+      //   badge: null,
+      // },
       {
         title: "API keys",
         href: "/developer/api/keys",

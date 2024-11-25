@@ -10,10 +10,8 @@ const APIKeyAnalytics = () => {
   const { user } = useAuthContext();
   const { authorize } = useAuthorize();
   useEffect(() => {
-    if (user) {
-      authorize("MAINTAINER");
-    }
-  }, [authorize, user]);
+    authorize("MAINTAINER");
+}, [authorize, user]);
 
   const [activeItem, setActiveItem] = useState("API Management");
   const handleSetActiveItem = (itemTitle: any) => {
