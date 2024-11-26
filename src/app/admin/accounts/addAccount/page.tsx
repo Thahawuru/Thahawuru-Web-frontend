@@ -20,11 +20,10 @@ export default function Page() {
   useEffect(() => {
 
     if (user) {
-      authorize("MAINTAINER");
+      authorize("ADMIN");
     }
 
     console.log("USER", user);
-    authorize("ADMIN");
 
   }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("User Accounts");
