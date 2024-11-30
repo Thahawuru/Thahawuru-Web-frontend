@@ -2,16 +2,10 @@
 import React, { useEffect } from "react";
 import ApexCharts from "apexcharts"; // Import ApexCharts library
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 const PolarAreaChartComponent = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    if (user) {
-      authorize("MAINTAINER");
-    }
-  }, [authorize, user]);
   useEffect(() => {
     const options = {
       series: [14, 23, 21, 17, 15, 10, 12, 17, 21],

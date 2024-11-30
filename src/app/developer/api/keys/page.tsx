@@ -10,7 +10,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useApiKeys } from "@/api/useApiKeys";
 import Toast from "@/components/utils/toaster";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 interface ApiKey {
   id: string;
@@ -22,11 +22,7 @@ interface ApiKey {
 
 export default function Page() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    authorize("APIUSER");
-}, [authorize, user]);
-
+  
   const { getApiKeys } = useApiKeys();
   const [activeItem, setActiveItem] = useState("API keys");
   const [showApiKeys, setShowApiKeys] = useState<{ [key: string]: boolean }>(

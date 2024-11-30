@@ -3,22 +3,12 @@ import React, { useEffect, useState, Suspense } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 import dynamic from "next/dynamic";
 
 const APIKeyAnalytics = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-
-  useEffect(() => {
-    if (!user) {
-      console.error("No user data found.");
-    } else {
-      console.log("USER", user);
-      authorize("ADMIN");
-    }
-  }, [authorize, user]);
-
+  
   const [activeItem, setActiveItem] = useState("API Management");
   const handleSetActiveItem = (itemTitle: string) => setActiveItem(itemTitle);
 

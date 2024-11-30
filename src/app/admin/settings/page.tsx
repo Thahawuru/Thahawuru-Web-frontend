@@ -5,16 +5,11 @@ import { TextField, MenuItem, Button, Box, Grid } from "@mui/material";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 const SettingsPage = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
-
+  
   const [dailyUpdateTime, setDailyUpdateTime] = useState<string>("00:00");
 
   const [apiUsageLimits, setApiUsageLimits] = useState({

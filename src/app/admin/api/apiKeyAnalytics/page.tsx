@@ -5,15 +5,11 @@ import Welcome from "@/components/welcome";
 import dynamic from "next/dynamic";
 // const ApexCharts = dynamic(() => import("apexcharts"), { ssr: false });
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 const APIKeyAnalytics = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
+  
   const [activeItem, setActiveItem] = useState("API Management");
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);

@@ -18,7 +18,7 @@ import {
 import { saveAs } from "file-saver";
 import { CSVLink } from "react-csv";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 interface API {
   id: number;
@@ -42,12 +42,7 @@ const initialAPI: API[] = [
 
 const Page = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
-
+  
   const [activeItem, setActiveItem] = useState("Emails");
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);

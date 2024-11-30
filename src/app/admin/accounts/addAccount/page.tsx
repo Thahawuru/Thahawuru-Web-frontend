@@ -4,7 +4,6 @@ import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import { TextField, Button, Box, Typography } from "@mui/material";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
 interface Maintainer {
   id: number;
   name: string;
@@ -16,16 +15,6 @@ interface Maintainer {
 
 export default function Page() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-
-    if (user) {
-      authorize("ADMIN");
-    }
-
-    console.log("USER", user);
-
-  }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("User Accounts");
   const [maintainer, setMaintainer] = useState<Maintainer>({
     id: 0,

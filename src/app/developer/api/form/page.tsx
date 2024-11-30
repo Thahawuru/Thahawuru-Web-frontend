@@ -11,7 +11,7 @@ import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 import { useApiKeys } from "@/api/useApiKeys";
 import Toast from "@/components/utils/toaster";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 interface FormData {
   category: string;
@@ -30,13 +30,7 @@ interface FormData {
 export default function AgreementFormPage() {
   const { createApiKey } = useApiKeys();
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    authorize("APIUSER");
-  }, [authorize, user]);
-
-
-
+  
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
     category: "",

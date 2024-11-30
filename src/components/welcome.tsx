@@ -10,8 +10,10 @@ const Welcome = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
+    console.log(user);
     if (user) {
-      setEmail(user.email.split("@")[0]);
+      console.log(user);
+      setEmail(user.email);
     }
   }, [user]);
 

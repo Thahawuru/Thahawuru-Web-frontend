@@ -26,15 +26,11 @@ const PieChart = dynamic(() => import("./charts/PieChart"), {
   ),
 });
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 export default function Dashboard() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    authorize("MAINTAINER");
-}, [authorize, user]);
-
+  
   const [activeItem, setActiveItem] = useState("Dashboard");
 
   const handleSetActiveItem = (itemTitle: any) => {

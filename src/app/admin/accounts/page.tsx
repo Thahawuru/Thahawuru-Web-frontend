@@ -20,7 +20,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import BlockIcon from "@mui/icons-material/Block";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
 
 interface Maintainer {
   id: number;
@@ -259,11 +258,6 @@ const initialMaintainers: Maintainer[] = [
 
 export default function Page() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
   const [activeItem, setActiveItem] = useState("User Accounts");
 
   const handleSetActiveItem = (itemTitle: any) => {

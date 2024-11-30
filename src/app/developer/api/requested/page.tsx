@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useApiKeys } from "@/api/useApiKeys";
 import { FaAmazonPay } from "react-icons/fa";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 import {
   Table,
@@ -58,10 +58,7 @@ interface ApiUser {
 
 export default function Page() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    authorize("APIUSER");
-  }, [authorize, user]);
+  
   const { rejectApiRequests, getAllPendingApiRequests, payForApi } =
     useApiKeys();
   const [apis, setAPIs] = useState<APIarray[]>([]);

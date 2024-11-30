@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import Link from "next/link";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 const pricingPlans = [
   {
@@ -50,10 +50,6 @@ const pricingPlans = [
 
 export default function PricingPage() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    authorize("APIUSER");
-}, [authorize, user]);
   const [activeItem, setActiveItem] = useState("Request for API");
 
   const handleSetActiveItem = (itemTitle: any) => {
