@@ -33,10 +33,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = async (user) => {
-    Cookies.set('user', JSON.stringify(user), { expires: 7 });
-    Cookies.set('token', user.token, { expires: 7 });
-    dispatch({ type: "LOGIN", payload: user });
+  const login = async (data) => {
+    Cookies.set('user', JSON.stringify(data.user), { expires: 7, path: '/' });
+    Cookies.set('token', JSON.stringify(data.token), { expires: 7, path: '/' });
+    dispatch({ type: "LOGIN", payload: data.user });
+    document.cookie = `role=${data.user.role}; path=/; HttpOnly`;
   };
 
   const logoutUser = () => {

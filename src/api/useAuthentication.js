@@ -26,7 +26,6 @@ export const useAuthentication = () => {
   };
 
   const adminMaintainerSignin = async (data) => {
-    console.log(data);
     try {
       const response = await axios({
         method: "post",
@@ -37,8 +36,6 @@ export const useAuthentication = () => {
         },
         withCredentials: true,
       });
-      console.log("response check");
-      console.log(response);
       return response;
     } catch (error) {
       throw new Error(error?.response.data.error);
@@ -46,7 +43,6 @@ export const useAuthentication = () => {
   };
 
   const signin = async (data) => {
-    console.log(data);
     try {
       const response = await axios({
         method: "post",
@@ -66,6 +62,7 @@ export const useAuthentication = () => {
   const logout = async () => {
     try {
       Cookies.remove('user');
+      Cookies.remove('token');
       router.push("/");
     } catch (error) {
       throw new Error(error?.response.data.error);
@@ -73,7 +70,6 @@ export const useAuthentication = () => {
   };
 
     const savedetails = async (data) => {
-    console.log(data);  
     try {
       const response = await apiClient.post("/apiuser/savedetails",{   
           name: data.name,
@@ -87,11 +83,20 @@ export const useAuthentication = () => {
     }
   };
 
+  const decodeEmail = async(user)=>{
+    try {
+      return user.email;
+    } catch (error) {
+      throw new Error(error?.response.data.error);
+    }
+  }
+
   return {
     signin,
     signup,
     savedetails,
     adminMaintainerSignin,
     logout,
+    decodeEmail
   };
 };
