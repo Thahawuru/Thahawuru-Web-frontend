@@ -4,18 +4,14 @@ import dynamic from "next/dynamic";
 import Sidebar from "@/components/sidebar/maintainer/sidebar";
 import Welcome from "@/components/welcome";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 // Dynamically import ApexCharts
 const loadApexCharts = () => import("apexcharts");
 
 const APIKeyAnalytics = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-
-  useEffect(() => {
-    authorize("MAINTAINER");
-  }, [authorize, user]);
+  
 
   const [activeItem, setActiveItem] = useState("API Management");
   const handleSetActiveItem = (itemTitle: string) => {

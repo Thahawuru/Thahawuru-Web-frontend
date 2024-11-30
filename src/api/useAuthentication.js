@@ -1,6 +1,7 @@
 import axios from "axios";
 import apiClient from "./apiClient";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const API_URL = "http://localhost:9000/api/v1";
 
@@ -64,12 +65,8 @@ export const useAuthentication = () => {
 
   const logout = async () => {
     try {
-      // const response = await axios.post("/auth/logout");
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
+      Cookies.remove('user');
       router.push("/");
-      // return response;
     } catch (error) {
       throw new Error(error?.response.data.error);
     }

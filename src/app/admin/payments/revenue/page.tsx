@@ -13,7 +13,7 @@ import {
   TablePagination,
 } from "@mui/material";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 // Dynamic imports for React components
 const Sidebar = dynamic(() => import("@/components/sidebar/admin/sidebar"), { ssr: false });
@@ -37,13 +37,8 @@ const initialRevenueData: RevenueData[] = [
 
 export default function RevenuePage() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
   
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
-
+  
   const [activeItem, setActiveItem] = useState("Payments");
   const [revenueData, setRevenueData] = useState<RevenueData[]>(initialRevenueData);
   const [page, setPage] = useState<number>(0);

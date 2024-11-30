@@ -1,17 +1,16 @@
 "use client"
-import { createContext, useReducer } from "react";
-import { useEffect } from "react";
-// import Cookies from "js-cookie";
+import { createContext, useReducer, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
 const authReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      return { ...state, user: action.payload ,loading: false};
+      return { ...state, user: action.payload, loading: false };
     case "LOGOUT":
-      return { ...state, user: null,loading: false };
+      return { ...state, user: null, loading: false };
     case "LOADING":
       return { ...state, loading: true };
     default:
@@ -21,43 +20,34 @@ const authReducer = (state, action) => {
 
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { user: null ,loading:true });
-
-  // eslint-disable-next-line no-unused-vars
-  // const checkUserLoggedIn = async () => {
-  //     dispatch({ type: "LOADING" });
-  //   try {
-  //     const response = await axios({
-  //       method: "get",
-  //       url: `http://localhost:3000/api/v1/views`,
-  //       withCredentials: true,
-  //     });
-  //     dispatch({ type: "LOGIN", payload: response.data.user });
-  //   } catch (error) {
-  //     dispatch({ type: "LOGOUT" });
-  //   }
-  //   // }
-  // };
+  const [state, dispatch] = useReducer(authReducer, { user: null, loading: true });
 
   useEffect(() => {
-    // checkUserLoggedIn();
-    const user  = JSON.parse(localStorage.getItem("user"));
-    if(user){
-      dispatch({type:"LOGIN",payload:user});
-    }else{
-      dispatch({type:"LOGOUT"});
+    const token = Cookies.get('token');
+    const user = Cookies.get('user');
+
+    if (token && user) {
+      dispatch({ type: "LOGIN", payload: user });
+    } else {
+      dispatch({ type: "LOGOUT" });
     }
   }, []);
 
-  // const user = getLoggedinUser();
+  const login = async (user) => {
+    Cookies.set('user', JSON.stringify(user), { expires: 7 });
+    Cookies.set('token', user.token, { expires: 7 });
+    dispatch({ type: "LOGIN", payload: user });
+  };
+
+  const logoutUser = () => {
+    Cookies.remove('user');
+    Cookies.remove('token');
+    dispatch({ type: "LOGOUT" });
+  };
+
   return (
-    <AuthContext.Provider value={{ ...state,dispatch}}>
+    <AuthContext.Provider value={{ ...state, login, logoutUser }}>
       {children}
     </AuthContext.Provider>
   );
 };
-
-// export function useAuthContext() {
-//     const user = useContext(AuthContext);
-//     return user;
-// }

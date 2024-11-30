@@ -13,7 +13,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 interface FormData {
   purpose: string;
   fullName: string;
@@ -29,10 +29,6 @@ interface FormData {
 
 export default function AgreementFormPage() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    authorize("APIUSER");
-}, [authorize, user]);
   const [activeItem, setActiveItem] = useState<string>("API keys");
   const [formData, setFormData] = useState<FormData>({
     purpose: "",

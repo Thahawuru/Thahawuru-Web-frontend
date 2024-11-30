@@ -2,16 +2,11 @@
 import React, { useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 const DateTimeXAxis: React.FC = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    if (user) {
-      authorize("MAINTAINER");
-    }
-  }, [authorize, user]);
+  
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
