@@ -4,16 +4,9 @@ import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
 import { BiUser, BiIdCard, BiGroup, BiShield } from "react-icons/bi";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
 
 const LogAnalytics = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
 
   useEffect(() => {
     // Define an async function to load ApexCharts

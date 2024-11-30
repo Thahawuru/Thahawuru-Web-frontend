@@ -10,9 +10,7 @@ const Welcome = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    console.log(user);
     if (user) {
-      console.log(user);
       setEmail(user.email);
     }
   }, [user]);

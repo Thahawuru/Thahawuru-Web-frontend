@@ -52,8 +52,7 @@ const LoginPage = () => {
       const response = await signin({ email, password });
       if (response.status === 200) {
         Toast({ type: "success", message: "Login Success" });
-        console.log(response.data.data);
-        login(response.data.data.user);
+        login(response.data.data);
         router.push("/developer/dashboard");
         handleClose();
       }

@@ -21,8 +21,7 @@ export default function AdminLogin() {
       const response = await adminMaintainerSignin({ email, password });
       if (response.status === 200) {
         Toast({ type: "success", message: "Login Success" });
-        console.log(response.data.data);
-        login(response.data.data.user);
+        login(response.data.data);
         if (response.data.data.user.role === "ADMIN") {
           router.push("/admin/dashboard");
         } else if (response.data.data.user.role === "MAINTAINER") {
