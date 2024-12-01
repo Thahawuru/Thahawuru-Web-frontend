@@ -15,6 +15,7 @@ import useAuthorize from "@/api/useAuthorize";
 
 interface FormData {
   category: string;
+  selection: string;
   fullName: string;
   organizationName: string;
   email: string;
@@ -38,6 +39,7 @@ export default function AgreementFormPage() {
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
     category: "",
+    selection: "",
     fullName: "",
     organizationName: "",
     email: "",
@@ -122,32 +124,32 @@ export default function AgreementFormPage() {
           </div>
           <div className="flex flex-col justify-center items-center">
             <form
-              onSubmit={handleSubmit}
-              className="w-4/5 p-4 bg-gray-100 rounded mb-10"
+                onSubmit={handleSubmit}
+                className="w-4/5 p-4 bg-gray-100 rounded mb-10"
             >
               <div className="mb-4">
                 <TextField
-                  fullWidth
-                  label="Api Name"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  variant="outlined"
-                  required
+                    fullWidth
+                    label="Api Name"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    variant="outlined"
+                    required
                 />
               </div>
               <div className="mb-4 w-full p-4 border border-gray rounded-md">
                 <FormControl
-                  fullWidth
-                  className=" flex flex-row justify-between items-center bg-primary"
+                    fullWidth
+                    className=" flex flex-row justify-between items-center bg-primary"
                 >
                   <select
-                    id="category-select"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                    required
-                    className="w-full p-2 rounded"
+                      id="category-select"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      required
+                      className="w-full p-2 rounded"
                   >
                     <option value="" className="text-black">
                       Select a plan
@@ -167,94 +169,116 @@ export default function AgreementFormPage() {
                   </select>
                 </FormControl>
               </div>
-
-              <div className="mb-4">
-                <TextField
-                  fullWidth
-                  label="Purpose of API Usage"
-                  name="purpose"
-                  value={formData.purpose}
-                  onChange={handleChange}
-                  variant="outlined"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <TextField
-                  fullWidth
-                  label="Description of Application"
-                  name="applicationDescription"
-                  value={formData.applicationDescription}
-                  onChange={handleChange}
-                  variant="outlined"
-                  multiline
-                  rows={4}
-                  required
-                />
-              </div>
-              <div className="mb-4 text-black">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="agreeToTerms"
-                      checked={formData.agreeToTerms}
-                      onChange={handleChange}
-                      color="primary"
-                    />
-                  }
-                  label="I agree to the terms and conditions"
-                />
-              </div>
-              <div className="mb-4 text-black">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="agreeToPrivacy"
-                      checked={formData.agreeToPrivacy}
-                      onChange={handleChange}
-                      color="primary"
-                    />
-                  }
-                  label="I agree to the privacy policy"
-                />
-              </div>
-              <div className="mb-4 text-black">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="agreeToConfidentiality"
-                      checked={formData.agreeToConfidentiality}
-                      onChange={handleChange}
-                      color="primary"
-                    />
-                  }
-                  label="I agree to the confidentiality agreement"
-                />
-              </div>
-              <p className="mb-4 text-black text-sm">
-                By submitting this form, you agree to the terms and conditions,
-                privacy policy, and confidentiality agreement. Note that any
-                misuse of the API will result in action taken from government
-                laws.
-              </p>
-              <div className="mb-4">
-                <Button
-                  type="submit"
-                  variant="contained"
-                  className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform mb-2"
-                  disabled={
-                    !formData.agreeToTerms ||
-                    !formData.agreeToPrivacy ||
-                    !formData.agreeToConfidentiality
-                  }
+              <div className="mb-4 w-full p-4 border border-gray rounded-md">
+                <FormControl
+                    fullWidth
+                    className=" flex flex-row justify-between items-center bg-primary"
                 >
-                  Submit
-                </Button>
-              </div>
+                  <select
+                      id="category-select"
+                      name="category"
+                      value={formData.selection}
+                      onChange={handleChange}
+                      required
+                      className="w-full p-2 rounded"
+                  >
+                    <option value="" className="text-black">
+                      Identity
+                    </option>
+                    <option value="TestPlan" className="text-black">
+                      License
+                    </option>
+                  </select>
+                </FormControl>
+                </div>
+
+                <div className="mb-4">
+                  <TextField
+                      fullWidth
+                      label="Purpose of API Usage"
+                      name="purpose"
+                      value={formData.purpose}
+                      onChange={handleChange}
+                      variant="outlined"
+                      required
+                  />
+                </div>
+                <div className="mb-4">
+                  <TextField
+                      fullWidth
+                      label="Description of Application"
+                      name="applicationDescription"
+                      value={formData.applicationDescription}
+                      onChange={handleChange}
+                      variant="outlined"
+                      multiline
+                      rows={4}
+                      required
+                  />
+                </div>
+                <div className="mb-4 text-black">
+                  <FormControlLabel
+                      control={
+                        <Checkbox
+                            name="agreeToTerms"
+                            checked={formData.agreeToTerms}
+                            onChange={handleChange}
+                            color="primary"
+                        />
+                      }
+                      label="I agree to the terms and conditions"
+                  />
+                </div>
+                <div className="mb-4 text-black">
+                  <FormControlLabel
+                      control={
+                        <Checkbox
+                            name="agreeToPrivacy"
+                            checked={formData.agreeToPrivacy}
+                            onChange={handleChange}
+                            color="primary"
+                        />
+                      }
+                      label="I agree to the privacy policy"
+                  />
+                </div>
+                <div className="mb-4 text-black">
+                  <FormControlLabel
+                      control={
+                        <Checkbox
+                            name="agreeToConfidentiality"
+                            checked={formData.agreeToConfidentiality}
+                            onChange={handleChange}
+                            color="primary"
+                        />
+                      }
+                      label="I agree to the confidentiality agreement"
+                  />
+                </div>
+                <p className="mb-4 text-black text-sm">
+                  By submitting this form, you agree to the terms and conditions,
+                  privacy policy, and confidentiality agreement. Note that any
+                  misuse of the API will result in action taken from government
+                  laws.
+                </p>
+                <div className="mb-4">
+                  <Button
+                      type="submit"
+                      variant="contained"
+                      className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform mb-2"
+                      disabled={
+                          !formData.agreeToTerms ||
+                          !formData.agreeToPrivacy ||
+                          !formData.agreeToConfidentiality
+                      }
+                  >
+                    Submit
+                  </Button>
+                </div>
             </form>
           </div>
         </div>
       </div>
     </>
-  );
+);
 }
