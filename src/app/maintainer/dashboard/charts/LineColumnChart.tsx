@@ -2,17 +2,11 @@
 import React, { useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 const ColumnChart = () => {
   const chartRef = useRef(null);
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    if (user) {
-      authorize("MAINTAINER");
-    }
-  }, [authorize, user]);
   useEffect(() => {
     const chartOptions = {
       series: [

@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useAuthentication } from "@/api/useAuthentication";
 import Toast from "@/components/utils/toaster";
 import { useRouter } from "next/navigation";
+import { AuthContext } from '@/context/authContext';
+import { useContext } from 'react';
 
 const style = {
   position: "absolute" as "absolute",
@@ -34,6 +36,7 @@ const LoginPage = () => {
   const router = useRouter();
 
   const { signin ,signup} = useAuthentication();
+  const { login, logoutUser, user, loading } = useContext(AuthContext);
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,10 +52,7 @@ const LoginPage = () => {
       const response = await signin({ email, password });
       if (response.status === 200) {
         Toast({ type: "success", message: "Login Success" });
-        console.log(response.data.data);
-        localStorage.setItem("user", JSON.stringify(response.data.data.user));
-        localStorage.setItem("token", JSON.stringify(response.data.data.token));
-        localStorage.setItem("role", JSON.stringify(response.data.data.user.role));
+        login(response.data.data);
         router.push("/developer/dashboard");
         handleClose();
       }

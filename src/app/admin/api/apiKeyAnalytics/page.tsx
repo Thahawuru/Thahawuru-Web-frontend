@@ -2,144 +2,112 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/sidebar/admin/sidebar";
 import Welcome from "@/components/welcome";
-import ApexCharts from "apexcharts";
+import dynamic from "next/dynamic";
+// const ApexCharts = dynamic(() => import("apexcharts"), { ssr: false });
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 
 const APIKeyAnalytics = () => {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
+  
   const [activeItem, setActiveItem] = useState("API Management");
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
   };
   useEffect(() => {
-    // Sample data
-    const totalRequestsOptions = {
-      chart: {
-        type: "bar",
-        height: "250px",
-      },
-      series: [
-        {
-          name: "Total Requests",
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
+    const loadApexCharts = async () => {
+      const ApexCharts = (await import("apexcharts")).default;
+
+      // Sample data
+      const totalRequestsOptions = {
+        chart: {
+          type: "bar",
+          height: "250px",
         },
-      ],
-      xaxis: {
-        categories: [
-          "Key1",
-          "Key2",
-          "Key3",
-          "Key4",
-          "Key5",
-          "Key6",
-          "Key7",
-          "Key8",
+        series: [
+          {
+            name: "Total Requests",
+            data: [30, 40, 45, 50, 49, 60, 70, 91],
+          },
         ],
-      },
-      colors: ["#023e8a", "#adb5bd", "#edf2f4"], // Add your colors here
-    };
-
-    const successFailureOptions = {
-      chart: {
-        type: "donut",
-        height: "250px",
-      },
-      series: [70, 30],
-      labels: ["Success", "Failure"],
-      colors: ["#023e8a", "#adb5bd"], // Add your colors here
-    };
-
-    const requestsOverTimeOptions = {
-      chart: {
-        type: "line",
-        height: "250px",
-      },
-      series: [
-        {
-          name: "Requests Over Time",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+        xaxis: {
+          categories: ["Key1", "Key2", "Key3", "Key4", "Key5", "Key6", "Key7", "Key8"],
         },
-      ],
-      xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-        ],
-      },
-      colors: ["#023e8a"], // Add your colors here
-    };
+        colors: ["#023e8a", "#adb5bd", "#edf2f4"],
+      };
 
-    const averageResponseTimeOptions = {
-      chart: {
-        type: "line",
-        height: "250px",
-      },
-      series: [
-        {
-          name: "Average Response Time",
-          data: [200, 400, 300, 500, 450, 600, 700, 800],
+      const successFailureOptions = {
+        chart: {
+          type: "donut",
+          height: "250px",
         },
-      ],
-      xaxis: {
-        categories: [
-          "Key1",
-          "Key2",
-          "Key3",
-          "Key4",
-          "Key5",
-          "Key6",
-          "Key7",
-          "Key8",
+        series: [70, 30],
+        labels: ["Success", "Failure"],
+        colors: ["#023e8a", "#adb5bd"],
+      };
+
+      const requestsOverTimeOptions = {
+        chart: {
+          type: "line",
+          height: "250px",
+        },
+        series: [
+          {
+            name: "Requests Over Time",
+            data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+          },
         ],
-      },
-      colors: ["#023e8a"], // Add your colors here
+        xaxis: {
+          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+        },
+        colors: ["#023e8a"],
+      };
+
+      const averageResponseTimeOptions = {
+        chart: {
+          type: "line",
+          height: "250px",
+        },
+        series: [
+          {
+            name: "Average Response Time",
+            data: [200, 400, 300, 500, 450, 600, 700, 800],
+          },
+        ],
+        xaxis: {
+          categories: ["Key1", "Key2", "Key3", "Key4", "Key5", "Key6", "Key7", "Key8"],
+        },
+        colors: ["#023e8a"],
+      };
+
+      // Render charts
+      const totalRequestsChart = new ApexCharts(document.querySelector("#totalRequestsChart"), totalRequestsOptions);
+      totalRequestsChart.render();
+
+      const successFailureChart = new ApexCharts(document.querySelector("#successFailureChart"), successFailureOptions);
+      successFailureChart.render();
+
+      const requestsOverTimeChart = new ApexCharts(document.querySelector("#requestsOverTimeChart"), requestsOverTimeOptions);
+      requestsOverTimeChart.render();
+
+      const averageResponseTimeChart = new ApexCharts(
+        document.querySelector("#averageResponseTimeChart"),
+        averageResponseTimeOptions
+      );
+      averageResponseTimeChart.render();
+
+      // Cleanup on unmount
+      return () => {
+        totalRequestsChart.destroy();
+        successFailureChart.destroy();
+        requestsOverTimeChart.destroy();
+        averageResponseTimeChart.destroy();
+      };
     };
 
-    // Render charts
-    const totalRequestsChart = new ApexCharts(
-      document.querySelector("#totalRequestsChart"),
-      totalRequestsOptions
-    );
-    totalRequestsChart.render();
-
-    const successFailureChart = new ApexCharts(
-      document.querySelector("#successFailureChart"),
-      successFailureOptions
-    );
-    successFailureChart.render();
-
-    const requestsOverTimeChart = new ApexCharts(
-      document.querySelector("#requestsOverTimeChart"),
-      requestsOverTimeOptions
-    );
-    requestsOverTimeChart.render();
-
-    const averageResponseTimeChart = new ApexCharts(
-      document.querySelector("#averageResponseTimeChart"),
-      averageResponseTimeOptions
-    );
-    averageResponseTimeChart.render();
-
-    // Cleanup on unmount
-    return () => {
-      totalRequestsChart.destroy();
-      successFailureChart.destroy();
-      requestsOverTimeChart.destroy();
-      averageResponseTimeChart.destroy();
-    };
+    if (typeof window !== "undefined") {
+      loadApexCharts();
+    }
   }, []);
 
   return (

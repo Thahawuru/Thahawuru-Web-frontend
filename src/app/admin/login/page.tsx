@@ -4,11 +4,14 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { useAuthentication } from "@/api/useAuthentication";
 import Toast from "@/components/utils/toaster";
 import { useRouter } from "next/navigation";
+import { AuthContext } from '@/context/authContext';
+import { useContext } from 'react';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const { login, logoutUser, user, loading } = useContext(AuthContext);
 
   const { adminMaintainerSignin } = useAuthentication();
 
@@ -18,10 +21,7 @@ export default function AdminLogin() {
       const response = await adminMaintainerSignin({ email, password });
       if (response.status === 200) {
         Toast({ type: "success", message: "Login Success" });
-        console.log(response.data.data);
-        localStorage.setItem("user", JSON.stringify(response.data.data.user));
-        localStorage.setItem("token", JSON.stringify(response.data.data.token));
-        localStorage.setItem("role", JSON.stringify(response.data.data.user.role));
+        login(response.data.data);
         if (response.data.data.user.role === "ADMIN") {
           router.push("/admin/dashboard");
         } else if (response.data.data.user.role === "MAINTAINER") {

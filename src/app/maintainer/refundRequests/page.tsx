@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import { BiCheckCircle, BiXCircle, BiDetail } from "react-icons/bi";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 interface API {
   requestId: number;
   name: string;
@@ -89,10 +89,7 @@ const initialAPI: API[] = [
 
 export default function Page() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    authorize("MAINTAINER");
-}, [authorize, user]);
+  
 
   const [activeItem, setActiveItem] = useState("Refund Requests");
 

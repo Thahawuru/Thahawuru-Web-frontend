@@ -34,12 +34,6 @@ const menuItems = [
     category: "API",
     items: [
       {
-        title: "API Management",
-        href: "/maintainer/api/management",
-        icon: <BiTask />,
-        badge: null,
-      },
-      {
         title: "Payments",
         href: "/maintainer/payments",
         icon: <BiDollarCircle />,
@@ -53,7 +47,7 @@ const menuItems = [
       },
       {
         title: "Requests",
-        href: "/maintainer/requests",
+        href: "/maintainer/payments/requests",
         icon: <BiDollarCircle />,
         badge: null,
       },
@@ -65,7 +59,7 @@ const menuItems = [
       },
       {
         title: "Active",
-        href: "/maintainer/payments/active",
+        href: "/maintainer/api/management",
         icon: <BiTask />,
         badge: null,
       },
@@ -129,11 +123,12 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, onSetActiveItem }) => {
     <aside className="fixed top-0 left-0 flex-shrink-0 w-64 bg-primary shadow-lg border-r border-gray-200 lg:block h-full z-60 overflow-y-auto">
       <div className="flex flex-col h-full">
         <div className="flex items-center justify-center flex-shrink-0 px-4 py-5">
-          <a
+        <a
             href="#"
-            className="px-2 text-xl font-black leading-5 text-secondaryTwo"
+            className="px-2 text-xl font-black leading-5 text-secondaryTwo flex flex-row"
           >
             <b>තහවුරු</b>
+            <b className="text-secondaryTwo ml-2">MAINTAINER</b>
           </a>
         </div>
         <div className="flex flex-col flex-grow px-4">

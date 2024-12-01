@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow,
@@ -16,155 +15,69 @@ import {
   TextField,
 } from "@mui/material";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+import { Tooltip, Button, TableCell } from '@mui/material';
 
-interface Maintainer {
-  email: string;
-  ipAddress: string;
-  dateAndTime: string;
-  action: string;
-  url: string;
-  code: string;
+
+interface Log {
+  _id: string;
+  apiKey: string;
+  route: string;
+  ipAddress:string;
+  responseTime: number;
+  statusCode: number;
+  statusMessage: string;
+  timestamp: string;
+  __v: number;
 }
-
-const initialMaintainers: Maintainer[] = [
-  {
-    email: "john@example.com",
-    ipAddress: "197:168:1:1",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "sam@example.com",
-    ipAddress: "197:168:1:2",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "mahesh@example.com",
-    ipAddress: "197:168:1:3",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "dinum@example.com",
-    ipAddress: "197:168:1:4",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "lahiru@example.com",
-    ipAddress: "197:168:1:5",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "john@example.com",
-    ipAddress: "197:168:1:1",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "sam@example.com",
-    ipAddress: "197:168:1:2",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "mahesh@example.com",
-    ipAddress: "197:168:1:3",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "dinum@example.com",
-    ipAddress: "197:168:1:4",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "lahiru@example.com",
-    ipAddress: "197:168:1:5",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "john@example.com",
-    ipAddress: "197:168:1:1",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "sam@example.com",
-    ipAddress: "197:168:1:2",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "mahesh@example.com",
-    ipAddress: "197:168:1:3",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "dinum@example.com",
-    ipAddress: "197:168:1:4",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-  {
-    email: "lahiru@example.com",
-    ipAddress: "197:168:1:5",
-    dateAndTime: "2021-10-10 12:00:00",
-    action: "Login",
-    url: "/admin/dashboard",
-    code: "200",
-  },
-];
 
 export default function Page() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
+
   const [activeItem, setActiveItem] = useState("Logs & Analytics");
+  const [logs, setLogs] = useState<Log[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const NODE_BASE_URL = process.env.NEXT_PUBLIC_NODE_BASE_URL!;
+
+  const fetchLogs = async () => {
+    try {
+      const response = await fetch(`http://localhost:3010/logs/get-all-logs`);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch logs");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      if (Array.isArray(data)) {
+        console.log("response is an array");
+      }
+
+      setLogs(data.data);
+    } catch (err) {
+      setError("An error occurred while fetching logs");
+    }
+  };
+
+  useEffect(() => {
+    fetchLogs();
+  }, []);
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        console.log(`copied to clipboard!`);
+      })
+      .catch((err) => {
+        console.log("Error Copiying to Clipboard");
+      });
+  };
+
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
   };
-
-  const [maintainers, setMaintainers] =
-    useState<Maintainer[]>(initialMaintainers);
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(7);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -187,15 +100,21 @@ export default function Page() {
     setSearchQuery(event.target.value);
   };
 
-  const filteredLogs = maintainers.filter(
-    (log) =>
-      log.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      log.ipAddress.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      log.dateAndTime.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      log.action.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      log.url.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      log.code.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredLogs = logs.filter((log: Log) =>
+    (log._id && log._id.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (log.apiKey && log.apiKey.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (log.route && log.route.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (log.responseTime && log.responseTime.toString().toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (log.statusCode && log.statusCode.toString().toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (log.statusMessage && log.statusMessage.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (log.timestamp && log.timestamp.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (log.ipAddress && log.ipAddress.toLowerCase().includes(searchQuery.toLowerCase()))||
+    (log.__v && log.__v.toString().toLowerCase().includes(searchQuery.toLowerCase()))
   );
+
+
+
+
 
   return (
     <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
@@ -255,12 +174,13 @@ export default function Page() {
                   <TableHead>
                     <TableRow>
                       <TableCell>ID</TableCell>
-                      <TableCell>Email</TableCell>
-                      <TableCell>IP Address</TableCell>
-                      <TableCell>Date and Time</TableCell>
-                      <TableCell>Action</TableCell>
-                      <TableCell>URL</TableCell>
-                      <TableCell>Code</TableCell>
+                      <TableCell>API Key</TableCell>
+                      <TableCell>Route</TableCell>
+                      <TableCell>Response Time</TableCell>
+                      <TableCell>Status Code</TableCell>
+                      <TableCell>Status Message</TableCell>
+                      <TableCell>Timestamp</TableCell>
+                      <TableCell>IP</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -274,12 +194,30 @@ export default function Page() {
                           <TableCell>
                             {page * rowsPerPage + index + 1}
                           </TableCell>{" "}
-                          <TableCell>{log.email}</TableCell>
+                          <TableCell style={{ maxWidth: "150px" }}>
+                            <Tooltip title={log.apiKey} placement="top">
+                              <span style={{ maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                <Button className="bg-secondary text-white hover:bg-secondary" onClick={() => handleCopy(log.apiKey)} variant="outlined" size="small" style={{ marginLeft: "8px" }}>
+                                  API Key
+                                </Button>
+                              </span>
+                            </Tooltip>
+                          </TableCell>
+
+                          <TableCell style={{ maxWidth: "150px" }}>
+                            <Tooltip title={log.route} placement="top">
+                              <span style={{ maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                <Button className="bg-secondary text-white hover:bg-secondary" onClick={() => handleCopy(log.route)} variant="outlined" size="small" style={{ marginLeft: "8px" }}>
+                                  Route
+                                </Button>
+                              </span>
+                            </Tooltip>
+                          </TableCell>
+                          <TableCell>{log.responseTime}</TableCell>
+                          <TableCell>{log.statusCode}</TableCell>
+                          <TableCell>{log.statusMessage}</TableCell>
+                          <TableCell>{log.timestamp}</TableCell>
                           <TableCell>{log.ipAddress}</TableCell>
-                          <TableCell>{log.dateAndTime}</TableCell>
-                          <TableCell>{log.action}</TableCell>
-                          <TableCell>{log.url}</TableCell>
-                          <TableCell>{log.code}</TableCell>
                         </TableRow>
                       ))}
                   </TableBody>

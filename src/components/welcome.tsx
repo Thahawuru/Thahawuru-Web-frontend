@@ -5,16 +5,15 @@ import ProfileImage from "../../public/profilePicDefault.png";
 import { useAuthContext } from "@/hooks/useAuthContext";
 
 const Welcome = () => {
-  const [isBellClicked, setIsBellClicked] = useState(false);
   const { user } = useAuthContext();
+  const [isBellClicked, setIsBellClicked] = useState(false);
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    if(user) {
-      setEmail(user.email.split("@")[0]); 
+    if (user) {
+      setEmail(user.email);
     }
   }, [user]);
-  
 
   const handleBellClick = () => {
     setIsBellClicked(!isBellClicked);

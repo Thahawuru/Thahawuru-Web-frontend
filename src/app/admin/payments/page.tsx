@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import useAuthorize from "@/api/useAuthorize";
+
 interface API {
   id: number;
   name: string;
@@ -356,11 +356,6 @@ const initialAPI: API[] = [
 
 export default function Page() {
   const { user } = useAuthContext();
-  const { authorize } = useAuthorize();
-  useEffect(() => {
-    console.log("USER", user);
-    authorize("ADMIN");
-  }, [authorize, user]);
   
   const [activeItem, setActiveItem] = useState("Payments");
 
