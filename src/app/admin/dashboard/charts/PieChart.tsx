@@ -1,18 +1,46 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ApexCharts from "apexcharts";
+import { getAPIDataTypes } from "../../../../api/adminDashboard";
 
 const PieChart = () => {
   const chartRef = useRef(null);
+  const [pieData, setPieData] = useState<{ labels: string[]; series: number[] } | null>(null);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getAPIDataTypes();
+        if (response && Array.isArray(response)) {
+          const labels = response.map((item) =>
+            item.apidata_type === 1 ? "Identity" : item.apidata_type === 2 ? "License" : "Both"
+          );
+          const series = response.map((item) => parseInt(item.count, 10));
+
+          setPieData({ labels, series });
+        } else {
+          console.error("Unexpected response format:", response);
+        }
+      } catch (error) {
+        console.error("Error fetching pie chart data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (!pieData) return;
+
+    const { labels, series } = pieData;
+
     const chartOptions = {
-      series: [44, 55, 100],
+      series: series,
       chart: {
         type: "pie",
         height: 300,
       },
-      labels: ["Identity", "License", "Both"],
+      labels: labels,
       colors: ["#023e8a", "#adb5bd", "#023e8a"],
       dataLabels: {
         enabled: true,
@@ -41,7 +69,7 @@ const PieChart = () => {
     return () => {
       chart.destroy();
     };
-  }, []);
+  }, [pieData]);
 
   return <div ref={chartRef} id="chart" />;
 };
