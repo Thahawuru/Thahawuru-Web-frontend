@@ -27,6 +27,11 @@ const PieChart = dynamic(() => import("./charts/PieChart"), {
   ),
 });
 import { useAuthContext } from "@/hooks/useAuthContext";
+import { fetchTotalRequests } from "@/api/developerDashboard";
+import { fetchTodayRequests } from "@/api/developerDashboard";
+import { fetchAverageResponseTime } from "@/api/developerDashboard";
+import { monthlyUsageRequests } from "@/api/developerDashboard";
+
 
 
 export default function Dashboard() {
@@ -34,10 +39,61 @@ export default function Dashboard() {
   const [email, setEmail] = useState("");
 
   const [activeItem, setActiveItem] = useState("Dashboard");
+  const [totalRequests, setTotalRequests] = useState();
+  const [todayRequests, setTodayRequests] = useState();
+  const [averageResponseTime, setAverageResponseTime] = useState();
+  const [monthlyUsageRequests, setMonthlyUsageRequests] = useState();
 
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
   };
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await fetchTotalRequests();
+        const data = response;
+        setTotalRequests(data);
+      } catch (err) {
+
+        console.error(err);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await fetchTodayRequests();
+        console.log("Respone", response);
+        const data = response;
+        setTodayRequests(data);
+      } catch (err) {
+
+        console.error(err);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
+  useEffect(() => {
+    const averageResponseTime = async () => {
+      try {
+        const response = await fetchAverageResponseTime();
+        const data = response;
+        setAverageResponseTime(data);
+      } catch (err) {
+
+        console.error(err);
+      }
+    };
+
+    averageResponseTime();
+  }, []);
+
   return (
     <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
       <div className="h-screen flex flex-col justify-between items-center">
@@ -57,7 +113,7 @@ export default function Dashboard() {
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 Total Requests
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">200</p>
+              <p className="text-secondaryTwo font-bold text-2xl">{totalRequests}</p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiUser className="text-secondaryTwo mr-2" size={24} />
               </div>
@@ -68,13 +124,13 @@ export default function Dashboard() {
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 Request Today
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">50</p>
+              <p className="text-secondaryTwo font-bold text-2xl">{todayRequests}</p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiIdCard className="text-secondaryTwo mr-2" size={24} />
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
+          {/* <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
             <div className="flex mb-2 flex flex-col w-full h-full">
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 Rate Limit
@@ -84,13 +140,15 @@ export default function Dashboard() {
                 <BiGroup className="text-secondaryTwo mr-2" size={24} />
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
             <div className="flex mb-2 flex flex-col w-full h-full">
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 Average Res. Time
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">0.5 s</p>
+              <p className="text-secondaryTwo font-bold text-2xl">
+                {(averageResponseTime ?? 0).toFixed(3)}&nbsp;ms
+              </p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiShield className="text-secondaryTwo mr-2" size={24} />
               </div>
@@ -101,7 +159,7 @@ export default function Dashboard() {
           <div className="flex flex-row w-3/4 h-auto p-4 justify-center items-center">
             <div className="flex flex-col justify-center w-full h-[400px] p-4 ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
               <h1 className="text-1xl text-secondaryTwo font-bold">
-                Yearly Usage of Requests
+                Monthly Usage of Requests
               </h1>
               <DateTimeXAxis />
             </div>
