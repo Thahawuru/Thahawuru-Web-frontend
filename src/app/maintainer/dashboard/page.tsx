@@ -27,15 +27,32 @@ const PieChart = dynamic(() => import("./charts/PieChart"), {
 });
 import { useAuthContext } from "@/hooks/useAuthContext";
 
+import { getTotalAPIcalls } from "../../../api/adminDashboard";
+
 
 export default function Dashboard() {
   const { user } = useAuthContext();
-  
-  const [activeItem, setActiveItem] = useState("Dashboard");
 
+  const [activeItem, setActiveItem] = useState("Dashboard");
+  const [apiCalls, setAPICalls] = useState();
   const handleSetActiveItem = (itemTitle: any) => {
     setActiveItem(itemTitle);
   };
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await getTotalAPIcalls();
+        const data = response;
+        setAPICalls(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
   return (
     <div className="w-full bg-white min-h-screen h-auto flex flex-row items-end justify-center">
       <div className="h-screen flex flex-col justify-between items-center">
@@ -52,7 +69,7 @@ export default function Dashboard() {
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 New Wallets
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">1000</p>
+              <p className="text-secondaryTwo font-bold text-2xl">2</p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiUser className="text-secondaryTwo mr-2" size={24} />
               </div>
@@ -63,7 +80,7 @@ export default function Dashboard() {
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 Today`s Updates
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">790</p>
+              <p className="text-secondaryTwo font-bold text-2xl">3</p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiIdCard className="text-secondaryTwo mr-2" size={24} />
               </div>
@@ -74,13 +91,13 @@ export default function Dashboard() {
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 API Calls
               </h1>
-              <p className="text-secondaryTwo font-bold text-2xl">1000</p>
+              <p className="text-secondaryTwo font-bold text-2xl">{apiCalls}</p>
               <div className="flex flex-row justify-end w-full mt-10">
                 <BiGroup className="text-secondaryTwo mr-2" size={24} />
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
+          {/* <div className="flex flex-col justify-center w-1/6 h-[150px] p-4 bg-secondaryThree ml-5 mr-5 shadow-md rounded-custom-1 hover:shadow-lg transition ease-in-out duration-150 cursor-pointer">
             <div className="flex mb-2 flex flex-col w-full h-full">
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 Transactions
@@ -90,7 +107,7 @@ export default function Dashboard() {
                 <BiShield className="text-secondaryTwo mr-2" size={24} />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="w-full h-auto p-4 flex flex-col justify-center items-center">
           <div className="flex flex-row w-3/4 h-auto p-4 justify-center items-center">
