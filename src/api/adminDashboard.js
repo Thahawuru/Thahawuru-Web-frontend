@@ -29,3 +29,13 @@ export const getDailyRequests = async () => {
         throw error;
     }
 };
+
+export const fetchTodayRequests = async () => {
+    try {
+        const response = await axios.get(`http://localhost:3010/developer/developer-dashboard/today-requests/client@gmail.com`);
+        return response.data.total_requests;
+    } catch (error) {
+        console.error('Error fetching today\'s requests:', error);
+        throw error;
+    }
+};

@@ -82,7 +82,7 @@ export default function Page() {
       ) => ({
         requestId: data.apiid,
         name: data.name || "",
-        email: "data.apiUser.user.email",
+        email: data.apiUser.user.email,
         requestDate: data.createdAt || "",
         APIType: data.type || "UnknownType",
         status: data.status,
@@ -131,7 +131,7 @@ export default function Page() {
   }, []);
 
   const { user } = useAuthContext();
-  
+
   const [activeItem, setActiveItem] = useState("Active");
 
   const handleSetActiveItem = (itemTitle: any) => {
@@ -288,7 +288,17 @@ export default function Page() {
                           <TableCell>{api.requestId}</TableCell>
                           <TableCell>{api.name}</TableCell>
                           <TableCell>{api.email}</TableCell>
-                          <TableCell>{api.requestDate}</TableCell>
+                          <TableCell>
+                            {new Date(api.requestDate).toLocaleString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              second: "2-digit",
+                              hour12: true,
+                            })}
+                          </TableCell>
                           <TableCell>{api.APIType}</TableCell>
                           <TableCell>{api.purpose}</TableCell>
                           <TableCell>{api.description}</TableCell>

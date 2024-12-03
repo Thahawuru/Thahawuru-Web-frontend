@@ -34,13 +34,13 @@ interface APIarray {
   description: string;
 }
 
-interface User{
+interface User {
   username: string;
   role: string;
   email: string;
-  accountNonExpired:boolean;
-  accountNonLocked:boolean;
-  credentialsNonExpired:boolean;
+  accountNonExpired: boolean;
+  accountNonLocked: boolean;
+  credentialsNonExpired: boolean;
   enabled: boolean;
   id: string;
 }
@@ -57,63 +57,63 @@ interface ApiUser {
 
 
 export default function Page() {
-  const {getAllApiRequests,acceptApiRequests,rejectApiRequests} = useApiKeys();
+  const { getAllApiRequests, acceptApiRequests, rejectApiRequests } = useApiKeys();
   const [apis, setAPIs] = useState<APIarray[]>([]);
 
-  const showdata = (response:any)=>{
-    const dataset = response.data.data ;
-      const mappedAPI: APIarray[] = dataset.map((data: { apiid: any;name: any; apiUser:ApiUser ; createdAt: any; type: any; apistatus: string; purpose: any; description: any; }, index: number) => ({
-        requestId: data.apiid , 
-        name: data.name || "",
-        email: data.apiUser.user.email, 
-        requestDate: data.createdAt || "",
-        APIType: data.type || "UnknownType",
-        status: "request",
-        purpose: data.purpose || "blank",
-        description: data.description || "blank"
-      }));
+  const showdata = (response: any) => {
+    const dataset = response.data.data;
+    const mappedAPI: APIarray[] = dataset.map((data: { apiid: any; name: any; apiUser: ApiUser; createdAt: any; type: any; apistatus: string; purpose: any; description: any; }, index: number) => ({
+      requestId: data.apiid,
+      name: data.name || "",
+      email: data.apiUser.user.email,
+      requestDate: data.createdAt || "",
+      APIType: data.type || "UnknownType",
+      status: "request",
+      purpose: data.purpose || "blank",
+      description: data.description || "blank"
+    }));
 
-      setAPIs(mappedAPI);
+    setAPIs(mappedAPI);
   }
 
   const acceptApiRequest = async (apiId: any) => {
-    try{
+    try {
       const response = await acceptApiRequests(apiId);
-      console.log('accpet request',response);
-      Toast({type:"success", message:"accept the Request."});
+      console.log('accpet request', response);
+      Toast({ type: "success", message: "accept the Request." });
       showdata(response);
-    }catch(error){
-      Toast({type:"fail", message:"failed to accept Reqested API..."});
+    } catch (error) {
+      Toast({ type: "fail", message: "failed to accept Reqested API..." });
     }
   }
 
-  const rejectApiRequest = async (apiId: any) =>{
-    try{
+  const rejectApiRequest = async (apiId: any) => {
+    try {
       const response = await rejectApiRequests(apiId);
-      console.log('reject request',response);
-      Toast({type:"success", message:"Reject the Request."});
+      console.log('reject request', response);
+      Toast({ type: "success", message: "Reject the Request." });
       showdata(response);
-    }catch(error){
-      Toast({type:"fail", message:"failed to reject Reqested API..."});
+    } catch (error) {
+      Toast({ type: "fail", message: "failed to reject Reqested API..." });
     }
   }
 
-  const getDeveloperApiRequests = async () =>{
-    try{
+  const getDeveloperApiRequests = async () => {
+    try {
       const response = await getAllApiRequests();
-      console.log('reponse',response);
+      console.log('reponse', response);
       showdata(response);
-    }catch(error){
-      Toast({type:"fail", message:"failed to fetch Reqested APIs..."});
+    } catch (error) {
+      Toast({ type: "fail", message: "failed to fetch Reqested APIs..." });
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getDeveloperApiRequests();
-  },[]);
+  }, []);
 
   const { user } = useAuthContext();
-  
+
   const [activeItem, setActiveItem] = useState("Requests");
 
   const handleSetActiveItem = (itemTitle: any) => {
@@ -189,7 +189,7 @@ export default function Page() {
             </h1>
           </div>
         </div>
-        
+
         <div className="flex flex-row w-full h-auto p-4">
           <TextField
             label="Start Date"
@@ -266,7 +266,17 @@ export default function Page() {
                           <TableCell>{api.requestId}</TableCell>
                           <TableCell>{api.name}</TableCell>
                           <TableCell>{api.email}</TableCell>
-                          <TableCell>{api.requestDate}</TableCell>
+                          <TableCell>
+                            {new Date(api.requestDate).toLocaleString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              second: "2-digit",
+                              hour12: true,
+                            })}
+                          </TableCell>
                           <TableCell>{api.APIType}</TableCell>
                           <TableCell>{api.purpose}</TableCell>
                           <TableCell>{api.description}</TableCell>
@@ -274,10 +284,10 @@ export default function Page() {
                             {api.status === "request" ? (
                               <>
                                 <IconButton color="primary">
-                                  <BiCheckCircle onClick={()=>acceptApiRequest(api.requestId)}/>
+                                  <BiCheckCircle onClick={() => acceptApiRequest(api.requestId)} />
                                 </IconButton>
                                 <IconButton color="secondary">
-                                  <BiXCircle onClick={()=>rejectApiRequest(api.requestId)} />
+                                  <BiXCircle onClick={() => rejectApiRequest(api.requestId)} />
                                 </IconButton>
                                 {/* <IconButton color="primary">
                                   <BiDetail />
