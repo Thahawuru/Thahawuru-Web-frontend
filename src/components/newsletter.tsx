@@ -1,4 +1,40 @@
+"use client";
+import React, { useState } from "react";
+
 export default function NewsLetter() {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setMessage("");
+
+    if (!email) {
+      setMessage("Please enter a valid email.");
+      return;
+    }
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setMessage("Thank you for subscribing!");
+        setEmail("");
+      } else {
+        const errorData = await response.json();
+        setMessage(errorData.message || "Something went wrong.");
+      }
+    } catch (error) {
+      setMessage("Failed to subscribe. Please try again later.");
+      console.error("Error subscribing to newsletter:", error);
+    }
+  };
+
   return (
     <div className="relative isolate overflow-hidden text-secondary py-16 sm:py-24 lg:py-14">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -10,7 +46,7 @@ export default function NewsLetter() {
             <p className="mt-4 text-2xl leading-8 text-secondary-300 text-center md:text-left">
               Get the latest news and articles delivered straight to your inbox.
             </p>
-            <div className="mt-6 flex max-w-md gap-x-4">
+            <form onSubmit={handleSubmit} className="mt-6 flex max-w-md gap-x-4">
               <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
@@ -22,14 +58,22 @@ export default function NewsLetter() {
                 required
                 className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-secondary shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <button
                 type="submit"
-                className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:scale-105"
+                className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:scale-105"
               >
                 Subscribe
               </button>
-            </div>
+            </form>
+            {message && (
+              <p className="mt-4 text-sm text-center md:text-left text-secondary">
+                {message}
+              </p>
+            )}
+
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
             <div className="flex flex-col items-center md:items-start ">

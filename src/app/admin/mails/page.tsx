@@ -26,19 +26,15 @@ interface API {
 }
 
 const initialAPI: API[] = [
-  { id: 1, email: "john@example.com" },
-  { id: 2, email: "jane@example.com" },
-  { id: 3, email: "john@example.com" },
-  { id: 4, email: "jane@example.com" },
-  { id: 5, email: "john@example.com" },
-  { id: 6, email: "jane@example.com" },
-  { id: 7, email: "john@example.com" },
-  { id: 8, email: "jane@example.com" },
-  { id: 9, email: "john@example.com" },
-  { id: 10, email: "jane@example.com" },
-  { id: 11, email: "john@example.com" },
-  { id: 12, email: "jane@example.com" },
+  { id: 1, email: "kasunu2001@gmail.com" },
+  { id: 2, email: "kasunudara14320@gmail.com" },
+  { id: 3, email: "dinirubhanuka@gmail.com" },
+  { id: 4, email: "diniru@gmail.com" },
+  { id: 5, email: "gamindu@gmail.com" },
+  { id: 6, email: "sonal@gmail.com" },
+  { id: 7, email: "pinsari@gmail.com" },
 ];
+
 
 const Page = () => {
   const { user } = useAuthContext();
@@ -92,7 +88,7 @@ const Page = () => {
       .join("\n");
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    saveAs(blob, "api_data.csv");
+    saveAs(blob, "emails.csv");
   };
 
   return (
