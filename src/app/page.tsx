@@ -131,7 +131,7 @@ export default function Home() {
                 animate="visible"
                 exit="exit"
                 variants={zoomInVariants}
-                className="h-full w-full rounded-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer opacity-70 mb-4 bg-white rounded-custom-1"
+                className="h-full w-full rounded-lg transition duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-center items-center cursor-pointer opacity-70 mb-4 bg-white rounded-custom-1 p-4"
               >
                 <div className="w-[80%]">
                   <Image src={logo} alt="Profile Picture"></Image>

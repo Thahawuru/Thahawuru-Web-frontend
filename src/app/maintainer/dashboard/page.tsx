@@ -125,12 +125,12 @@ export default function Dashboard() {
               </h1>
               <PieChart />
             </div>
-            <div className="flex flex-col justify-center w-1/2 h-[400px] ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
+            {/* <div className="flex flex-col justify-center w-1/2 h-[400px] ml-5 mr-5 rounded-custom transition ease-in-out duration-150 cursor-pointer">
               <h1 className="text-1xl text-secondaryTwo font-bold">
                 Revenue Made
               </h1>
               <LineColumnChart />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

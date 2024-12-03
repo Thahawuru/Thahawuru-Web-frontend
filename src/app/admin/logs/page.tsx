@@ -22,7 +22,7 @@ interface Log {
   _id: string;
   apiKey: string;
   route: string;
-  ipAddress:string;
+  ipAddress: string;
   responseTime: number;
   statusCode: number;
   statusMessage: string;
@@ -108,7 +108,7 @@ export default function Page() {
     (log.statusCode && log.statusCode.toString().toLowerCase().includes(searchQuery.toLowerCase())) ||
     (log.statusMessage && log.statusMessage.toLowerCase().includes(searchQuery.toLowerCase())) ||
     (log.timestamp && log.timestamp.toLowerCase().includes(searchQuery.toLowerCase())) ||
-    (log.ipAddress && log.ipAddress.toLowerCase().includes(searchQuery.toLowerCase()))||
+    (log.ipAddress && log.ipAddress.toLowerCase().includes(searchQuery.toLowerCase())) ||
     (log.__v && log.__v.toString().toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
@@ -151,14 +151,14 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <Link href="/admin/logs/analytics" className="w-3/4">
+        {/* <Link href="/admin/logs/analytics" className="w-3/4">
           <button
             type="submit"
             className="flex-none rounded-custom-3 bg-secondary hover:bg-secondaryTwo px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform  ml-10 mb-2"
           >
             Log Analytics
           </button>
-        </Link>
+        </Link> */}
         <div className="w-full flex flex-row justify-center items-center">
           <div className="w-full min-h-[550px] h-auto mb-10 ml-10 mr-10">
             <Paper
@@ -216,7 +216,18 @@ export default function Page() {
                           <TableCell>{log.responseTime}</TableCell>
                           <TableCell>{log.statusCode}</TableCell>
                           <TableCell>{log.statusMessage}</TableCell>
-                          <TableCell>{log.timestamp}</TableCell>
+                          <TableCell>
+                            {new Date(log.timestamp).toLocaleString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              second: "2-digit",
+                              hour12: true,
+                            })}
+                          </TableCell>
+
                           <TableCell>{log.ipAddress}</TableCell>
                         </TableRow>
                       ))}
