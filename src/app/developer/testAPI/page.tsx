@@ -21,43 +21,21 @@ export default function Page() {
       title: "Getting Started",
       paragraph: `First of all, create a .env file and place the below lines there.`,
       content: `
-        BASEURL_FOR_TEST_OR_API = https://api.thahawuru.lk/testapi
-        THAHAWURU_API_LICENSE_ID_PASSPORT = hudjsjallaahgsggsuuytr176;`,
+        BASE_URL = http://localhost:3010/
+        THAHAWURU_IDENTITY = u-Df-IT76KTGpTjBLAF9L11cwGYFpsfcQYv5AqmxLvg=.1N17kJO2SHSKMGaC-EMNRUFOJd6Pq0tkzbPX1JJ5WX0=
+        THAHAWURU_LICENSE = dCL696tdao9ERmcW1Gv7t0--LUEk3Zk8tUvtozZr7Ko=.T8Uo1J0YBoMf2pFW2U4yQZpG8FtxSGOnJYHKMjjy83M=`,
     },
     {
-      title: "License, Identity details",
-      paragraph: `The API provides the following details for the given QR code or NIC number.`,
+      title: "Identity details",
+      paragraph: `The TestAPI provides the following details for the given NIC number.`,
       content: `
-        {BASEURL_FOR_TEST_OR_API}/post/license/identity/qr/qr=qw123hgbn45lk67xc89yu/api={THAHAWURU_API_LICENSE_ID_PASSPORT}
-        {BASEURL_FOR_TEST_OR_API}/post/license/identity/nic/nic=200104562876/api={THAHAWURU_API_LICENSE_ID_PASSPORT}`,
-    },
-    {
-      title: "Identity Details",
-      paragraph: `The API provides the following details for the given QR code or NIC number.`,
-      content: `
-        {BASEURL_FOR_TEST_OR_API}/post/identity/qr/qr=qw123hgbn45lk67xc89yu/api={THAHAWURU_API_LICENSE_ID_PASSPORT}
-        {BASEURL_FOR_TEST_OR_API}/post/identity/nic/nic=200104562876/api={THAHAWURU_API_LICENSE_ID_PASSPORT}`,
+        {BASE_URL}/testapi/identity/200117701551?apikey=$(THAHAWURU_IDENTITY)`,
     },
     {
       title: "License Details",
-      paragraph: `The API provides the following details for the given QR code or NIC number.`,
+      paragraph: `The TestAPI provides the following details for the given NIC number.`,
       content: `
-        {BASEURL_FOR_TEST_OR_API}/post/license/qr/qr=qw123hgbn45lk67xc89yu/api={THAHAWURU_API_LICENSE_ID_PASSPORT}
-        {BASEURL_FOR_TEST_OR_API}/post/license/nic/nic=200104562876/api={THAHAWURU_API_LICENSE_ID_PASSPORT}`,
-    },
-    {
-      title: "Personal Information",
-      paragraph: `The API provides the following details for the given QR code or NIC number.`,
-      content: `
-        {BASEURL_FOR_TEST_OR_API}/post/personal/qr/qr=qw123hgbn45lk67xc89yu/api={THAHAWURU_API_LICENSE_ID_PASSPORT}
-        {BASEURL_FOR_TEST_OR_API}/post/personal/nic/nic=200104562876/api={THAHAWURU_API_LICENSE_ID_PASSPORT}`,
-    },
-    {
-      title: "Police and Court Data",
-      paragraph: `The API provides the following details for the given QR code or NIC number.`,
-      content: `
-        {BASEURL_FOR_TEST_OR_API}/post/police/qr/qr=qw123hgbn45lk67xc89yu/api={THAHAWURU_API_LICENSE_ID_PASSPORT}
-        {BASEURL_FOR_TEST_OR_API}/post/police/nic/nic=200104562876/api={THAHAWURU_API_LICENSE_ID_PASSPORT}`,
+        {BASE_URL}/testapi/license/200117701551?apikey=$(THAHAWURU_LICENSE)`,
     },
   ];
 
@@ -99,11 +77,11 @@ export default function Page() {
           <div className="relative bg-primary-300 p-2 mb-4 rounded text-black shadow-lg flex flex-row mb-16">
             <IconButton
               color="primary"
-              onClick={() => handleCopy("hudjsjallaahgsggsuuytr176")}
+              onClick={() => handleCopy("u-Df-IT76KTGpTjBLAF9L11cwGYFpsfcQYv5AqmxLvg=.1N17kJO2SHSKMGaC-EMNRUFOJd6Pq0tkzbPX1JJ5WX0=")}
             >
               <ContentCopyIcon />
             </IconButton>
-            <pre className="overflow-auto mt-2 ml-16 p-2">hudjsjallaahgsggsuuytr176</pre>
+            <pre className="overflow-auto mt-2 ml-16 p-2">u-Df-IT76KTGpTjBLAF9L11cwGYFpsfcQYv5AqmxLvg=.1N17kJO2SHSKMGaC-EMNRUFOJd6Pq0tkzbPX1JJ5WX0=</pre>
           </div>
 
           {contentBlocks.map((block, index) => (
