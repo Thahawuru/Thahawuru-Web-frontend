@@ -95,9 +95,11 @@ export default function Page() {
 
   const paying = async (apiId: any) => {
     try {
+      const paymentGatewayUrl = `http://localhost:3000/payment`;
+      window.location.href = paymentGatewayUrl;
       const response = await payForApi(apiId);
       console.log("after payment", response);
-      Toast({ type: "success", message: "paid successfully." });
+      // Toast({ type: "success", message: "paid successfully." });
       showdata(response);
     } catch (error) {
       Toast({ type: "fail", message: "failed to paid Reqested API..." });
