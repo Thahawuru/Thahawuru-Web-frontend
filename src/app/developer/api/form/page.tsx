@@ -25,8 +25,7 @@ interface FormData {
   agreeToTerms: boolean;
   agreeToPrivacy: boolean;
   agreeToConfidentiality: boolean;
-  identity: number;
-  plan: string;
+  type: string;
 }
 
 export default function AgreementFormPage() {
@@ -35,7 +34,6 @@ export default function AgreementFormPage() {
   const [activeItem, setActiveItem] = useState<string>("Request for API");
   const [formData, setFormData] = useState<FormData>({
     category: "",
-    selection: "",
     fullName: "",
     organizationName: "",
     email: "",
@@ -46,8 +44,8 @@ export default function AgreementFormPage() {
     agreeToTerms: false,
     agreeToPrivacy: false,
     agreeToConfidentiality: false,
-    identity: 1, // Initialize as empty
-    plan: ""     // Initialize as empty
+    selection: "", // Initialize as empty
+    type: ""     // Initialize as empty
   });
 
   const handleSetActiveItem = (itemTitle: string) => {
@@ -76,6 +74,7 @@ export default function AgreementFormPage() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (
       formData.agreeToTerms &&
       formData.agreeToPrivacy &&
@@ -140,8 +139,8 @@ export default function AgreementFormPage() {
                 </label>
                 <select
                   id="plan-select"
-                  name="plan"
-                  value={formData.plan}
+                  name="selection"
+                  value={formData.selection}
                   onChange={handleChange}
                   required
                   className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-500"
@@ -170,8 +169,8 @@ export default function AgreementFormPage() {
                 </label>
                 <select
                   id="identity-select"
-                  name="identity"
-                  value={formData.identity}
+                  name="type"
+                  value={formData.type}
                   onChange={handleChange}
                   required
                   className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500  bg-white text-gray-500"

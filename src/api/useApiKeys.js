@@ -4,10 +4,12 @@ import Toast from "@/components/utils/toaster";
 
 export const useApiKeys = () => {
   const createApiKey = async (data) => {
+    console.log('useapiKeys',data);
     try {
       const response = await apiClient.post(`/apikey/generate`, {
         name: data.fullName,
-        type: data.category,
+        type: data.type,
+        selection: data.selection,
         purpose:data.purpose,
         applicationDescription:data.applicationDescription,
       });
