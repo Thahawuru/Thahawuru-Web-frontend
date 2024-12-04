@@ -3,7 +3,8 @@ import Cookies from 'js-cookie';
 
 const publicRoutes = [
     "/",
-    "/admin/login"
+    "/admin/login",
+    "/payment-success"
 ];
 
 export function middleware(request) {
